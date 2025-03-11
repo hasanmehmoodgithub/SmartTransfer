@@ -32,7 +32,7 @@ class SplashScreen : AppCompatActivity() {
         binding.progressBar.visibility = View.VISIBLE
 
 binding.getStartedBtn.setOnClickListener {
-    startActivity(Intent(this, LanguageSelectionActivity::class.java))
+    startActivity(Intent(this, MainActivity::class.java))
     finish()
 }
 

@@ -71,18 +71,21 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="6dp"
+            android:onClick="onClickSetting"
             app:srcCompat="@drawable/ic_home_setting" />
 
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="6dp"
+            android:onClick="onClickShareApp"
             app:srcCompat="@drawable/ic_home_scan"
 
             />
 
         <ImageView
             android:layout_width="35dp"
+            android:visibility="gone"
             android:layout_height="35dp"
             android:layout_margin="6dp"
             app:srcCompat="@drawable/ic_home_premium"
@@ -170,6 +173,7 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
+        android:onClick="onClickRemotelyShare"
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="100dp"

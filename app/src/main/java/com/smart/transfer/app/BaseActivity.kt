@@ -1,4 +1,4 @@
-package com.smart.transfer.app.features
+package com.smart.transfer.app.com.smart.transfer.app
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:id="@+id/downloadLayout"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@drawable/circle_shape"
+                android:indeterminate="false"
+
+                android:max="100"
+                android:progress="78"
+                android:progressDrawable="@drawable/circular_progress"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="78.6%"
+                android:textColor="@color/app_blue"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/progressBar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tvUploading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Downlaoding"
+            android:layout_marginTop="75dp"
+            android:textColor="@color/app_blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/tvWaitMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please wait, your data is downloading"
+            android:textColor="@color/grey"
+            android:textSize="14sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/codePasteLayout"
+    android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Download Icon in Circle -->
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_download_file_round"
+            android:layout_gravity="center"/>
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Download file"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/app_blue"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Subtitle -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paste the link in the box that you receive from sender"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Input Field -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_button2"
+            android:gravity="center_vertical"
+            android:backgroundTint="@color/white_e3"
+            android:layout_marginTop="16dp"
+            android:padding="12dp">
+
+            <EditText
+                android:id="@+id/et_link"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Paste link here"
+                android:background="@null"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <!-- OR Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OR"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <!-- QR Code Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_button2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:backgroundTint="@color/white_e3"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:text="Receive with QR code"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/doneBtn"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_button2"
+            android:backgroundTint="@color/blue2"
+            android:text="Done"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,4 +23,8 @@
     <string name="available_storage">Available Storage</string>
     <string name="test2">For more details, check our <b><font color='#1C80F7'>Privacy Policy</font></b> and <b><font color='#1C80F7'>Terms &amp; Conditions</font></b>.</string>
 
+
+    <string name="title_activity_uploading">UploadingActivity</string>
+    <string name="note_text"><b><font color="#000000">Note:</font></b> <font color="#808080">The below key is valid for 24 hours and will be automatically deleted thereafter.</font></string>
+
 </resources>

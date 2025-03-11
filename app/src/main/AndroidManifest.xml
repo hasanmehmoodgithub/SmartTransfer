@@ -31,6 +31,23 @@
         android:theme="@style/Theme.SmartTransfer"
         tools:targetApi="31">
         <activity
+            android:name=".features.setting.ShareAppActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.setting.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.remoltyshare.DownloadFileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.remoltyshare.UploadingFilesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".features.remoltyshare.RemotelyShareActivity"
+            android:exported="false" />
+        <activity
             android:name=".features.filepicker.FilePickerActivity"
             android:exported="false" />
         <activity

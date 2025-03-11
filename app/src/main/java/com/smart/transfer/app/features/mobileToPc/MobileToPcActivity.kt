@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.text.format.Formatter
 
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 
 import com.example.kotlintest.mobileToPc.MultipleFileServer
 import com.smart.transfer.app.databinding.ActivityMobileToPcBinding
@@ -15,9 +14,8 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.view.View
 import android.widget.LinearLayout
-import androidx.appcompat.widget.Toolbar
 import com.smart.transfer.app.R
-import com.smart.transfer.app.features.BaseActivity
+import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
 
 
 import java.io.File

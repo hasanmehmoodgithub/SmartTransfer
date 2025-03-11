@@ -10,6 +10,9 @@ import com.smart.transfer.app.com.smart.transfer.app.core.makeStatusBarTranspare
 import com.smart.transfer.app.databinding.ActivityMainBinding
 import com.smart.transfer.app.features.filepicker.FilePickerActivity
 import com.smart.transfer.app.features.mobileToPc.MobileToPcActivity
+import com.smart.transfer.app.features.remoltyshare.RemotelyShareActivity
+import com.smart.transfer.app.features.setting.SettingActivity
+import com.smart.transfer.app.features.setting.ShareAppActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,6 +46,18 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun onClickRemotelyShare(view: View) {
+        startActivity(Intent(this, RemotelyShareActivity::class.java))
+
+    }
+
+    fun onClickSetting(view: View) {
+        startActivity(Intent(this, SettingActivity::class.java))
+    }
+
+    fun onClickShareApp(view: View) {
+        startActivity(Intent(this, ShareAppActivity::class.java))
+    }
 
 }
 

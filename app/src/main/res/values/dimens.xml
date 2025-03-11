@@ -3,4 +3,5 @@
     <dimen name="_6sdp">6dp</dimen>
     <dimen name="_1sdp">1dp</dimen>
     <dimen name="_10sdp">10dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
