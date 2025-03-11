@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/storageInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Storage Information"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingBottom="10dp" />
+
+    <TextView
+        android:id="@+id/totalStorage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Storage: --"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/usedStorage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Used Storage: --"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/availableStorage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Available Storage: --"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/photosStorage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Photos Storage: --"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/videosStorage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Videos Storage: --"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/musicStorage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Music Storage: --"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/documentsStorage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Documents Storage: --"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/downloadsStorage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Downloads Storage: --"
+        android:textSize="16sp" />
+
+</LinearLayout>

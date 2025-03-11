@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smart Transfer</string>
+    <string name="get_started">我的应用</string>
+    <string name="quick_data_transfer_no_delays_just_smooth_sharing">Quick data transfer no delays, just smooth sharing ! 🚀</string>
+    <string name="todo">TODO</string>
+    <string name="terms_privacy_text">For further information please check it out our <b><font color='#1C80F7'>privacy policy</font></b> and <b><font color='#1C80F7'>Terms &amp; Condition</font></b></string>
+
+    <string name="skip">Skip</string>
+
+
+    <string name="onboarding_title_1">Mobile to PC <font color='#1C80F7'>Sync</font></string>
+    <string name="onboarding_title_2">Mobile to Mobile <font color='#1C80F7'>Transfer</font></string>
+    <string name="onboarding_title_3">Multi-Device <font color='#1C80F7'>Transfer</font></string>
+
+
+
+    <string name="onboarding_desc_1">Share Files between your devices <b>seamlessly</b></string>
+    <string name="onboarding_desc_2">Easily transfer files between <b>Android &amp; iOS devices</b></string>
+    <string name="onboarding_desc_3">Quickly share files between multiple <b>laptops and devices</b></string>
+
+
+    <string name="available_storage">Available Storage</string>
+    <string name="test2">For more details, check our <b><font color='#1C80F7'>Privacy Policy</font></b> and <b><font color='#1C80F7'>Terms &amp; Conditions</font></b>.</string>
+
+</resources>
