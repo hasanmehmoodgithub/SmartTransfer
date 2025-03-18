@@ -21,32 +21,50 @@
         android:id="@+id/smartTransferImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
         android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_transfer" />
+        app:layout_constraintVertical_bias="0.432"
+        app:srcCompat="@drawable/ic_app_logo" />
+
+    <TextView
+        android:id="@+id/smartText"
+        android:layout_width="wrap_content"
+        android:textSize="35sp"
+        android:textColor="@color/color_1a"
+        android:textStyle="bold"
+        android:textFontWeight="900"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/smarttransfer"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/smartTransferImg" />
 
     <TextView
         android:id="@+id/splashText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
         android:layout_marginTop="8dp"
-
+        android:layout_marginEnd="26dp"
         android:text="@string/quick_data_transfer_no_delays_just_smooth_sharing"
+        android:textColor="@color/color_65"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/smartTransferImg" />
+        app:layout_constraintTop_toBottomOf="@+id/smartText" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:visibility="gone"
+        android:layout_marginBottom="100dp"
+
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/termAndPrimacyText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -55,8 +73,8 @@
         android:id="@+id/getStartedBtn"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
         android:layout_marginBottom="20dp"
 
         android:background="@drawable/rounded_button"
@@ -71,14 +89,16 @@
         android:id="@+id/termAndPrimacyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="30dp"
         android:contentDescription="@string/todo"
         android:gravity="center"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:text="@string/terms_privacy_text"
+        android:textColor="@color/color_65"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -7,9 +7,8 @@ import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.util.Log
-import com.smart.transfer.app.MainActivity
 import com.smart.transfer.app.databinding.ActivitySettingBinding
+import com.smart.transfer.app.com.smart.transfer.app.features.languageScreens.LanguageSelectionActivity
 
 
 class SettingActivity : AppCompatActivity() {
@@ -34,7 +33,7 @@ class SettingActivity : AppCompatActivity() {
 
         // Language Selection
         binding.llLanguage.setOnClickListener {
-            // Navigate to Language Selection Activity
+            startActivity(Intent(this, LanguageSelectionActivity::class.java))
         }
 
         // Privacy Policy

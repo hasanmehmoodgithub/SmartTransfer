@@ -1,4 +1,4 @@
-package com.smart.transfer.app.features.mobileToPc
+package com.smart.transfer.app.com.smart.transfer.app.features.mobileToPc.ui
 
 import android.net.wifi.WifiManager
 import android.os.Bundle

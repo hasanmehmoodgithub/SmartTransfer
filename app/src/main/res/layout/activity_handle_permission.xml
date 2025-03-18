@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/activity_bg_color"
+        android:padding="16dp">
+
+        <androidx.cardview.widget.CardView
+            android:padding="14dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/bannerCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgMain"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:contentDescription="Security Image"
+                    android:src="@drawable/ic_permission_handler_banner" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:textColor="@color/black"
+                    android:text="@string/for_smooth_transfer_many_permissions_are_required_due_to_android_limitations"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- Location Service Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/locationServiceCard"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="14dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:text="@string/enable_location_service"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/needs_location_access_to_ensure_accurate_device_discovery_and_seamless_file_transfers"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    />
+
+                <ImageView
+                    android:id="@+id/imgLocation"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_check"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnLocation"
+                    android:layout_width="160dp"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button2"
+                    android:text="@string/grant_access"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Wi-Fi Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/wifiServiceCard"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="14dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enable_wi_fi"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wi_fi_is_required_for_fast_and_seamless_file_transfers_between_devices"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    />
+
+                <ImageView
+                    android:id="@+id/imgWifi"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_check"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnWifi"
+
+                    android:layout_width="160dp"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button2"
+                    android:text="@string/grant_access"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Nearby Devices Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/NearByServiceCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="14dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enable_nearby_devices_permission"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:text="@string/needed_to_connect_and_transfer_files_with_nearby_devices"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/imgNearby"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_check"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnNearby"
+                    android:layout_width="160dp"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button2"
+                    android:text="@string/grant_access"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+<View
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"/>
+    </LinearLayout>
+</ScrollView>

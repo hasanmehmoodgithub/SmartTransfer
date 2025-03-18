@@ -6,6 +6,10 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
     <TextView
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
@@ -14,6 +18,10 @@
         android:textStyle="bold"
         android:text="@string/onboarding_title_1"
         android:paddingTop="20dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
     <ImageView
         android:id="@+id/smartTransferImg"
         android:layout_width="250dp"
@@ -21,7 +29,10 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/step1"
 />
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
     <TextView
         android:id="@+id/descriptionText"
         android:layout_width="wrap_content"
@@ -30,5 +41,8 @@
         android:text="@string/onboarding_desc_1"
         android:paddingTop="10dp"
         android:textAlignment="center" />
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 </LinearLayout>

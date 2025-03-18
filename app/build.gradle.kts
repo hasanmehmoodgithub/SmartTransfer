@@ -15,6 +15,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        resConfigs("en", "ar", "zh", "fr", "de", "hi", "id", "it", "pt", "pl", "ru", "es", "tr", "fa", "th", "vi")
     }
 
     buildTypes {

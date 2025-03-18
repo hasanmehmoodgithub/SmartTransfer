@@ -11,29 +11,45 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
-    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
     <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:localeConfig="@xml/locales_config"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartTransfer"
-        tools:targetApi="31">
+        tools:targetApi="tiramisu">
+        <activity
+            android:name=".features.localshare.ui.HandlePermissionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.dashboard.ui.DashboardActivity"
+            android:exported="false" />
+
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
         <activity
             android:name=".features.setting.ShareAppActivity"
             android:exported="false" />
-
         <activity
             android:name=".features.setting.SettingActivity"
             android:exported="false" />
@@ -43,31 +59,26 @@
         <activity
             android:name=".features.remoltyshare.UploadingFilesActivity"
             android:exported="false" />
-
         <activity
             android:name=".features.remoltyshare.RemotelyShareActivity"
             android:exported="false" />
         <activity
             android:name=".features.filepicker.FilePickerActivity"
             android:exported="false" />
+
         <activity
-            android:name=".features.mobileToPc.TestAc"
-            android:exported="false" />
-        <activity
-            android:name=".features.mobileToPc.MobileToPcActivity"
+            android:name=".com.smart.transfer.app.features.mobileToPc.ui.MobileToPcActivity"
             android:exported="false" />
         <activity
             android:name=".StorageActivity"
             android:exported="false" />
         <activity
-            android:name=".languageScreens.LanguageSelectionActivity"
+            android:name=".com.smart.transfer.app.features.languageScreens.LanguageSelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".onboarding.OnboardingActivity"
+            android:name=".com.smart.transfer.app.features.onboarding.OnboardingActivity"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
+
         <activity
             android:name=".SplashScreen"
             android:exported="true">

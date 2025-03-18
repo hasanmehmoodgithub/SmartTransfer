@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="activity_bg_color">#F8FAFF</color>
     <color name="grey">#9B9B9B</color>
     <color name="app_blue">#1C80F7</color>
     <color name="app_green">#0C8D23</color>
@@ -15,6 +16,8 @@
     <color name="blue2">#4E82E8</color>
     <color name="white_e3">#E3F1FE</color>
     <color name="setting_text_color">#0F3F62</color>
+    <color name="color_1a">#1A1A1A</color>
+    <color name="color_65">#656565</color>
 
     <color name="app_blue_opc_20">#CEE2F9</color>
 

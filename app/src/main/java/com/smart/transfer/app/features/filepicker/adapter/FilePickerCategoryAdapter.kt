@@ -19,7 +19,7 @@ class FilePickerCategoryAdapter(
 ) : RecyclerView.Adapter<FilePickerCategoryAdapter.CategoryViewHolder>() {
 
     inner class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val cardView: CardView = view.findViewById(R.id.cardView)
+        val cardView: CardView = view.findViewById(R.id.remotelyShare)
         val icon: ImageView = view.findViewById(R.id.icon)
         val title: TextView = view.findViewById(R.id.title)
 

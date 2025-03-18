@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <!-- Illustration -->
+    <ImageView
+        android:id="@+id/helpImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_storage_permission" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/needHelpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/we_need_your_help"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="8dp" />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/helpDescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/to_provide_you_with_the_best_experience_this_app_needs_access_to_your_storage_to_save_and_manage_files"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        android:gravity="center"
+        android:layout_marginTop="8dp" />
+
+    <!-- Why we need this permission -->
+    <TextView
+        android:id="@+id/tvWhyPermission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/why_we_need_this_permission"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp" />
+
+    <!-- Additional Info -->
+    <TextView
+        android:id="@+id/tvAdditionalInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/we_do_not_access_or_share_your_personal_data"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        android:gravity="center"
+        android:layout_marginTop="8dp" />
+
+    <!-- Grant Access Button -->
+    <Button
+        android:id="@+id/btnGrantAccess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/grant_access"
+
+        android:background="@drawable/rounded_button2"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp" />
+
+    <!-- Cancel Button -->
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:background="@drawable/rounded_stroke_button_shape"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

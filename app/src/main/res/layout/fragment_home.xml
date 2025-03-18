@@ -57,30 +57,33 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:layout_weight="1"
-            android:text="Smart Transfer"
+            android:text="@string/smart_transfer"
             android:textColor="@color/white"
-            android:textSize="18dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
         <ImageView
+            android:id="@+id/settingImgBtn"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="6dp"
             android:onClick="onClickSetting"
-            app:srcCompat="@drawable/ic_home_setting" />
+            app:srcCompat="@drawable/ic_home_setting"
+            android:contentDescription="@string/todo" />
 
         <ImageView
+            android:id="@+id/shareImgBtn"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="6dp"
             android:onClick="onClickShareApp"
             app:srcCompat="@drawable/ic_home_scan"
-
+            android:contentDescription="@string/todo"
             />
 
         <ImageView
@@ -89,7 +92,7 @@
             android:layout_height="35dp"
             android:layout_margin="6dp"
             app:srcCompat="@drawable/ic_home_premium"
-
+            android:contentDescription="@string/todo"
             />
     </LinearLayout>
 
@@ -104,9 +107,11 @@
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topImg">
+        app:layout_constraintTop_toBottomOf="@+id/topImg"
+        android:baselineAligned="false">
 
         <LinearLayout
+            android:id="@+id/shareFileLocaly"
             android:layout_width="wrap_content"
             android:layout_height="130dp"
             android:layout_marginEnd="8dp"
@@ -120,28 +125,30 @@
                 android:layout_width="70dp"
                 android:layout_height="0dp"
                 android:layout_weight="6"
-                app:srcCompat="@drawable/icon_msg" />
+                app:srcCompat="@drawable/icon_msg"
+                tools:ignore="NestedWeights" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:text="Share your Files" />
+                android:text="@string/share_your_files" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:text="Share File"
+                android:text="@string/share_file"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/recieveFileLocaly"
             android:layout_width="wrap_content"
             android:layout_height="130dp"
-            android:layout_marginLeft="8dp"
 
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:background="@drawable/receive_card"
             android:orientation="vertical"
@@ -152,20 +159,22 @@
                 android:layout_width="70dp"
                 android:layout_height="0dp"
                 android:layout_weight="6"
-                app:srcCompat="@drawable/icon_notes" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@drawable/icon_notes"
+                tools:ignore="NestedWeights" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="2"
 
-                android:text="Receive your Files" />
+                android:text="@string/receive_your_files" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:text="Receive"
+                android:text="@string/receive"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -174,7 +183,7 @@
 
     <androidx.cardview.widget.CardView
         android:onClick="onClickRemotelyShare"
-        android:id="@+id/cardView"
+        android:id="@+id/remotelyShare"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginStart="12dp"
@@ -211,13 +220,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Remotely Share"
+                    android:text="@string/remotely_share"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Instantly Remotely transfer data via link" />
+                    android:text="@string/instantly_remotely_transfer_data_via_link" />
 
             </LinearLayout>
 
@@ -239,9 +248,10 @@
 
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/remotelyShare">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/androidToIos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -250,7 +260,7 @@
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
+            app:layout_constraintTop_toBottomOf="@+id/remotelyShare">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -268,7 +278,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Android to Ios" />
+                    android:text="@string/android_to_ios" />
 
 
             </LinearLayout>
@@ -287,7 +297,7 @@
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
+            app:layout_constraintTop_toBottomOf="@+id/remotelyShare">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -299,76 +309,18 @@
                 <ImageView
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    app:srcCompat="@drawable/pctoand" />
+                    app:srcCompat="@drawable/pctoand"
+                />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mobile To Pc" />
+                    android:text="@string/mobile_to_pc" />
 
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="70dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:elevation="0dp"-->
-<!--        app:cardCornerRadius="10dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">-->
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:weightSum="10">-->
-
-<!--            <ImageView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="3"-->
-<!--                app:srcCompat="@drawable/ic_history" />-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginRight="8dp"-->
-<!--                android:layout_weight="7"-->
-<!--                android:orientation="vertical"-->
-<!--                android:padding="8dp">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-
-<!--                    android:text="History" />-->
-
-<!--            </LinearLayout>-->
-
-<!--            <ImageView-->
-<!--                android:layout_width="25dp"-->
-<!--                android:layout_height="25dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_margin="8dp"-->
-<!--                app:srcCompat="@drawable/round_right_arrow" />-->
-<!--        </LinearLayout>-->
-<!--    </androidx.cardview.widget.CardView>-->
-    <!-- Bottom Navigation -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

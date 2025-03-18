@@ -1,4 +1,4 @@
-package com.smart.transfer.app.languageScreens
+package com.smart.transfer.app.com.smart.transfer.app.features.languageScreens
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

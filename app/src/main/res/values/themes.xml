@@ -1,8 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.SmartTransfer" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.SmartTransfer" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
          <item name="colorPrimary">@color/app_blue</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="fontFamily">@font/poppins_font_family</item> <!-- For AppCompat -->
+
+        <item name="colorPrimaryDark">@color/app_blue</item>
+
+
     </style>
 
     <style name="Theme.SmartTransfer" parent="Base.Theme.SmartTransfer" />

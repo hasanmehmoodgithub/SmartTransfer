@@ -1,4 +1,4 @@
-package com.smart.transfer.app.onboarding
+package com.smart.transfer.app.com.smart.transfer.app.features.onboarding
 
 import android.os.Bundle
 import android.view.LayoutInflater
