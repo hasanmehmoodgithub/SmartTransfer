@@ -6,3 +6,8 @@ enum class PermissionStatus {
     RequireGRANTED,
     PERMANENTLY_DENIED
 }
+
+
+enum class ChooseFileNextScreenType {
+    Local, Remote, MobileToPc,AndroidToIos
+}

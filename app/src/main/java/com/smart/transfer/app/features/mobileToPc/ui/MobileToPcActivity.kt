@@ -12,10 +12,12 @@ import com.smart.transfer.app.databinding.ActivityMobileToPcBinding
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import com.smart.transfer.app.R
 import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
+import com.smart.transfer.app.features.dashboard.ui.AllSelectedFilesManager
 
 
 import java.io.File
@@ -39,8 +41,8 @@ class MobileToPcActivity : BaseActivity() {
         val toolbar = findViewById<LinearLayout>(R.id.custom_toolbar)
         setupAppBar(toolbar, "Mobile To Pc", showBackButton = true)
 
-
-
+        // Start animation
+//        binding.lottieAnimationView.playAnimation()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setupStopServerUi()
 
@@ -48,10 +50,10 @@ class MobileToPcActivity : BaseActivity() {
 
     }
     fun onClickStartServer(view: View) {
-        val fileList = listOf(
-            File("/storage/emulated/0/Android/data/com.smartdatatransfer.easytransfer.filetransfer.sendanydata.smartswitchmobile.copydata/files/Download/Screenshot_2025-03-10-14-12-28-538_com.google.android.dialer.jpg")
+        val paths = AllSelectedFilesManager.allSelectedFiles.mapNotNull { it["path"] as? String }
 
-        )
+// Convert paths to File objects
+        val fileList = paths.map { File(it) }
 
         startFileServerList(fileList)
     }

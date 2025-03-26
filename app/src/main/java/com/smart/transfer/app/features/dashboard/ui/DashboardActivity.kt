@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.smart.transfer.app.R
-
+import com.smart.transfer.app.com.smart.transfer.app.features.history.view.HistoryFragment
 
 
 import com.smart.transfer.app.databinding.ActivityDashboardBinding

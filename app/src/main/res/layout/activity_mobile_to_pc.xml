@@ -30,12 +30,25 @@
 
 
         <!-- Content Starts Below -->
-        <ImageView
-            android:id="@+id/mobileToPcBannerImg"
-            android:layout_width="240dp"
-            android:layout_height="240dp"
-            android:layout_marginTop="20dp"
-            app:srcCompat="@drawable/ic_mobile_to_pc_banner" />
+<!--        <ImageView-->
+<!--            android:id="@+id/mobileToPcBannerImg"-->
+<!--            android:layout_width="240dp"-->
+<!--            android:layout_height="240dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            app:srcCompat="@drawable/ic_mobile_to_pc_banner" />-->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="220dp"
+            app:lottie_useCompositionFrameRate="true"
+
+
+            android:layout_height="220dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/test2" />
 
         <TextView
             android:id="@+id/downloadText"

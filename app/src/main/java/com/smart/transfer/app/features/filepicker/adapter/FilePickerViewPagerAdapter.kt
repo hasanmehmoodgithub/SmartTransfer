@@ -3,7 +3,10 @@ package com.smart.transfer.app.com.smart.transfer.app.features.filepicker.adapte
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.smart.transfer.app.features.filepicker.ImagesFragment
+import com.smart.transfer.app.features.filepicker.ui.fragments.DocumentPickerFragment
+import com.smart.transfer.app.features.filepicker.ui.fragments.ImagePickerFragment
+import com.smart.transfer.app.features.filepicker.ui.fragments.AudioPickerFragment
+import com.smart.transfer.app.features.filepicker.ui.fragments.VideoPickerFragment
 
 
 class FilePickerViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
@@ -11,11 +14,11 @@ class FilePickerViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdap
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> ImagesFragment()
-            1 -> ImagesFragment()
-            2 -> ImagesFragment()
-            3 -> ImagesFragment()
-            else -> ImagesFragment()
+            0 -> ImagePickerFragment()
+            1 -> VideoPickerFragment()
+            2 -> AudioPickerFragment()
+            3 -> DocumentPickerFragment()
+            else -> ImagePickerFragment()
         }
     }
 }

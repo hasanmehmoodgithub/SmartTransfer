@@ -1,14 +1,404 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".features.dashboard.ui.StorageFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:background="@color/activity_bg_color"
+    android:fillViewport="true">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/toolbar_background"
+        android:padding="8dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:text="Available Storage"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fillViewport="true">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:padding="16dp">
+
+          <!-- Storage Progress Section -->
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical"
+              android:gravity="center"
+              android:layout_gravity="center"
+              android:padding="16dp">
+
+              <androidx.constraintlayout.widget.ConstraintLayout
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content">
+
+                  <com.smart.transfer.app.com.smart.transfer.app.features.dashboard.ui.ProgressPieView
+                      android:id="@+id/progressPieView"
+                      android:layout_width="200dp"
+                      android:layout_height="200dp"
+                      android:background="@android:color/transparent"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toTopOf="parent" />
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:gravity="center"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toTopOf="parent">
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Storage"
+                          android:textColor="@color/black" />
+
+                      <TextView
+                          android:id="@+id/usedStorageProgress"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="0 %"
+                          android:textSize="25sp"
+                          android:textColor="@color/black"
+                          android:textStyle="bold" />
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Used"
+                          android:textColor="@color/color_b3" />
+                  </LinearLayout>
+              </androidx.constraintlayout.widget.ConstraintLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_marginTop="16dp">
+
+                  <LinearLayout
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:orientation="horizontal">
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Total: "
+                          android:textSize="12sp"
+                          android:textColor="@color/color_b3" />
+
+                      <TextView
+                          android:id="@+id/tvTotalStorage"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textStyle="bold"
+                          android:textSize="12sp"
+                          android:textColor="@color/black"
+                          android:text="0GB" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:orientation="horizontal">
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Used: "
+                          android:textSize="12sp"
+                          android:textColor="@color/color_b3" />
+
+                      <TextView
+                          android:id="@+id/tvUsedStorage"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textStyle="bold"
+                          android:textSize="12sp"
+                          android:textColor="@color/black"
+                          android:text="0GB" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:orientation="horizontal">
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Available: "
+                          android:textSize="12sp"
+                          android:textColor="@color/color_b3" />
+
+                      <TextView
+                          android:id="@+id/tvAvailableStorage"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textStyle="bold"
+                          android:textSize="12sp"
+
+                          android:textColor="@color/black"
+                          android:text="0GB" />
+                  </LinearLayout>
+              </LinearLayout>
+          </LinearLayout>
+
+          <!-- File Selection Section -->
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="File Selection"
+              android:textStyle="bold"
+              android:textSize="20sp"
+              android:textColor="@color/black"
+              android:layout_marginTop="16dp"
+              android:layout_marginBottom="8dp" />
+
+          <!-- Photos -->
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="80dp"
+
+              android:background="@color/white"
+              android:orientation="horizontal"
+              android:gravity="center"
+              >
+
+              <ImageView
+                  android:layout_width="60dp"
+                  android:layout_height="60dp"
+                  android:layout_marginLeft="8dp"
+                  android:src="@drawable/ic_transfer_photo" />
+
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:layout_marginLeft="8dp">
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Photos"
+                      android:textStyle="bold"
+                      android:textColor="@color/black"
+                      android:textSize="16sp" />
+
+                  <TextView
+                      android:id="@+id/tvPhotos"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="0 items . 0 Gb" />
+              </LinearLayout>
+          </LinearLayout>
+
+          <View
+              android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:background="@color/color_e2" />
+
+          <!-- Videos -->
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="80dp"
+              android:background="@color/white"
+              android:orientation="horizontal"
+              android:gravity="center"
+              >
+
+              <ImageView
+                  android:layout_width="60dp"
+                  android:layout_height="60dp"
+                  android:layout_marginLeft="8dp"
+                  android:src="@drawable/ic_transfer_video" />
+
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:layout_marginLeft="8dp">
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Videos"
+                      android:textStyle="bold"
+                      android:textColor="@color/black"
+                      android:textSize="16sp" />
+
+                  <TextView
+                      android:id="@+id/tvVideos"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="0 items . 0 Gb" />
+              </LinearLayout>
+          </LinearLayout>
+
+          <View
+              android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:background="@color/color_e2" />
+
+          <!-- Music -->
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="80dp"
+              android:background="@color/white"
+              android:orientation="horizontal"
+              android:gravity="center"
+              >
+
+              <ImageView
+                  android:layout_width="60dp"
+                  android:layout_height="60dp"
+                  android:layout_marginLeft="8dp"
+                  android:src="@drawable/ic_transfer_music" />
+
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:layout_marginLeft="8dp">
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Music"
+                      android:textStyle="bold"
+                      android:textColor="@color/black"
+                      android:textSize="16sp" />
+
+                  <TextView
+                      android:id="@+id/tvMusic"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="0 items . 0 Gb" />
+              </LinearLayout>
+          </LinearLayout>
+
+          <View
+              android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:background="@color/color_e2" />
+
+          <!-- Documents -->
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="80dp"
+              android:background="@color/white"
+              android:orientation="horizontal"
+              android:gravity="center"
+              >
+
+              <ImageView
+                  android:layout_width="60dp"
+                  android:layout_marginLeft="8dp"
+                  android:layout_height="60dp"
+                  android:src="@drawable/ic_transfer_doc" />
+
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:layout_marginLeft="8dp">
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Documents"
+                      android:textStyle="bold"
+                      android:textColor="@color/black"
+                      android:textSize="16sp" />
+
+                  <TextView
+                      android:id="@+id/tvDocuments"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="0 items . 0 Gb" />
+              </LinearLayout>
+          </LinearLayout>
+
+          <View
+              android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:background="@color/color_e2" />
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="80dp"
+              android:background="@color/white"
+              android:orientation="horizontal"
+              android:gravity="center"
+              >
+
+              <ImageView
+                  android:layout_width="60dp"
+                  android:layout_marginLeft="8dp"
+                  android:layout_height="60dp"
+                  android:src="@drawable/ic_transfer_other" />
+
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:layout_marginLeft="8dp">
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="System"
+                      android:textStyle="bold"
+                      android:textColor="@color/black"
+                      android:textSize="16sp" />
+
+                  <TextView
+                      android:id="@+id/tvSystem"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="0 items . 0 Gb" />
+              </LinearLayout>
+          </LinearLayout>
+
+          <View
+              android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:background="@color/color_e2" />
+
+      </LinearLayout>
+  </ScrollView>
+
+</LinearLayout>

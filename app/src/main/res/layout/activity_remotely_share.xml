@@ -88,8 +88,8 @@
 
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/uploadCard"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_marginStart="20dp"
@@ -151,10 +151,10 @@
                 app:srcCompat="@drawable/round_right_arrow" />
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView2"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/downloadCard"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_marginStart="20dp"
@@ -166,7 +166,7 @@
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+        app:layout_constraintTop_toBottomOf="@+id/uploadCard"
         app:strokeColor="@color/app_blue_opc_20"
         app:strokeWidth="1.4dp">
 
@@ -216,7 +216,7 @@
                 app:tint="@color/app_green" />
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

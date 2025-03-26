@@ -52,5 +52,6 @@
     <string name="to_provide_you_with_the_best_experience_this_app_needs_access_to_your_storage_to_save_and_manage_files">To provide you with the best experience, this app needs access to your storage to save and manage files.</string>
     <string name="why_we_need_this_permission">Why we need this permission</string>
     <string name="we_need_your_help">We need your help</string>
+    <string name="history">History</string>
 
 </resources>

@@ -19,6 +19,10 @@
     <color name="color_1a">#1A1A1A</color>
     <color name="color_65">#656565</color>
 
+    <color name="color_b3">#B3B3B3</color>
+    <color name="color_e2">#E2E2E2</color>
+    <color name="color_62">#626C85</color>
+
     <color name="app_blue_opc_20">#CEE2F9</color>
 
 </resources>

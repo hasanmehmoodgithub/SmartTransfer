@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+  >
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="File Upload"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:paddingBottom="10dp"/>
+
+    <!-- Status Message -->
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No files selected"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:gravity="center"/>
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:progress="0"/>
+
+    <!-- Selected Files Count -->
+    <TextView
+        android:id="@+id/tvFileCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected Files: 0"
+        android:textSize="14sp"
+        android:paddingTop="10dp"
+        android:layout_gravity="center"/>
+
+    <!-- File Selection Button -->
+    <Button
+        android:id="@+id/btnSelectFiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Files"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:textColor="@android:color/white"/>
+
+    <!-- Upload Button -->
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:textColor="@android:color/white"
+        android:enabled="false"/>
+
+    <!-- Upload Progress Text -->
+    <TextView
+        android:id="@+id/tvUploadProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Progress: 0/0"
+        android:textSize="14sp"
+        android:paddingTop="10dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

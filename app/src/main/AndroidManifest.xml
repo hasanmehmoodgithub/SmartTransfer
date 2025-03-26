@@ -18,6 +18,11 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
+
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -31,6 +36,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartTransfer"
         tools:targetApi="tiramisu">
+        <activity
+            android:name=".features.remoltyshare.ui.view.UploadTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.dashboard.ui.TransferItemActivity"
+            android:exported="false" />
         <activity
             android:name=".features.localshare.ui.HandlePermissionActivity"
             android:exported="false" />
@@ -63,9 +74,8 @@
             android:name=".features.remoltyshare.RemotelyShareActivity"
             android:exported="false" />
         <activity
-            android:name=".features.filepicker.FilePickerActivity"
+            android:name=".com.smart.transfer.app.features.filepicker.ui.ChooseFileActivity"
             android:exported="false" />
-
         <activity
             android:name=".com.smart.transfer.app.features.mobileToPc.ui.MobileToPcActivity"
             android:exported="false" />
@@ -78,7 +88,6 @@
         <activity
             android:name=".com.smart.transfer.app.features.onboarding.OnboardingActivity"
             android:exported="false" />
-
         <activity
             android:name=".SplashScreen"
             android:exported="true">

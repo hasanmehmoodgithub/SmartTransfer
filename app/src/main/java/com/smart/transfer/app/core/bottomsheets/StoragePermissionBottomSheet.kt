@@ -1,7 +1,6 @@
 package com.smart.transfer.app.com.smart.transfer.app.core.bottomsheets
 
 import android.Manifest
-import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -10,24 +9,24 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
 import android.util.Log
+import android.view.Choreographer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smart.transfer.app.R
+import com.smart.transfer.app.com.smart.transfer.app.core.appenums.ChooseFileNextScreenType
 import com.smart.transfer.app.com.smart.transfer.app.core.appenums.PermissionStatus
+import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.ui.ChooseFileActivity
 import com.smart.transfer.app.com.smart.transfer.app.features.mobileToPc.ui.MobileToPcActivity
 import com.smart.transfer.app.databinding.BottomSheetLayoutBinding
 
 
-class StoragePermissionBottomSheet(
-) : BottomSheetDialogFragment() {
+class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseFileNextScreenType) : BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetLayoutBinding? = null
     private val binding get() = _binding!!
@@ -43,6 +42,7 @@ class StoragePermissionBottomSheet(
             }
         }
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
@@ -78,7 +78,7 @@ class StoragePermissionBottomSheet(
                 binding.helpImage.setImageResource(R.drawable.ic_storage_permission)  // Example success image
                 binding.needHelpText.text = "You’re All Set!"
                 binding.helpDescriptionText.text = "Storage permission is granted. You can now proceed."
-                navigateToDesiredScreen()
+                navigateToDesiredScreen(chooseFileNextScreenType)
             }
             PermissionStatus.RequireGRANTED -> {
                 binding.btnGrantAccess.text = "Grant Access"
@@ -102,10 +102,12 @@ class StoragePermissionBottomSheet(
             }
         }
     }
-    private fun navigateToDesiredScreen() {
-        val intent = Intent(requireContext(), MobileToPcActivity::class.java)
+    private fun navigateToDesiredScreen(chooseFileNextScreenType: ChooseFileNextScreenType) {
+        val intent = Intent(requireContext(), ChooseFileActivity::class.java)
+        intent.putExtra("ChooseFileNextScreenType", chooseFileNextScreenType) // Convert to String
         startActivity(intent)
-        dismiss()  // Close the bottom sheet after navigating
+        dismiss()
+
     }
 
     private fun checkStoragePermission() {
