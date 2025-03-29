@@ -9,5 +9,5 @@ enum class PermissionStatus {
 
 
 enum class ChooseFileNextScreenType {
-    Local, Remote, MobileToPc,AndroidToIos
+    LocalShare,LocalReceive, Remote, MobileToPc,AndroidToIos
 }

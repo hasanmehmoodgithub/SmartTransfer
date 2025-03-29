@@ -43,29 +43,29 @@ class HomeFragment : Fragment() {
 
         binding.shareFileLocaly.setOnClickListener {
             // Handle share file locally button click
-            startActivity(Intent(requireContext(), HandlePermissionActivity::class.java))
+            StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalShare).show(childFragmentManager, "shareFileLocal")
+
 
         }
 
         binding.recieveFileLocaly.setOnClickListener {
-            startActivity(Intent(requireContext(), HandlePermissionActivity::class.java))
+            StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalReceive).show(childFragmentManager, "receiveFileLocal")
         }
 
 
         binding.remotelyShare.setOnClickListener {
-            StoragePermissionBottomSheet(ChooseFileNextScreenType.Remote).show(childFragmentManager, "mobileToPcCard")
+            StoragePermissionBottomSheet(ChooseFileNextScreenType.Remote).show(childFragmentManager, "remotelyShare")
 
 
         }
 
         binding.androidToIos.setOnClickListener {
 
-            StoragePermissionBottomSheet(ChooseFileNextScreenType.AndroidToIos).show(childFragmentManager, "mobileToPcCard")
+            StoragePermissionBottomSheet(ChooseFileNextScreenType.AndroidToIos).show(childFragmentManager, "androidToIos")
 
         }
 
         binding.mobileToPcCard.setOnClickListener {
-
             StoragePermissionBottomSheet(ChooseFileNextScreenType.MobileToPc).show(childFragmentManager, "mobileToPcCard")
 
 

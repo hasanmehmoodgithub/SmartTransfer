@@ -24,6 +24,9 @@ import com.smart.transfer.app.com.smart.transfer.app.core.appenums.PermissionSta
 import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.ui.ChooseFileActivity
 import com.smart.transfer.app.com.smart.transfer.app.features.mobileToPc.ui.MobileToPcActivity
 import com.smart.transfer.app.databinding.BottomSheetLayoutBinding
+import com.smart.transfer.app.features.androidtoios.ui.AndroidToIosActivity
+import com.smart.transfer.app.features.localshare.ui.HandlePermissionActivity
+import com.smart.transfer.app.features.remoltyshare.RemotelyShareActivity
 
 
 class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseFileNextScreenType) : BottomSheetDialogFragment() {
@@ -103,10 +106,50 @@ class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseF
         }
     }
     private fun navigateToDesiredScreen(chooseFileNextScreenType: ChooseFileNextScreenType) {
-        val intent = Intent(requireContext(), ChooseFileActivity::class.java)
-        intent.putExtra("ChooseFileNextScreenType", chooseFileNextScreenType) // Convert to String
-        startActivity(intent)
-        dismiss()
+        when (chooseFileNextScreenType) {
+            ChooseFileNextScreenType.MobileToPc -> {
+                // Handle MobileToPc case
+                val intent = Intent(requireContext(), ChooseFileActivity::class.java)
+                intent.putExtra("ChooseFileNextScreenType", chooseFileNextScreenType) // Convert to String
+                startActivity(intent)
+                dismiss()
+
+            }
+            ChooseFileNextScreenType.AndroidToIos -> {
+                // Handle AndroidToIos case
+                val intent = Intent(requireContext(), ChooseFileActivity::class.java)
+                intent.putExtra("ChooseFileNextScreenType", chooseFileNextScreenType) // Convert to String
+                startActivity(intent)
+                dismiss()
+            }
+            ChooseFileNextScreenType.LocalShare -> {
+                // Handle AndroidToIos case
+                val intent = Intent(requireContext(), HandlePermissionActivity::class.java)
+                intent.putExtra("from", 1) // Convert to String
+                startActivity(intent)
+                dismiss()
+
+            }
+            ChooseFileNextScreenType.LocalReceive -> {
+                // Handle AndroidToIos case
+                val intent = Intent(requireContext(), HandlePermissionActivity::class.java)
+                intent.putExtra("from", 2) // Convert to String
+                startActivity(intent)
+                dismiss()
+
+            }
+            ChooseFileNextScreenType.Remote -> {
+                // Handle AndroidToIos case
+                val intent = Intent(requireContext(), RemotelyShareActivity::class.java)
+                intent.putExtra("ChooseFileNextScreenType", chooseFileNextScreenType) // Convert to String
+                startActivity(intent)
+                dismiss()
+            }
+            else -> {
+                // Handle other cases (if any)
+            }
+        }
+
 
     }
 

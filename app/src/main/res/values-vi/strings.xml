@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smart Transfer</string>
+    <string name="get_started">我的应用</string>
+    <string name="quick_data_transfer_no_delays_just_smooth_sharing">Quick data transfer no delays, just smooth sharing ! 🚀</string>
+    <string name="todo">TODO</string>
+    <string name="terms_privacy_text">For further information please check it out our <b><font color='#1C80F7'>privacy policy</font></b> and <b><font color='#1C80F7'>Terms &amp; Condition</font></b></string>
+
+    <string name="skip">Skip</string>
+
+
+    <string name="onboarding_title_1">Mobile to PC <font color='#1C80F7'>Sync</font></string>
+    <string name="onboarding_title_2">Mobile to Mobile <font color='#1C80F7'>Transfer</font></string>
+    <string name="onboarding_title_3">Multi-Device <font color='#1C80F7'>Transfer</font></string>
+
+
+
+    <string name="onboarding_desc_1">Share Files between your devices <b>seamlessly</b></string>
+    <string name="onboarding_desc_2">Easily transfer files between <b>Android &amp; iOS devices</b></string>
+    <string name="onboarding_desc_3">Quickly share files between multiple <b>laptops and devices</b></string>
+
+
+    <string name="available_storage">Available Storage</string>
+    <string name="test2">For more details, check our <b><font color='#1C80F7'>Privacy Policy</font></b> and <b><font color='#1C80F7'>Terms &amp; Conditions</font></b>.</string>
+
+
+    <string name="title_activity_uploading">UploadingActivity</string>
+    <string name="note_text"><b><font color="#000000">Note:</font></b> <font color="#808080">The below key is valid for 24 hours and will be automatically deleted thereafter.</font></string>
+    <string name="smarttransfer">SmartTransfer</string>
+    <string name="selected_app_language">Selected App Language</string>
+    <string name="selected_language">Selected Language</string>
+    <string name="all_language">All Language</string>
+    <string name="done">Done</string>
+    <string name="share_file">Share File</string>
+    <string name="share_your_files">Share your Files</string>
+    <string name="receive_your_files">Receive your Files</string>
+    <string name="receive">Receive</string>
+    <string name="remotely_share">Remotely Share</string>
+    <string name="android_to_ios">Android to Ios</string>
+    <string name="instantly_remotely_transfer_data_via_link">Instantly Remotely transfer data via link</string>
+    <string name="mobile_to_pc">Mobile To Pc</string>
+    <string name="grant_access">Grant Access</string>
+    <string name="for_smooth_transfer_many_permissions_are_required_due_to_android_limitations">For smooth transfer, many permissions are required due to Android limitations.</string>
+    <string name="enable_location_service">Enable Location Service</string>
+    <string name="needs_location_access_to_ensure_accurate_device_discovery_and_seamless_file_transfers">Needs location access to ensure accurate device discovery and seamless file transfers</string>
+    <string name="enable_wi_fi">Enable Wi-Fi</string>
+    <string name="wi_fi_is_required_for_fast_and_seamless_file_transfers_between_devices">Wi-Fi is required for fast and seamless file transfers between devices.</string>
+    <string name="enable_nearby_devices_permission">Enable Nearby Devices Permission</string>
+    <string name="needed_to_connect_and_transfer_files_with_nearby_devices">Needed to connect and transfer files with nearby devices.</string>
+    <string name="cancel">Cancel</string>
+    <string name="we_do_not_access_or_share_your_personal_data">We do not access or share your personal data.</string>
+    <string name="to_provide_you_with_the_best_experience_this_app_needs_access_to_your_storage_to_save_and_manage_files">To provide you with the best experience, this app needs access to your storage to save and manage files.</string>
+    <string name="why_we_need_this_permission">Why we need this permission</string>
+    <string name="we_need_your_help">We need your help</string>
+    <string name="history">History</string>
+
+</resources>

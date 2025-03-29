@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <LinearLayout
-    android:layout_margin="12dp"
-    android:background="@drawable/rounded_button"
+    android:layout_marginRight="14dp"
+    android:layout_marginLeft="14dp"
+    android:background="@drawable/rounded_button3"
     android:id="@+id/ll"
     android:padding="8dp"
     android:layout_width="match_parent"

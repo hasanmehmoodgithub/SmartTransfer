@@ -17,13 +17,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.smart.transfer.app.R
 import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
+import com.smart.transfer.app.com.smart.transfer.app.core.appenums.ChooseFileNextScreenType
 import com.smart.transfer.app.databinding.ActivityHandlePermissionBinding
 import com.smart.transfer.app.features.dashboard.ui.DashboardActivity
 
 class HandlePermissionActivity : BaseActivity() {
 
     private lateinit var binding: ActivityHandlePermissionBinding
-
+    private var from: Int = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHandlePermissionBinding.inflate(layoutInflater)
@@ -31,6 +32,7 @@ class HandlePermissionActivity : BaseActivity() {
         val toolbar = findViewById<LinearLayout>(R.id.custom_toolbar)
         setupAppBar(toolbar, "Permission", showBackButton = true)
 
+         from = intent.getIntExtra("from",1)
 
         // Check permissions on startup
         checkPermissions()
@@ -197,7 +199,17 @@ class HandlePermissionActivity : BaseActivity() {
      * Navigates to the main dashboard if all permissions are granted.
      */
     private fun navigateToMain() {
-//        startActivity(Intent(this, DashboardActivity::class.java))
+//        if(from==1)
+//        {
+//            //share
+//                    startActivity(Intent(this, DashboardActivity::class.java))
 //        finish()
+//        }
+//        else{
+//            //receive
+//                    startActivity(Intent(this, DashboardActivity::class.java))
+//        finish()
+//        }
+
     }
 }

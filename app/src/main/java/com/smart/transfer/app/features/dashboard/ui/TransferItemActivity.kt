@@ -14,12 +14,14 @@ import com.smart.transfer.app.com.smart.transfer.app.core.formatFileSizeUtil
 import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.model.VideoModel
 import com.smart.transfer.app.com.smart.transfer.app.features.mobileToPc.ui.MobileToPcActivity
 import com.smart.transfer.app.databinding.ActivityTransferItemBinding
+import com.smart.transfer.app.features.androidtoios.ui.AndroidToIosActivity
 import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedAudiosManager
 import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedDocumentsManager
 import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedImagesManager
 import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedVideosManager
 import com.smart.transfer.app.features.localshare.ui.HandlePermissionActivity
 import com.smart.transfer.app.features.remoltyshare.RemotelyShareActivity
+import com.smart.transfer.app.features.remoltyshare.UploadingFilesActivity
 import java.io.File
 
 class TransferItemActivity : BaseActivity() {
@@ -116,15 +118,15 @@ class TransferItemActivity : BaseActivity() {
                 }
                 ChooseFileNextScreenType.AndroidToIos -> {
                     // Handle AndroidToIos case
-                    startActivity(Intent(this, MobileToPcActivity::class.java))
+                    startActivity(Intent(this, AndroidToIosActivity::class.java))
                 }
-                ChooseFileNextScreenType.Local -> {
+                ChooseFileNextScreenType.LocalShare -> {
                     // Handle AndroidToIos case
                     startActivity(Intent(this, HandlePermissionActivity::class.java))
                 }
                 ChooseFileNextScreenType.Remote -> {
                     // Handle AndroidToIos case
-                    startActivity(Intent(this, RemotelyShareActivity::class.java))
+                    startActivity(Intent(this, UploadingFilesActivity::class.java))
                 }
                 else -> {
                     // Handle other cases (if any)

@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shadow (optional) -->
+    <item android:top="4dp" android:bottom="-4dp">
+        <shape android:shape="oval">
+            <solid android:color="#40000000" /> <!-- Shadow color/opacity -->
+            <size android:width="56dp" android:height="56dp" />
+        </shape>
+    </item>
+
+    <!-- Circular background (FAB) -->
+    <item android:top="-24dp"> <!-- Lift the FAB upward -->
+        <shape android:shape="oval">
+            <solid android:color="#2196F3" /> <!-- Your FAB color -->
+            <size android:width="56dp" android:height="56dp" /> <!-- FAB size -->
+        </shape>
+    </item>
+</layer-list>
