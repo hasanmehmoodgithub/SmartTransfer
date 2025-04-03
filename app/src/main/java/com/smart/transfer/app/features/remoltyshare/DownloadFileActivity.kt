@@ -1,16 +1,39 @@
 package com.smart.transfer.app.features.remoltyshare
 
-
-
-import android.os.Bundle
+import android.Manifest
+import android.app.DownloadManager
+import android.content.Context
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.*
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.smart.transfer.app.R
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
+import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.data.remote.api.RetrofitClient
+import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.model.DownloadResponse
+import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.model.UploadResponse
 import com.smart.transfer.app.databinding.ActivityDownloadFileBinding
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.*
+import java.util.zip.ZipEntry
+import java.util.zip.ZipInputStream
 
 class DownloadFileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDownloadFileBinding
+    private lateinit var downloadManager: DownloadManager
+    private var downloadId: Long = -1L
+
+    // Request Code for Storage Permission
+    private val STORAGE_PERMISSION_CODE = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,35 +42,229 @@ class DownloadFileActivity : AppCompatActivity() {
         binding = ActivityDownloadFileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        // Initially, show the paste layout and hide the downloading layout
         binding.codePasteLayout.visibility = View.VISIBLE
         binding.downloadLayout.visibility = View.GONE
-//
-//        // Handle Done Button Click
+
+        // Handle Done Button Click
         binding.doneBtn.setOnClickListener {
-            val pastedText = binding.etLink.text.toString().trim()
-            if (pastedText.isNotEmpty()) {
-                switchToDownloadLayout()
+
+            val uniqueId = binding.etLink.text.toString().trim()
+            if (uniqueId.isNotEmpty()) {
+                downloadFile("mLx6OHGcul")
+                if (checkStoragePermission()) {
+//                    downloadFile("mLx6OHGcul")
+
+                } else {
+                    requestStoragePermission()
+                }
+            } else {
+                showErrorDialog("Please enter a valid link.")
             }
         }
-//
-//        // Handle QR Code Button Click (Assume QR Scanner integration)
-        binding.codePasteLayout.setOnClickListener {
-            scanQRCode()
+    }
+
+    // Check if storage permission is granted
+    private fun checkStoragePermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    // Request storage permission
+    private fun requestStoragePermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            STORAGE_PERMISSION_CODE
+        )
+    }
+
+    // Handle permission request result
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                val uniqueId = binding.etLink.text.toString().trim()
+                if (uniqueId.isNotEmpty()) {
+                    downloadFile(uniqueId)
+                }
+            } else {
+                showErrorDialog("Storage permission denied.")
+            }
         }
     }
 
-    // Function to switch from paste layout to downloading layout
-    private fun switchToDownloadLayout() {
+    // Download file using Retrofit
+    private fun downloadFile(downloadUrl: String) {
         binding.codePasteLayout.visibility = View.GONE
         binding.downloadLayout.visibility = View.VISIBLE
+        binding.tvUploading.text = "Downloading..."
+        binding.progressBar.progress = 0
+        binding.tvPercentage.text = "0%"
+
+
+        RetrofitClient.apiService.getFileDetails(downloadUrl).enqueue(object : retrofit2.Callback<DownloadResponse> {
+            override fun onResponse(call: Call<DownloadResponse>, response: retrofit2.Response<DownloadResponse>) {
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    if (body != null) {
+
+                        showSuccessDialog();
+                        downloadFile2(body.download_link)
+                    } else {
+                        showErrorDialog("File download failed: Empty response.")
+                    }
+                } else {
+                    showErrorDialog("Failed to download file. Server error.")
+                }
+            }
+
+            override fun onFailure(call: Call<DownloadResponse>, t: Throwable) {
+                showErrorDialog("Download failed: ${t.message}")
+            }
+        })
+    }
+    private fun downloadFile2(fileUrl: String) {
+        binding.codePasteLayout.visibility = View.GONE
+        binding.downloadLayout.visibility = View.VISIBLE
+        binding.tvUploading.text = "Downloading..."
+        binding.progressBar.progress = 0
+        binding.tvPercentage.text = "0%"
+
+        val client = OkHttpClient()
+        val request = Request.Builder().url(fileUrl).build()
+
+        client.newCall(request).enqueue(object :okhttp3. Callback {
+            override fun onResponse(call:okhttp3. Call, response:okhttp3. Response) {
+                response.body?.let { body ->
+                    saveFileAndUnzip(body)
+                } ?: runOnUiThread { showErrorDialog("Download failed: Empty response.") }
+            }
+
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                runOnUiThread { showErrorDialog("Download failed: ${e.message}") }
+            }
+        })
+    }
+    private fun showSuccessDialog() {
+        runOnUiThread {
+            showCongratsScreen()
+            Snackbar.make(binding.root, "Downloaded", Snackbar.LENGTH_LONG).show()
+        }
+    }
+    private fun showCongratsScreen() {
+        binding.tvWaitMessage.text = ""
+        binding.tvUploading.text ="Download Completed"
+    }
+    // Save the file locally and unzip it
+    private fun saveFileAndUnzip(responseBody: ResponseBody) {
+        Thread {
+            try {
+                val zipFile = File(
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                    "downloaded_file.zip"
+                )
+
+                val inputStream = responseBody.byteStream()
+                val outputStream = FileOutputStream(zipFile)
+                val buffer = ByteArray(1024)
+                var totalBytesRead: Long = 0
+                val totalSize = responseBody.contentLength()
+                var bytesRead: Int
+
+                while (inputStream.read(buffer).also { bytesRead = it } != -1) {
+                    totalBytesRead += bytesRead
+                    outputStream.write(buffer, 0, bytesRead)
+
+                    // Update UI Progress
+                    val progress = (totalBytesRead * 100 / totalSize).toInt()
+                    runOnUiThread {
+                        binding.progressBar.progress = progress
+                        binding.tvPercentage.text = "$progress%"
+                    }
+                }
+
+                outputStream.flush()
+                outputStream.close()
+                inputStream.close()
+
+                // Unzip the file
+                unzipFile(zipFile)
+            } catch (e: Exception) {
+                runOnUiThread {
+                    showErrorDialog("Error saving file: ${e.message}")
+                }
+            }
+        }.start()
     }
 
-    // Mock function for QR Code scanning (replace with actual implementation)
-    private fun scanQRCode() {
-        // Simulate scanning a QR code and extracting the link
-        val scannedLink = "https://example.com/download"
-        binding.etLink.setText(scannedLink)
-        switchToDownloadLayout()
+    // Unzip the downloaded file
+    private fun unzipFile(zipFile: File) {
+        Thread {
+            try {
+                val outputDir = File(zipFile.parent, zipFile.nameWithoutExtension)
+                if (!outputDir.exists()) outputDir.mkdirs()
+
+                val zipInputStream = ZipInputStream(FileInputStream(zipFile))
+                var entry: ZipEntry?
+
+                while (zipInputStream.nextEntry.also { entry = it } != null) {
+                    val outputFile = File(outputDir, entry!!.name)
+                    val outputStream = FileOutputStream(outputFile)
+                    val buffer = ByteArray(1024)
+                    var length: Int
+
+                    while (zipInputStream.read(buffer).also { length = it } > 0) {
+                        outputStream.write(buffer, 0, length)
+                    }
+
+                    outputStream.close()
+                    zipInputStream.closeEntry()
+                }
+
+                zipInputStream.close()
+
+                runOnUiThread {
+                    showSuccessDialog("File downloaded and extracted successfully!")
+                    binding.tvUploading.text = "Download Complete!"
+                }
+            } catch (e: Exception) {
+                runOnUiThread {
+                    showErrorDialog("Error extracting file: ${e.message}")
+                }
+            }
+        }.start()
+    }
+
+    // Show error dialog
+    private fun showErrorDialog(message: String) {
+        runOnUiThread {
+            AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage(message)
+                .setCancelable(true)
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .create()
+                .show()
+        }
+    }
+
+    // Show success dialog
+    private fun showSuccessDialog(message: String) {
+        runOnUiThread {
+            AlertDialog.Builder(this)
+                .setTitle("Success")
+                .setMessage(message)
+                .setCancelable(true)
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .create()
+                .show()
+        }
     }
 }
+

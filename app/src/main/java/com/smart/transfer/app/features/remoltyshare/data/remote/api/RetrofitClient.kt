@@ -6,16 +6,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+
 object RetrofitClient {
-    private const val BASE_URL = "https://your-api-url.com/"
+    private const val BASE_URL = "https://5d5b-59-103-233-38.ngrok-free.app/"
 
-    private val client = OkHttpClient.Builder()
-        .connectTimeout(30, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
-        .writeTimeout(30, TimeUnit.SECONDS)
-        .build()
+    val apiService: ApiService by lazy {
+        val client = OkHttpClient.Builder().build()
 
-    val instance: ApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
