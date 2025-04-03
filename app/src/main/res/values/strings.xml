@@ -58,6 +58,7 @@
     <string name="why_we_need_this_permission">Why we need this permission</string>
     <string name="we_need_your_help">We need your help</string>
     <string name="history">History</string>
+    <string name="please_wait_your_data_is_uploading">Please wait, your data is uploading</string>
 
 </resources>
 

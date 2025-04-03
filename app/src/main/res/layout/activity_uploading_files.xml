@@ -30,7 +30,7 @@
         android:indeterminate="false"
 
         android:max="100"
-        android:progress="78"
+        android:progress="0"
         android:progressDrawable="@drawable/circular_progress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         android:id="@+id/tvPercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="78.6%"
+        android:text="0.0%"
         android:textColor="@color/app_blue"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -67,9 +67,10 @@
             android:id="@+id/tvWaitMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please wait, your data is uploading"
+            android:text="@string/please_wait_your_data_is_uploading"
             android:textColor="@color/grey"
             android:textSize="14sp" />
+
     </LinearLayout>
 
     <LinearLayout
