@@ -2,9 +2,8 @@ package com.smart.transfer.app.features.remoltyshare
 
 import android.Manifest
 import android.app.DownloadManager
-import android.content.Context
 import android.content.pm.PackageManager
-import android.net.Uri
+import android.media.MediaScannerConnection
 import android.os.*
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -14,14 +13,11 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.data.remote.api.RetrofitClient
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.model.DownloadResponse
-import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.model.UploadResponse
 import com.smart.transfer.app.databinding.ActivityDownloadFileBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.*
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
@@ -50,9 +46,9 @@ class DownloadFileActivity : AppCompatActivity() {
 
             val uniqueId = binding.etLink.text.toString().trim()
             if (uniqueId.isNotEmpty()) {
-                downloadFile("mLx6OHGcul")
+                getZipFileLinkFromCode("qA3czNzsMZ")
                 if (checkStoragePermission()) {
-//                    downloadFile("mLx6OHGcul")
+                  getZipFileLinkFromCode(uniqueId)
 
                 } else {
                     requestStoragePermission()
@@ -91,7 +87,7 @@ class DownloadFileActivity : AppCompatActivity() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 val uniqueId = binding.etLink.text.toString().trim()
                 if (uniqueId.isNotEmpty()) {
-                    downloadFile(uniqueId)
+                    getZipFileLinkFromCode(uniqueId)
                 }
             } else {
                 showErrorDialog("Storage permission denied.")
@@ -100,7 +96,7 @@ class DownloadFileActivity : AppCompatActivity() {
     }
 
     // Download file using Retrofit
-    private fun downloadFile(downloadUrl: String) {
+    private fun getZipFileLinkFromCode(uniqueId: String) {
         binding.codePasteLayout.visibility = View.GONE
         binding.downloadLayout.visibility = View.VISIBLE
         binding.tvUploading.text = "Downloading..."
@@ -108,14 +104,17 @@ class DownloadFileActivity : AppCompatActivity() {
         binding.tvPercentage.text = "0%"
 
 
-        RetrofitClient.apiService.getFileDetails(downloadUrl).enqueue(object : retrofit2.Callback<DownloadResponse> {
+        RetrofitClient.apiService.getFileDetails(uniqueId).enqueue(object : retrofit2.Callback<DownloadResponse> {
             override fun onResponse(call: Call<DownloadResponse>, response: retrofit2.Response<DownloadResponse>) {
                 if (response.isSuccessful) {
                     val body = response.body()
                     if (body != null) {
 
                         showSuccessDialog();
-                        downloadFile2(body.download_link)
+                       // downloadZipFileFromLink(body.download_link)
+
+                        downloadZipFileFromLink("https://firebasestorage.googleapis.com/v0/b/testapp-e5995.appspot.com/o/test.zip?alt=media&token=6589ecdd-d405-4cea-8305-bd4186b3ce27",uniqueId)
+
                     } else {
                         showErrorDialog("File download failed: Empty response.")
                     }
@@ -129,7 +128,7 @@ class DownloadFileActivity : AppCompatActivity() {
             }
         })
     }
-    private fun downloadFile2(fileUrl: String) {
+    private fun downloadZipFileFromLink(fileUrl: String, uniqueId: String) {
         binding.codePasteLayout.visibility = View.GONE
         binding.downloadLayout.visibility = View.VISIBLE
         binding.tvUploading.text = "Downloading..."
@@ -142,7 +141,7 @@ class DownloadFileActivity : AppCompatActivity() {
         client.newCall(request).enqueue(object :okhttp3. Callback {
             override fun onResponse(call:okhttp3. Call, response:okhttp3. Response) {
                 response.body?.let { body ->
-                    saveFileAndUnzip(body)
+                    saveFileAndUnzip(body,uniqueId)
                 } ?: runOnUiThread { showErrorDialog("Download failed: Empty response.") }
             }
 
@@ -162,12 +161,12 @@ class DownloadFileActivity : AppCompatActivity() {
         binding.tvUploading.text ="Download Completed"
     }
     // Save the file locally and unzip it
-    private fun saveFileAndUnzip(responseBody: ResponseBody) {
+    private fun saveFileAndUnzip(responseBody: ResponseBody, uniqueId: String) {
         Thread {
             try {
                 val zipFile = File(
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                    "downloaded_file.zip"
+                    "${uniqueId}_file.zip"
                 )
 
                 val inputStream = responseBody.byteStream()
@@ -215,6 +214,10 @@ class DownloadFileActivity : AppCompatActivity() {
 
                 while (zipInputStream.nextEntry.also { entry = it } != null) {
                     val outputFile = File(outputDir, entry!!.name)
+
+                    // Ensure parent directories exist
+                    outputFile.parentFile?.mkdirs()
+
                     val outputStream = FileOutputStream(outputFile)
                     val buffer = ByteArray(1024)
                     var length: Int
@@ -225,6 +228,15 @@ class DownloadFileActivity : AppCompatActivity() {
 
                     outputStream.close()
                     zipInputStream.closeEntry()
+
+                    // Sync extracted file to the gallery (media scanner)
+                    MediaScannerConnection.scanFile(
+                        this@DownloadFileActivity,
+                        arrayOf(outputFile.absolutePath),
+                        null
+                    ) { path, uri ->
+                        println("Scanned $path -> URI: $uri")  // Debugging log
+                    }
                 }
 
                 zipInputStream.close()
@@ -240,6 +252,7 @@ class DownloadFileActivity : AppCompatActivity() {
             }
         }.start()
     }
+
 
     // Show error dialog
     private fun showErrorDialog(message: String) {

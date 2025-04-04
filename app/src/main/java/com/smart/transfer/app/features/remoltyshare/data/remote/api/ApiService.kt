@@ -23,7 +23,6 @@ interface ApiService {
 
     @GET("files/{unique_id}")
     fun getFileDetails(@Path("unique_id") uniqueId: String): Call<DownloadResponse>
-    fun downloadFile(@Url fileUrl: String): Call<ResponseBody>  // Download file using dynamic URL
 
 
 }
