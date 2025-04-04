@@ -12,15 +12,21 @@ import com.smart.transfer.app.databinding.ActivityMobileToPcBinding
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import com.smart.transfer.app.R
 import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
 import com.smart.transfer.app.features.dashboard.ui.AllSelectedFilesManager
 
 
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 
 class MobileToPcActivity : BaseActivity() {
@@ -82,8 +88,37 @@ class MobileToPcActivity : BaseActivity() {
 
     private fun startFileServerList(files: List<File>) {
         try {
+            val iconDrawable = ContextCompat.getDrawable(this, R.drawable.ic_mobile_to_pc_banner
+            )
+
+            val bitmap = if (iconDrawable is BitmapDrawable) {
+                iconDrawable.bitmap
+            } else {
+                // Handle VectorDrawable
+                val width = iconDrawable?.intrinsicWidth
+                val height = iconDrawable?.intrinsicHeight
+                val bitmap = width?.let { height?.let { it1 ->
+                    Bitmap.createBitmap(it,
+                        it1, Bitmap.Config.ARGB_8888)
+                } }
+                val canvas = bitmap?.let { Canvas(it) }
+                if (width != null) {
+                    height?.let { iconDrawable.setBounds(0, 0, width, it) }
+                }
+                canvas?.let { iconDrawable.draw(it) }
+                bitmap
+            }
+
+            val iconFile = File(this.cacheDir, "app.png")
+            try {
+                val outputStream = FileOutputStream(iconFile)
+                bitmap?.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+                outputStream.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
             fileServerMulti?.stop()
-            fileServerMulti = MultipleFileServer(port, files)
+            fileServerMulti = MultipleFileServer(port, files,iconFile)
             fileServerMulti?.start()
 
             val ipAddress = getLocalIpAddress()

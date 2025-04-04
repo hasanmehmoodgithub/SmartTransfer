@@ -19,16 +19,20 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
 import com.smart.transfer.app.R
+import com.smart.transfer.app.com.smart.transfer.app.features.history.data.database.AppDatabase
+import com.smart.transfer.app.com.smart.transfer.app.features.history.data.entity.History
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.data.remote.api.ProgressRequestBody
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.data.remote.api.RetrofitClient
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.model.UploadResponse
 import com.smart.transfer.app.databinding.ActivityUploadingFilesBinding
 import com.smart.transfer.app.features.dashboard.ui.AllSelectedFilesManager
+import kotlinx.coroutines.launch
 
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -44,6 +48,8 @@ class UploadingFilesActivity : AppCompatActivity(), ProgressRequestBody.Progress
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadingFilesBinding.inflate(layoutInflater)
+        database = AppDatabase.getDatabase(this)
+
         setContentView(binding.root)
 
         binding.copyIpImg.setOnClickListener {
@@ -142,10 +148,41 @@ class UploadingFilesActivity : AppCompatActivity(), ProgressRequestBody.Progress
     private fun showSuccessDialog(message: String, uniqueId: String) {
         runOnUiThread {
             showCongratsScreen(uniqueId)
+            insertHistoryData()
             Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+
         }
     }
+    private lateinit var database: AppDatabase
 
+    private fun insertHistoryData() {
+        val paths = AllSelectedFilesManager.allSelectedFiles.mapNotNull { it["path"] as? String }
+
+
+        lifecycleScope.launch {
+            paths.forEach { path ->
+                val historyItem = History(
+                    filePath = path,
+                    fileType = getFileTypeFromPath(path), // Optional: get type based on file extension
+                    tag = "remotely",
+                    from = "send",
+                    timestamp = System.currentTimeMillis()
+                )
+                database.historyDao().insertHistory(historyItem)
+                Log.e("historyList", "Insert Success: ${historyItem.filePath} saved to Room DB")
+            }
+        }
+    }
+    private fun getFileTypeFromPath(path: String): String {
+        return when {
+            path.endsWith(".mp3", true) || path.endsWith(".wav", true) -> "music"
+            path.endsWith(".mp4", true) || path.endsWith(".mkv", true) -> "video"
+            path.endsWith(".jpg", true) || path.endsWith(".jpeg", true) || path.endsWith(".png", true) -> "image"
+            path.endsWith(".pdf", true) || path.endsWith(".doc", true) || path.endsWith(".docx", true) ||
+                    path.endsWith(".xls", true) || path.endsWith(".xlsx", true) || path.endsWith(".txt", true) -> "document"
+            else -> "unknown"
+        }
+    }
     private fun showCongratsScreen(uniqueId: String) {
         binding.uploadingLayout.visibility = View.GONE
         binding.congratslayout.visibility = View.VISIBLE

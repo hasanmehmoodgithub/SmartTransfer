@@ -6,18 +6,24 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaScannerConnection
 import android.os.*
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
+import com.smart.transfer.app.com.smart.transfer.app.features.history.data.database.AppDatabase
+import com.smart.transfer.app.com.smart.transfer.app.features.history.data.entity.History
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.data.remote.api.RetrofitClient
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.model.DownloadResponse
 import com.smart.transfer.app.databinding.ActivityDownloadFileBinding
+import com.smart.transfer.app.features.dashboard.ui.AllSelectedFilesManager
+import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.ResponseBody
@@ -41,6 +47,7 @@ class DownloadFileActivity : AppCompatActivity() {
         // Initialize View Binding
         binding = ActivityDownloadFileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        database = AppDatabase.getDatabase(this)
 
         binding.codePasteLayout.visibility = View.VISIBLE
         binding.downloadLayout.visibility = View.GONE
@@ -53,13 +60,11 @@ class DownloadFileActivity : AppCompatActivity() {
 
             val uniqueId = binding.etLink.text.toString().trim()
             if (uniqueId.isNotEmpty()) {
-                getZipFileLinkFromCode("qA3czNzsMZ")
-                if (checkStoragePermission()) {
+
+
                   getZipFileLinkFromCode(uniqueId)
 
-                } else {
-                    requestStoragePermission()
-                }
+
             } else {
                 showErrorDialog("Please enter a valid link.")
             }
@@ -212,6 +217,8 @@ class DownloadFileActivity : AppCompatActivity() {
     // Unzip the downloaded file
     private fun unzipFile(zipFile: File) {
         Thread {
+            val extractedFilePaths = mutableListOf<String>() // ⬅️ To collect file paths
+
             try {
                 val outputDir = File(zipFile.parent, zipFile.nameWithoutExtension)
                 if (!outputDir.exists()) outputDir.mkdirs()
@@ -222,7 +229,6 @@ class DownloadFileActivity : AppCompatActivity() {
                 while (zipInputStream.nextEntry.also { entry = it } != null) {
                     val outputFile = File(outputDir, entry!!.name)
 
-                    // Ensure parent directories exist
                     outputFile.parentFile?.mkdirs()
 
                     val outputStream = FileOutputStream(outputFile)
@@ -236,13 +242,16 @@ class DownloadFileActivity : AppCompatActivity() {
                     outputStream.close()
                     zipInputStream.closeEntry()
 
-                    // Sync extracted file to the gallery (media scanner)
+                    // Collect extracted file path
+                    extractedFilePaths.add(outputFile.absolutePath)
+
+                    // Sync with media scanner
                     MediaScannerConnection.scanFile(
                         this@DownloadFileActivity,
                         arrayOf(outputFile.absolutePath),
                         null
                     ) { path, uri ->
-                        println("Scanned $path -> URI: $uri")  // Debugging log
+                        println("Scanned $path -> URI: $uri")
                     }
                 }
 
@@ -251,6 +260,7 @@ class DownloadFileActivity : AppCompatActivity() {
                 runOnUiThread {
                     showSuccessDialog("File downloaded and extracted successfully!")
                     binding.tvUploading.text = "Download Complete!"
+                    insertHistoryData(extractedFilePaths) // ⬅️ Insert to history
                 }
             } catch (e: Exception) {
                 runOnUiThread {
@@ -308,6 +318,34 @@ class DownloadFileActivity : AppCompatActivity() {
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+    private lateinit var database: AppDatabase
+
+    private fun insertHistoryData(extractedFilePaths: MutableList<String>) {
+
+        lifecycleScope.launch {
+            extractedFilePaths.forEach { path ->
+                val historyItem = History(
+                    filePath = path,
+                    fileType = getFileTypeFromPath(path), // Optional: get type based on file extension
+                    tag = "remotely",
+                    from = "receive",
+                    timestamp = System.currentTimeMillis()
+                )
+                database.historyDao().insertHistory(historyItem)
+                Log.e("historyList", "Insert Success: ${historyItem.filePath} saved to Room DB")
+            }
+        }
+    }
+    private fun getFileTypeFromPath(path: String): String {
+        return when {
+            path.endsWith(".mp3", true) || path.endsWith(".wav", true) -> "music"
+            path.endsWith(".mp4", true) || path.endsWith(".mkv", true) -> "video"
+            path.endsWith(".jpg", true) || path.endsWith(".jpeg", true) || path.endsWith(".png", true) -> "image"
+            path.endsWith(".pdf", true) || path.endsWith(".doc", true) || path.endsWith(".docx", true) ||
+                    path.endsWith(".xls", true) || path.endsWith(".xlsx", true) || path.endsWith(".txt", true) -> "document"
+            else -> "unknown"
         }
     }
 }
