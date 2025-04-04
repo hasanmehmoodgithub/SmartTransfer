@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="11dp"
                 android:layout_weight="1"
-                android:text="6237263723627327367"
+                android:text="------"
                 android:textSize="18dp" />
 
             <ImageView
@@ -144,6 +144,20 @@
                 android:layout_margin="12dp"
                 app:srcCompat="@drawable/ic_text_copy" />
         </LinearLayout>
+        <TextView
+            android:layout_margin="14dp"
+            android:layout_width="wrap_content"
+            android:text="OR"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/icQr"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:srcCompat="@drawable/ic_qr_icon" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

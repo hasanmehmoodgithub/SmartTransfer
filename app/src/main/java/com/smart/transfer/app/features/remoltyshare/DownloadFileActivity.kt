@@ -2,15 +2,19 @@ package com.smart.transfer.app.features.remoltyshare
 
 import android.Manifest
 import android.app.DownloadManager
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaScannerConnection
 import android.os.*
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
+import com.google.zxing.integration.android.IntentIntegrator
+import com.google.zxing.integration.android.IntentResult
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.data.remote.api.RetrofitClient
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.model.DownloadResponse
 import com.smart.transfer.app.databinding.ActivityDownloadFileBinding
@@ -40,7 +44,10 @@ class DownloadFileActivity : AppCompatActivity() {
 
         binding.codePasteLayout.visibility = View.VISIBLE
         binding.downloadLayout.visibility = View.GONE
+        binding.scanQr.setOnClickListener(View.OnClickListener {
+            startQrScanner()
 
+        })
         // Handle Done Button Click
         binding.doneBtn.setOnClickListener {
 
@@ -277,6 +284,30 @@ class DownloadFileActivity : AppCompatActivity() {
                 .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
                 .create()
                 .show()
+        }
+    }
+    private fun startQrScanner() {
+        val integrator = IntentIntegrator(this)
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+        integrator.setPrompt("Scan a QR code")
+        integrator.setCameraId(0)
+        integrator.setBeepEnabled(true)
+        integrator.setOrientationLocked(true)
+        integrator.initiateScan()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val result: IntentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        if (result != null) {
+            if (result.contents != null) {
+                getZipFileLinkFromCode(result.contents)
+                Toast.makeText(this, "Scanned: ${result.contents}", Toast.LENGTH_LONG).show()
+                // You can use the scanned data here
+            } else {
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 }

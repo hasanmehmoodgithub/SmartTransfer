@@ -138,6 +138,7 @@
 
         <!-- QR Code Button -->
         <LinearLayout
+            android:id="@+id/scanQr"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/rounded_button2"

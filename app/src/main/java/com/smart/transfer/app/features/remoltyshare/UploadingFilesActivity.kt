@@ -6,17 +6,23 @@ import android.animation.ValueAnimator
 import android.app.Dialog
 import android.content.ClipboardManager
 import android.content.Context
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.common.BitMatrix
 import com.smart.transfer.app.R
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.data.remote.api.ProgressRequestBody
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.data.remote.api.RetrofitClient
@@ -42,6 +48,9 @@ class UploadingFilesActivity : AppCompatActivity(), ProgressRequestBody.Progress
 
         binding.copyIpImg.setOnClickListener {
             copyToClipboard(binding.uniqueIdText.text.toString())
+        }
+        binding.icQr.setOnClickListener {
+            showQrDialog(binding.uniqueIdText.text.toString());
         }
 
         processSelectedFiles()
@@ -193,5 +202,28 @@ class UploadingFilesActivity : AppCompatActivity(), ProgressRequestBody.Progress
         val clip = android.content.ClipData.newPlainText("label", text)
         clipboard.setPrimaryClip(clip)
         Toast.makeText(this, "Text copied to clipboard", Toast.LENGTH_SHORT).show()
+    }
+    private fun showQrDialog(data: String) {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_qr, null)
+        val qrImageView = dialogView.findViewById<ImageView>(R.id.qrImageView)
+        qrImageView.setImageBitmap(generateQrCode(data))
+
+        AlertDialog.Builder(this)
+            .setTitle("Scan this QR")
+            .setView(dialogView)
+            .setPositiveButton("Close", null)
+            .show()
+    }
+
+    private fun generateQrCode(data: String): Bitmap {
+        val size = 512
+        val bitMatrix: BitMatrix = MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, size, size)
+        val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565)
+        for (x in 0 until size) {
+            for (y in 0 until size) {
+                bitmap.setPixel(x, y, if (bitMatrix[x, y]) android.graphics.Color.BLACK else android.graphics.Color.WHITE)
+            }
+        }
+        return bitmap
     }
 }
