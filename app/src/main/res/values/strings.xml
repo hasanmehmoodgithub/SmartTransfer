@@ -60,6 +60,7 @@
     <string name="history">History</string>
     <string name="please_wait_your_data_is_uploading">Please wait, your data is uploading</string>
     <string name="uploading">Uploading ...</string>
+    <string name="paste_link_here">Paste link here</string>
 
 </resources>
 
