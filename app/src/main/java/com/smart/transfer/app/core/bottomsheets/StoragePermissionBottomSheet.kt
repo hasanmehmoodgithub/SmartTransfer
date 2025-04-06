@@ -177,6 +177,8 @@ class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseF
         } else {
             // Request the permission
             requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            dismiss()
+
         }
     }
 
@@ -184,12 +186,14 @@ class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseF
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             // Android 11 (API 30) and above requires MANAGE_EXTERNAL_STORAGE for broad access
             if (Environment.isExternalStorageManager()) {
+                dismiss()
                 proceedAfterPermissionGranted()
             } else {
                 // Request MANAGE_EXTERNAL_STORAGE permission
                 val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
                 intent.data = Uri.parse("package:com.smartdatatransfer.easytransfer.filetransfer.sendanydata.smartswitchmobile.copydata")
                 startActivity(intent)
+                dismiss()
             }
         } else {
             // Android 10 (API 29) uses Scoped Storage, but WRITE_EXTERNAL_STORAGE is still required
@@ -214,15 +218,7 @@ class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseF
 
     private fun showPermissionRationale() {
         requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//        AlertDialog.Builder(requireActivity())
-//            .setTitle("Permission Required")
-//            .setMessage("Storage permission is required to save and access files.")
-//            .setPositiveButton("OK") { _, _ ->
-//                // Request permission again
-//                requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//            }
-//            .setNegativeButton("Cancel", null)
-//            .show()
+        dismiss()
     }
 
     private fun showPermissionSettingsDialog() {
@@ -230,17 +226,7 @@ class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseF
         val uri = Uri.fromParts("package", "com.smartdatatransfer.easytransfer.filetransfer.sendanydata.smartswitchmobile.copydata", null)
         intent.data = uri
         startActivity(intent)
-//        AlertDialog.Builder(requireActivity())
-//            .setTitle("Permission Required")
-//            .setMessage("Storage permission is required to proceed. Please enable it in settings.")
-//            .setPositiveButton("Go to Settings") { _, _ ->
-//                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-//                val uri = Uri.fromParts("package", "com.smartdatatransfer.easytransfer.filetransfer.sendanydata.smartswitchmobile.copydata", null)
-//                intent.data = uri
-//                startActivity(intent)
-//            }
-//            .setNegativeButton("Cancel", null)
-//            .show()
+        dismiss()
     }
     private fun getStoragePermissionStatus(): PermissionStatus {
         return when {

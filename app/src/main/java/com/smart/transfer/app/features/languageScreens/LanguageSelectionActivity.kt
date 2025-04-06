@@ -3,6 +3,7 @@ package com.smart.transfer.app.com.smart.transfer.app.features.languageScreens
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -48,6 +49,12 @@ class LanguageSelectionActivity : AppCompatActivity() {
         // Enable ViewBinding
         binding = ActivityLanguageSelectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val isFromSplash = intent.getBooleanExtra("isFromSplash", true)
+        if(isFromSplash){
+            binding.selectedLangLayout.visibility= View.GONE
+        }
+
+
         supportActionBar?.hide()
         makeStatusBarTransparent()
         setupRecyclerView()

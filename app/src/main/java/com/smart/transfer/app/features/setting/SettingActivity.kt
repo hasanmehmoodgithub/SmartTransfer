@@ -33,7 +33,10 @@ class SettingActivity : AppCompatActivity() {
 
         // Language Selection
         binding.llLanguage.setOnClickListener {
-            startActivity(Intent(this, LanguageSelectionActivity::class.java))
+            val intent = Intent(this, LanguageSelectionActivity::class.java)
+            intent.putExtra("isFromSplash", false)
+            startActivity(intent)
+
         }
 
         // Privacy Policy

@@ -88,7 +88,7 @@ class MobileToPcActivity : BaseActivity() {
 
     private fun startFileServerList(files: List<File>) {
         try {
-            val iconDrawable = ContextCompat.getDrawable(this, R.drawable.ic_mobile_to_pc_banner
+            val iconDrawable = ContextCompat.getDrawable(this, R.mipmap.ic_launcher
             )
 
             val bitmap = if (iconDrawable is BitmapDrawable) {

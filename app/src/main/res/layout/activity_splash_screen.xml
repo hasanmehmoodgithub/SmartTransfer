@@ -46,11 +46,12 @@
 
     <TextView
         android:id="@+id/splashText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="26dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
         android:text="@string/quick_data_transfer_no_delays_just_smooth_sharing"
         android:textColor="@color/color_65"
         app:layout_constraintEnd_toEndOf="parent"
