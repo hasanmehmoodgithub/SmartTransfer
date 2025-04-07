@@ -20,6 +20,10 @@ import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedDocuments
 import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedImagesManager
 import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedVideosManager
 import com.smart.transfer.app.features.localshare.ui.HandlePermissionActivity
+import com.smart.transfer.app.features.localshare.ui.sender.SenderQrActivity
+import com.smart.transfer.app.features.localshare.ui.wifdirect.WiFiDirectActivity
+import com.smart.transfer.app.features.localshare.ui.wifdirect.WiFiDirectActivity2
+import com.smart.transfer.app.features.localshare.ui.wifdirect.WiFiDirectSenderActivity
 import com.smart.transfer.app.features.remoltyshare.RemotelyShareActivity
 import com.smart.transfer.app.features.remoltyshare.UploadingFilesActivity
 import java.io.File
@@ -122,7 +126,8 @@ class TransferItemActivity : BaseActivity() {
                 }
                 ChooseFileNextScreenType.LocalShare -> {
                     // Handle AndroidToIos case
-                    startActivity(Intent(this, HandlePermissionActivity::class.java))
+                    startActivity(Intent(this, WiFiDirectActivity::class.java))
+               //     startActivity(Intent(this, SenderQrActivity::class.java))
                 }
                 ChooseFileNextScreenType.Remote -> {
                     // Handle AndroidToIos case

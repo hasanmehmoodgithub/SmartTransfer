@@ -48,7 +48,7 @@ class AudioPickerFragment : Fragment() {
         loadAudioFiles()
 
         if (checkPermissions()) {
-            loadAudioFiles()
+           // loadAudioFiles()
         } else {
             requestPermissions()
         }
@@ -86,7 +86,7 @@ class AudioPickerFragment : Fragment() {
         if (requestCode == 1001 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             loadAudioFiles()
         } else {
-            Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
+          //  Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
         }
     }
 

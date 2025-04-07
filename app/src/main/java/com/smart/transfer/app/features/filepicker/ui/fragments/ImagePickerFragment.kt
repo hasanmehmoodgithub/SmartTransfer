@@ -28,6 +28,7 @@ class ImagePickerFragment : Fragment() {
 
     private val images = mutableListOf<ImageModel>()
     private lateinit var adapter: ImagePickerAdapter
+    private var allSelected = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentImagePickerBinding.inflate(inflater, container, false)
@@ -36,6 +37,12 @@ class ImagePickerFragment : Fragment() {
         setupRecyclerView()
         checkPermissionsAndLoadImages()
         loadImages()
+        binding.checkBoxSelect.setOnClickListener {
+            adapter.toggleSelection()
+            allSelected = !allSelected
+            binding.btnToggleSelect.text = if (allSelected) "Clear All" else "Select All"
+        }
+
 
         return view
     }

@@ -35,7 +35,7 @@ class AudioPickerAdapter(
     inner class AudioViewHolder(private val binding: ItemAudioPickerBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(audio: AudioModel) {
-            binding.txtAudioName.text = audio.filePath
+            binding.txtAudioName.text = audio.name
             binding.txtAudioDuration.text = formatDuration(audio.duration)
             binding.txtAudioSize.text = formatFileSizeUtil(audio.size)
 

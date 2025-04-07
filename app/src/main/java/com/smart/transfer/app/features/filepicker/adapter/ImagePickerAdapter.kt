@@ -22,18 +22,25 @@ class ImagePickerAdapter(
                 .load(image.path)
                 .into(binding.imageView)
 
-            // Update checkbox state
+            // Avoid triggering listener when programmatically changing checkbox
+            binding.checkBoxSelect.setOnCheckedChangeListener(null)
+
+            // Set the checkbox state
             binding.checkBoxSelect.isChecked = selectedImages.contains(image)
 
+            // Listener for manual selection
             binding.checkBoxSelect.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
-                    selectedImages.add(image)
+                    if (!selectedImages.contains(image)) {
+                        selectedImages.add(image)
+                    }
                 } else {
                     selectedImages.remove(image)
                 }
                 onSelectionChanged(selectedImages)
             }
 
+            // Toggle selection on item click
             binding.root.setOnClickListener {
                 binding.checkBoxSelect.isChecked = !binding.checkBoxSelect.isChecked
             }
@@ -50,4 +57,28 @@ class ImagePickerAdapter(
     }
 
     override fun getItemCount() = images.size
+
+    private fun selectAll() {
+        selectedImages.clear()
+        selectedImages.addAll(images)
+        notifyDataSetChanged()
+        onSelectionChanged(selectedImages)
+    }
+
+    private fun clearAll() {
+        selectedImages.clear()
+        notifyDataSetChanged()
+        onSelectionChanged(selectedImages)
+    }
+
+    fun toggleSelection() {
+        if (selectedImages.size < images.size) {
+            selectAll()
+        } else {
+            clearAll()
+        }
+    }
+
+
+    fun getSelectedImages(): List<ImageModel> = selectedImages
 }

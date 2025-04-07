@@ -18,8 +18,14 @@ import androidx.core.app.ActivityCompat
 import com.smart.transfer.app.R
 import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
 import com.smart.transfer.app.com.smart.transfer.app.core.appenums.ChooseFileNextScreenType
+import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.ui.ChooseFileActivity
 import com.smart.transfer.app.databinding.ActivityHandlePermissionBinding
 import com.smart.transfer.app.features.dashboard.ui.DashboardActivity
+import com.smart.transfer.app.features.localshare.ui.recevier.ReceiverQrActivity
+import com.smart.transfer.app.features.localshare.ui.sender.SenderQrActivity
+import com.smart.transfer.app.features.localshare.ui.wifdirect.WiFiDirectActivity
+import com.smart.transfer.app.features.localshare.ui.wifdirect.WiFiDirectActivity2
+import com.smart.transfer.app.features.localshare.ui.wifdirect.WiFiDirectReceiverActivity
 
 class HandlePermissionActivity : BaseActivity() {
 
@@ -199,17 +205,23 @@ class HandlePermissionActivity : BaseActivity() {
      * Navigates to the main dashboard if all permissions are granted.
      */
     private fun navigateToMain() {
-//        if(from==1)
-//        {
-//            //share
-//                    startActivity(Intent(this, DashboardActivity::class.java))
-//        finish()
-//        }
-//        else{
-//            //receive
-//                    startActivity(Intent(this, DashboardActivity::class.java))
-//        finish()
-//        }
+        if(from==1)
+        {
+            //share
+            val intent = Intent(this, ChooseFileActivity::class.java)
+            intent.putExtra("ChooseFileNextScreenType", ChooseFileNextScreenType.LocalShare) // Convert to String
+            startActivity(intent)
+
+
+
+        finish()
+        }
+        else{
+            //receive
+            startActivity(Intent(this, WiFiDirectActivity::class.java))
+            //startActivity(Intent(this, ReceiverQrActivity::class.java))
+        finish()
+        }
 
     }
 }

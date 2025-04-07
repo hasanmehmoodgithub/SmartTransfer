@@ -27,7 +27,7 @@ class VideoPickerFragment : Fragment() {
 
     private val videos = mutableListOf<VideoModel>()
     private lateinit var adapter: VideoPickerAdapter
-
+    private var allSelected = false
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentVideoPickerBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -35,6 +35,11 @@ class VideoPickerFragment : Fragment() {
         setupRecyclerView()
         checkPermissionsAndLoadVideos()
         loadVideos()
+        binding.checkBoxSelect.setOnClickListener {
+            adapter.toggleSelection()
+            allSelected = !allSelected
+            binding.btnToggleSelect.text = if (allSelected) "Clear All" else "Select All"
+        }
         return view
     }
 

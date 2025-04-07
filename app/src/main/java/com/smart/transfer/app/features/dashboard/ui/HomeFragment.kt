@@ -9,9 +9,6 @@ import androidx.fragment.app.Fragment
 import com.smart.transfer.app.com.smart.transfer.app.core.appenums.ChooseFileNextScreenType
 import com.smart.transfer.app.com.smart.transfer.app.core.bottomsheets.StoragePermissionBottomSheet
 import com.smart.transfer.app.databinding.FragmentHomeBinding
-import com.smart.transfer.app.com.smart.transfer.app.features.mobileToPc.ui.MobileToPcActivity
-import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.ui.ChooseFileActivity
-import com.smart.transfer.app.features.localshare.ui.HandlePermissionActivity
 import com.smart.transfer.app.features.setting.SettingActivity
 import com.smart.transfer.app.features.setting.ShareAppActivity
 
@@ -43,12 +40,16 @@ class HomeFragment : Fragment() {
 
         binding.shareFileLocaly.setOnClickListener {
             // Handle share file locally button click
-            StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalShare).show(childFragmentManager, "shareFileLocal")
+            //startActivity(Intent(requireContext(), WiFiDirectActivity::class.java))
+
+           StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalShare).show(childFragmentManager, "shareFileLocal")
 
 
         }
 
         binding.recieveFileLocaly.setOnClickListener {
+
+            //startActivity(Intent(requireContext(), WifiDirectSenderActivity::class.java))
             StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalReceive).show(childFragmentManager, "receiveFileLocal")
         }
 

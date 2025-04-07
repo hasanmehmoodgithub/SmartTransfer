@@ -15,24 +15,24 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         android:minSdkVersion="30"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
-    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- ✅ Place <queries> here -->
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- ✅ Place <queries> here -->
     <queries>
         <intent>
             <action android:name="com.google.zxing.client.android.SCAN" />
         </intent>
     </queries>
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -40,18 +40,34 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:preserveLegacyExternalStorage="true"
-
         android:localeConfig="@xml/locales_config"
+        android:preserveLegacyExternalStorage="true"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartTransfer"
         tools:targetApi="tiramisu">
         <activity
+            android:name=".features.localshare.ui.wifdirect.WiFiDirectActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".features.localshare.ui.wifdirect.WifiDirectSenderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.localshare.ui.wifdirect.WiFiDirectReceiverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.localshare.ui.wifdirect.WiFiDirectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.localshare.ui.recevier.ReceiverQrActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.localshare.ui.sender.SenderQrActivity"
+            android:exported="false" />
+        <activity
             android:name=".features.androidtoios.ui.AndroidToIosActivity"
             android:exported="false" />
-
         <activity
             android:name=".features.dashboard.ui.TransferItemActivity"
             android:exported="false" />
@@ -120,7 +136,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>
