@@ -1,8 +1,5 @@
 package com.smart.transfer.app.features.filepicker.adapter
-import android.content.Context
-import android.database.Cursor
-import android.net.Uri
-import android.provider.MediaStore
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -37,9 +34,9 @@ class DocumentPickerAdapter(
 
     inner class DocumentViewHolder(private val binding: ItemDocumentPickerBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(document: DocumentModel) {
             binding.txtDocumentName.text = document.name
-
             binding.txtDocumentSize.text = formatFileSizeUtil(document.size)
 
             // Prevent unwanted callbacks while updating UI
@@ -65,6 +62,28 @@ class DocumentPickerAdapter(
             }
         }
     }
+
+    // Select all documents
+    private fun selectAll() {
+        selectedDocuments.clear()
+        selectedDocuments.addAll(documents)
+        notifyDataSetChanged()
+        onSelectionChanged(selectedDocuments.toList())
+    }
+
+    // Clear all selected documents
+    private fun clearAll() {
+        selectedDocuments.clear()
+        notifyDataSetChanged()
+        onSelectionChanged(selectedDocuments.toList())
+    }
+
+    // Toggle selection: Select all if not all selected, otherwise clear all
+    fun toggleSelection() {
+        if (selectedDocuments.size < documents.size) {
+            selectAll()
+        } else {
+            clearAll()
+        }
+    }
 }
-
-

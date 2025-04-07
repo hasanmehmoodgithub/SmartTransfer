@@ -30,7 +30,7 @@ class AudioPickerFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var audioAdapter: AudioPickerAdapter
-
+    private var allSelected = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -46,6 +46,11 @@ class AudioPickerFragment : Fragment() {
         audioAdapter = AudioPickerAdapter(emptyList()) { _ -> }
         binding.recyclerView.adapter = audioAdapter
         loadAudioFiles()
+        binding.checkBoxSelect.setOnClickListener {
+            audioAdapter.toggleSelection()
+            allSelected = !allSelected
+            binding.btnToggleSelect.text = if (allSelected) "Clear All" else "Select All"
+        }
 
         if (checkPermissions()) {
            // loadAudioFiles()

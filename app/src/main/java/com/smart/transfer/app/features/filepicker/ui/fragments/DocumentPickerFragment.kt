@@ -31,7 +31,7 @@ class DocumentPickerFragment : Fragment() {
 
     private lateinit var documentAdapter: DocumentPickerAdapter
     private val documents = mutableListOf<DocumentModel>()
-
+    private var allSelected = false
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentDocumentPickerBinding.inflate(inflater, container, false)
         return binding.root
@@ -54,6 +54,11 @@ class DocumentPickerFragment : Fragment() {
         binding.btnDone.setOnClickListener {
             // Handle selected documents (e.g., pass to another screen, upload, etc.)
             Log.d("SelectedDocs", "Final Selected Documents: ${SelectedDocumentsManager.selectedDocuments}")
+        }
+        binding.checkBoxSelect.setOnClickListener {
+            documentAdapter.toggleSelection()
+            allSelected = !allSelected
+            binding.btnToggleSelect.text = if (allSelected) "Clear All" else "Select All"
         }
     }
 

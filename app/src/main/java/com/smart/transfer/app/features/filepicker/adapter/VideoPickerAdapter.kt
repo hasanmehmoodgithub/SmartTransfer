@@ -64,6 +64,8 @@ class VideoPickerAdapter(
     }
 
     override fun getItemCount() = videos.size
+
+    // Select all videos
     private fun selectAll() {
         selectedVideos.clear()
         selectedVideos.addAll(videos)
@@ -71,12 +73,14 @@ class VideoPickerAdapter(
         onSelectionChanged(selectedVideos)
     }
 
+    // Clear all selected videos
     private fun clearAll() {
         selectedVideos.clear()
         notifyDataSetChanged()
         onSelectionChanged(selectedVideos)
     }
 
+    // Toggle selection: Select all if not all selected, otherwise clear all
     fun toggleSelection() {
         if (selectedVideos.size < videos.size) {
             selectAll()

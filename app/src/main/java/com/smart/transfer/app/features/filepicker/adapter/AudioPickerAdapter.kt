@@ -21,6 +21,18 @@ class AudioPickerAdapter(
         notifyDataSetChanged()
     }
 
+    fun toggleSelection() {
+        val shouldSelectAll = SelectedAudiosManager.selectedAudios.size < audioList.size
+        SelectedAudiosManager.selectedAudios.clear()
+
+        if (shouldSelectAll) {
+            SelectedAudiosManager.selectedAudios.addAll(audioList)
+        }
+
+        onSelectionChanged(SelectedAudiosManager.selectedAudios.toList())
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AudioViewHolder {
         val binding = ItemAudioPickerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AudioViewHolder(binding)
@@ -38,7 +50,6 @@ class AudioPickerAdapter(
             binding.txtAudioName.text = audio.name
             binding.txtAudioDuration.text = formatDuration(audio.duration)
             binding.txtAudioSize.text = formatFileSizeUtil(audio.size)
-
 
             // Prevent unwanted triggers when recycling views
             binding.checkBox.setOnCheckedChangeListener(null)
