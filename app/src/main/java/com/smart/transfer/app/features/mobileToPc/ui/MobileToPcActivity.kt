@@ -57,6 +57,7 @@ class MobileToPcActivity : BaseActivity() {
     }
     fun onClickStartServer(view: View) {
         val paths = AllSelectedFilesManager.allSelectedFiles.mapNotNull { it["path"] as? String }
+        Log.e("paths","$paths")
 
 // Convert paths to File objects
         val fileList = paths.map { File(it) }

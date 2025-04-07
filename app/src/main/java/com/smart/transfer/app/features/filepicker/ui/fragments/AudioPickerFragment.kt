@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smart.transfer.app.R
+import com.smart.transfer.app.com.smart.transfer.app.core.sharedpreference.SharedPrefManager
 import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.model.AudioModel
 import com.smart.transfer.app.databinding.FragmentAudioPickerBinding
 import com.smart.transfer.app.features.filepicker.adapter.AudioPickerAdapter
@@ -25,6 +26,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 class AudioPickerFragment : Fragment() {
+    private val sharedPrefManager by lazy { SharedPrefManager.getInstance(requireContext()) }
 
     private var _binding: FragmentAudioPickerBinding? = null
     private val binding get() = _binding!!
@@ -46,6 +48,12 @@ class AudioPickerFragment : Fragment() {
         audioAdapter = AudioPickerAdapter(emptyList()) { _ -> }
         binding.recyclerView.adapter = audioAdapter
         loadAudioFiles()
+        val isSelectAllButtonStatus = sharedPrefManager.isSelectAllCheckBoxStatus()
+        if(!isSelectAllButtonStatus)
+        {
+            binding.checkBoxSelect.visibility=View.GONE
+            binding.btnToggleSelect.visibility=View.GONE
+        }
         binding.checkBoxSelect.setOnClickListener {
             audioAdapter.toggleSelection()
             allSelected = !allSelected

@@ -278,7 +278,10 @@ class DownloadFileActivity : AppCompatActivity() {
                 .setTitle("Error")
                 .setMessage(message)
                 .setCancelable(true)
-                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss()
+                    binding.codePasteLayout.visibility = View.VISIBLE
+                    binding.downloadLayout.visibility = View.GONE
+                }
                 .create()
                 .show()
         }
@@ -291,7 +294,10 @@ class DownloadFileActivity : AppCompatActivity() {
                 .setTitle("Success")
                 .setMessage(message)
                 .setCancelable(true)
-                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                .setPositiveButton("OK") { dialog, _ -> dialog.dismiss()
+                    binding.codePasteLayout.visibility = View.VISIBLE
+                    binding.downloadLayout.visibility = View.GONE
+                }
                 .create()
                 .show()
         }

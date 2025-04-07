@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smart.transfer.app.com.smart.transfer.app.core.sharedpreference.SharedPrefManager
 import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.model.DocumentModel
 import com.smart.transfer.app.features.filepicker.adapter.DocumentPickerAdapter
 
@@ -25,6 +26,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 class DocumentPickerFragment : Fragment() {
+    private val sharedPrefManager by lazy { SharedPrefManager.getInstance(requireContext()) }
 
     private var _binding: FragmentDocumentPickerBinding? = null
     private val binding get() = _binding!!
@@ -54,6 +56,12 @@ class DocumentPickerFragment : Fragment() {
         binding.btnDone.setOnClickListener {
             // Handle selected documents (e.g., pass to another screen, upload, etc.)
             Log.d("SelectedDocs", "Final Selected Documents: ${SelectedDocumentsManager.selectedDocuments}")
+        }
+        val isSelectAllButtonStatus = sharedPrefManager.isSelectAllCheckBoxStatus()
+        if(!isSelectAllButtonStatus)
+        {
+            binding.checkBoxSelect.visibility=View.GONE
+            binding.btnToggleSelect.visibility=View.GONE
         }
         binding.checkBoxSelect.setOnClickListener {
             documentAdapter.toggleSelection()

@@ -27,6 +27,11 @@
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" /> <!-- ✅ Place <queries> here -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
     <queries>
         <intent>
             <action android:name="com.google.zxing.client.android.SCAN" />
@@ -41,12 +46,27 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:localeConfig="@xml/locales_config"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:screenOrientation="portrait"
         android:preserveLegacyExternalStorage="true"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartTransfer"
+        android:usesCleartextTraffic="true"
         tools:targetApi="tiramisu">
+        <activity
+            android:name=".features.localshare.ui.hotspot.WebViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.localshare.ui.hotspot.QrSenderReceiverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.localshare.ui.hotspot.SenderHotSpotActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.localshare.ui.hotspot.ReceiverHotSpotActivity"
+            android:exported="false" />
         <activity
             android:name=".features.localshare.ui.wifdirect.WiFiDirectActivity2"
             android:exported="false" />

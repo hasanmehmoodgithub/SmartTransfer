@@ -20,6 +20,9 @@ import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedDocuments
 import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedImagesManager
 import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedVideosManager
 import com.smart.transfer.app.features.localshare.ui.HandlePermissionActivity
+import com.smart.transfer.app.features.localshare.ui.hotspot.QrSenderReceiverActivity
+import com.smart.transfer.app.features.localshare.ui.hotspot.SenderHotSpotActivity
+import com.smart.transfer.app.features.localshare.ui.hotspot.WebViewActivity
 import com.smart.transfer.app.features.localshare.ui.sender.SenderQrActivity
 import com.smart.transfer.app.features.localshare.ui.wifdirect.WiFiDirectActivity
 import com.smart.transfer.app.features.localshare.ui.wifdirect.WiFiDirectActivity2
@@ -126,7 +129,10 @@ class TransferItemActivity : BaseActivity() {
                 }
                 ChooseFileNextScreenType.LocalShare -> {
                     // Handle AndroidToIos case
-                    startActivity(Intent(this, WiFiDirectActivity::class.java))
+                   // startActivity(Intent(this, QrSenderReceiverActivity::class.java).putExtra("mode", "sender"))
+//                  startActivity(Intent(this, SenderHotSpotActivity::class.java))
+                    startActivity(Intent(this, WebViewActivity::class.java))
+
                //     startActivity(Intent(this, SenderQrActivity::class.java))
                 }
                 ChooseFileNextScreenType.Remote -> {

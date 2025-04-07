@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.smart.transfer.app.com.smart.transfer.app.core.sharedpreference.SharedPrefManager
 import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.adapter.VideoPickerAdapter
 import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.model.VideoModel
 import com.smart.transfer.app.databinding.FragmentVideoPickerBinding
@@ -21,6 +22,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 class VideoPickerFragment : Fragment() {
+    private val sharedPrefManager by lazy { SharedPrefManager.getInstance(requireContext()) }
 
     private var _binding: FragmentVideoPickerBinding? = null
     private val binding get() = _binding!!
@@ -35,6 +37,12 @@ class VideoPickerFragment : Fragment() {
         setupRecyclerView()
         checkPermissionsAndLoadVideos()
         loadVideos()
+        val isSelectAllButtonStatus = sharedPrefManager.isSelectAllCheckBoxStatus()
+        if(!isSelectAllButtonStatus)
+        {
+            binding.checkBoxSelect.visibility=View.GONE
+            binding.btnToggleSelect.visibility=View.GONE
+        }
         binding.checkBoxSelect.setOnClickListener {
             adapter.toggleSelection()
             allSelected = !allSelected

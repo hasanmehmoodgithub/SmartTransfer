@@ -17,6 +17,7 @@ class SharedPrefManager private constructor(context: Context) {
         private const val KEY_SELECTED_LANGUAGE_NAME = "selected_language_name"
         private const val KEY_ONBOARDING_COMPLETED = "onboarding_completed"
         private const val KEY_Language_COMPLETED = "language_completed"
+        private const val KEY_SelectAllValue = "select_all_value"
         //default values
         private const val DEFAULT_LANGUAGE = "en"
         private const val DEFAULT_LANGUAGE_NAME = "🇬🇧 English"
@@ -55,5 +56,12 @@ class SharedPrefManager private constructor(context: Context) {
 
     fun setOnboardingCompleted(completed: Boolean) {
         sharedPreferences.edit().putBoolean(KEY_ONBOARDING_COMPLETED, completed).apply()
+    }
+
+    fun isSelectAllCheckBoxStatus(): Boolean =
+        sharedPreferences.getBoolean(KEY_SelectAllValue, false)
+
+    fun setSelectAllCheckBoxStatus(completed: Boolean) {
+        sharedPreferences.edit().putBoolean(KEY_SelectAllValue, completed).apply()
     }
 }

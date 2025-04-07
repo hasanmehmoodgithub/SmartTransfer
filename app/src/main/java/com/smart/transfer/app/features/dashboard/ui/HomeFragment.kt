@@ -9,6 +9,11 @@ import androidx.fragment.app.Fragment
 import com.smart.transfer.app.com.smart.transfer.app.core.appenums.ChooseFileNextScreenType
 import com.smart.transfer.app.com.smart.transfer.app.core.bottomsheets.StoragePermissionBottomSheet
 import com.smart.transfer.app.databinding.FragmentHomeBinding
+import com.smart.transfer.app.features.localshare.ui.hotspot.QrSenderReceiverActivity
+import com.smart.transfer.app.features.localshare.ui.hotspot.ReceiverHotSpotActivity
+import com.smart.transfer.app.features.localshare.ui.hotspot.SenderHotSpotActivity
+import com.smart.transfer.app.features.localshare.ui.hotspot.WebViewActivity
+
 import com.smart.transfer.app.features.setting.SettingActivity
 import com.smart.transfer.app.features.setting.ShareAppActivity
 
@@ -41,16 +46,23 @@ class HomeFragment : Fragment() {
         binding.shareFileLocaly.setOnClickListener {
             // Handle share file locally button click
             //startActivity(Intent(requireContext(), WiFiDirectActivity::class.java))
+           // startActivity(Intent(requireContext(), QrSenderReceiverActivity::class.java).putExtra("mode", "sender"))
 
-           StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalShare).show(childFragmentManager, "shareFileLocal")
+            StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalShare).show(childFragmentManager, "receiveFileLocal")
+
+             //   startActivity(Intent(requireContext(), SenderHotSpotActivity::class.java))
+         //  StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalShare).show(childFragmentManager, "shareFileLocal")
 
 
         }
 
         binding.recieveFileLocaly.setOnClickListener {
 
+// For Receiver
+           // startActivity(Intent(requireContext(), WebViewActivity::class.java))
+
             //startActivity(Intent(requireContext(), WifiDirectSenderActivity::class.java))
-            StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalReceive).show(childFragmentManager, "receiveFileLocal")
+          StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalReceive).show(childFragmentManager, "receiveFileLocal")
         }
 
 

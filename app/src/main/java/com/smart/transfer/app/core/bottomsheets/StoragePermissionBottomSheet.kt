@@ -21,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.smart.transfer.app.R
 import com.smart.transfer.app.com.smart.transfer.app.core.appenums.ChooseFileNextScreenType
 import com.smart.transfer.app.com.smart.transfer.app.core.appenums.PermissionStatus
+import com.smart.transfer.app.com.smart.transfer.app.core.sharedpreference.SharedPrefManager
 import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.ui.ChooseFileActivity
 import com.smart.transfer.app.com.smart.transfer.app.features.mobileToPc.ui.MobileToPcActivity
 import com.smart.transfer.app.databinding.BottomSheetLayoutBinding
@@ -30,6 +31,7 @@ import com.smart.transfer.app.features.remoltyshare.RemotelyShareActivity
 
 
 class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseFileNextScreenType) : BottomSheetDialogFragment() {
+    private val sharedPrefManager by lazy { SharedPrefManager.getInstance(requireContext()) }
 
     private var _binding: BottomSheetLayoutBinding? = null
     private val binding get() = _binding!!
@@ -108,9 +110,11 @@ class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseF
     private fun navigateToDesiredScreen(chooseFileNextScreenType: ChooseFileNextScreenType) {
         when (chooseFileNextScreenType) {
             ChooseFileNextScreenType.MobileToPc -> {
+
                 // Handle MobileToPc case
                 val intent = Intent(requireContext(), ChooseFileActivity::class.java)
                 intent.putExtra("ChooseFileNextScreenType", chooseFileNextScreenType) // Convert to String
+                sharedPrefManager.setSelectAllCheckBoxStatus(true)
                 startActivity(intent)
                 dismiss()
 
@@ -119,6 +123,7 @@ class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseF
                 // Handle AndroidToIos case
                 val intent = Intent(requireContext(), ChooseFileActivity::class.java)
                 intent.putExtra("ChooseFileNextScreenType", chooseFileNextScreenType) // Convert to String
+                sharedPrefManager.setSelectAllCheckBoxStatus(true)
                 startActivity(intent)
                 dismiss()
             }
@@ -126,6 +131,7 @@ class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseF
                 // Handle AndroidToIos case
                 val intent = Intent(requireContext(), HandlePermissionActivity::class.java)
                 intent.putExtra("from", 1) // Convert to String
+                sharedPrefManager.setSelectAllCheckBoxStatus(true)
                 startActivity(intent)
                 dismiss()
 
@@ -134,6 +140,7 @@ class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseF
                 // Handle AndroidToIos case
                 val intent = Intent(requireContext(), HandlePermissionActivity::class.java)
                 intent.putExtra("from", 2) // Convert to String
+                sharedPrefManager.setSelectAllCheckBoxStatus(true)
                 startActivity(intent)
                 dismiss()
 
@@ -142,6 +149,7 @@ class StoragePermissionBottomSheet(private val chooseFileNextScreenType: ChooseF
                 // Handle AndroidToIos case
                 val intent = Intent(requireContext(), RemotelyShareActivity::class.java)
                 intent.putExtra("ChooseFileNextScreenType", chooseFileNextScreenType) // Convert to String
+                sharedPrefManager.setSelectAllCheckBoxStatus(false)
                 startActivity(intent)
                 dismiss()
             }
