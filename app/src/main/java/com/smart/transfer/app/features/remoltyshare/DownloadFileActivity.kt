@@ -17,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
+import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
 import com.smart.transfer.app.com.smart.transfer.app.features.history.data.database.AppDatabase
 import com.smart.transfer.app.com.smart.transfer.app.features.history.data.entity.History
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.data.remote.api.RetrofitClient
@@ -32,7 +33,7 @@ import java.io.*
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 
-class DownloadFileActivity : AppCompatActivity() {
+class DownloadFileActivity : BaseActivity() {
 
     private lateinit var binding: ActivityDownloadFileBinding
     private lateinit var downloadManager: DownloadManager
@@ -47,6 +48,7 @@ class DownloadFileActivity : AppCompatActivity() {
         // Initialize View Binding
         binding = ActivityDownloadFileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupAppBar(binding.customToolbar.customToolbar, "Downloading File", showBackButton = true)
         database = AppDatabase.getDatabase(this)
 
         binding.codePasteLayout.visibility = View.VISIBLE
@@ -123,9 +125,9 @@ class DownloadFileActivity : AppCompatActivity() {
                     if (body != null) {
 
                         showSuccessDialog();
-                       // downloadZipFileFromLink(body.download_link)
+                       downloadZipFileFromLink(body.download_link.toString(),uniqueId)
 
-                        downloadZipFileFromLink("https://firebasestorage.googleapis.com/v0/b/testapp-e5995.appspot.com/o/test.zip?alt=media&token=6589ecdd-d405-4cea-8305-bd4186b3ce27",uniqueId)
+                       // downloadZipFileFromLink("https://firebasestorage.googleapis.com/v0/b/testapp-e5995.appspot.com/o/test.zip?alt=media&token=6589ecdd-d405-4cea-8305-bd4186b3ce27",uniqueId)
 
                     } else {
                         showErrorDialog("File download failed: Empty response.")

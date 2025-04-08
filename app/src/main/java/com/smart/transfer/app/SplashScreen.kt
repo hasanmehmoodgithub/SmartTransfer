@@ -1,6 +1,7 @@
 package com.smart.transfer.app
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -20,6 +21,7 @@ class SplashScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)

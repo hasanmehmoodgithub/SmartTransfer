@@ -11,6 +11,7 @@ import com.smart.transfer.app.com.smart.transfer.app.core.bottomsheets.StoragePe
 import com.smart.transfer.app.databinding.FragmentHomeBinding
 import com.smart.transfer.app.features.localshare.ui.hotspot.QrSenderReceiverActivity
 import com.smart.transfer.app.features.localshare.ui.hotspot.ReceiverHotSpotActivity
+import com.smart.transfer.app.features.localshare.ui.hotspot.ReceiverHttpActivity
 import com.smart.transfer.app.features.localshare.ui.hotspot.SenderHotSpotActivity
 import com.smart.transfer.app.features.localshare.ui.hotspot.WebViewActivity
 
@@ -61,8 +62,8 @@ class HomeFragment : Fragment() {
 // For Receiver
            // startActivity(Intent(requireContext(), WebViewActivity::class.java))
 
-            //startActivity(Intent(requireContext(), WifiDirectSenderActivity::class.java))
-          StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalReceive).show(childFragmentManager, "receiveFileLocal")
+            startActivity(Intent(requireContext(), ReceiverHttpActivity::class.java))
+          //StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalReceive).show(childFragmentManager, "receiveFileLocal")
         }
 
 

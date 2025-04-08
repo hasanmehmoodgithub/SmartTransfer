@@ -29,4 +29,6 @@
     <string name="please_wait_your_data_is_uploading">Please wait, your data is uploading</string>
     <string name="uploading">Uploading ...</string>
     <string name="paste_link_here">Paste link here</string>
+    <string name="make_sure_both_the_sender_and_receiver_are_connected_to_the_same_wi_fi_network_do_not_go_back_or_stop_sharing_as_it_will_break_the_connection">Make sure both the sender and receiver are connected to the same Wi-Fi network. Do not go back or stop sharing, as it will break the connection.</string>
+    <string name="downloading">Downloading</string>
 </resources>

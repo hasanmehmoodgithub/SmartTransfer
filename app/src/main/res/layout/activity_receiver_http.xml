@@ -64,11 +64,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="75dp"
-            android:text="@string/downloading"
+            android:text="Downloading"
             android:textColor="@color/app_blue"
             android:textSize="18sp"
             android:textStyle="bold" />
-
+        <TextView
+            android:id="@+id/currenAndtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="16sp" />
         <TextView
             android:id="@+id/tvWaitMessage"
             android:layout_width="wrap_content"
@@ -114,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Paste the link in the box that you receive from sender"
+            android:text="Paste scan the qr code or type link in the box that you receive from sender"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -185,3 +192,4 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

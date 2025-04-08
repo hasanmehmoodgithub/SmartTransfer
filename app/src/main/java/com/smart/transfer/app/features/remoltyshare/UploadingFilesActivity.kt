@@ -25,6 +25,7 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
 import com.smart.transfer.app.R
+import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
 import com.smart.transfer.app.com.smart.transfer.app.features.history.data.database.AppDatabase
 import com.smart.transfer.app.com.smart.transfer.app.features.history.data.entity.History
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.data.remote.api.ProgressRequestBody
@@ -40,7 +41,7 @@ import java.io.*
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
-class UploadingFilesActivity : AppCompatActivity(), ProgressRequestBody.ProgressListener {
+class UploadingFilesActivity : BaseActivity(), ProgressRequestBody.ProgressListener {
 
     private lateinit var binding: ActivityUploadingFilesBinding
     private lateinit var loadingDialog: Dialog
@@ -48,6 +49,7 @@ class UploadingFilesActivity : AppCompatActivity(), ProgressRequestBody.Progress
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadingFilesBinding.inflate(layoutInflater)
+        setupAppBar(binding.customToolbar.customToolbar, "Uploading File", showBackButton = true)
         database = AppDatabase.getDatabase(this)
 
         setContentView(binding.root)

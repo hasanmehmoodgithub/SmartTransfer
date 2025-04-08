@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".features.localshare.ui.LocalShareTestActivity">
+
+    <Button
+        android:id="@+id/sendWifiDirect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sendWifiDirect"
+        android:onClick="onClickSendWifiDirect"
+
+        />
+
+    <Button
+        android:id="@+id/receiveWifiDirect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickReceiveWifiDirect"
+        android:text="receiveWifiDirect" />
+
+
+    <Button
+        android:id="@+id/sendHotSpot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sendHotSpot"
+        android:onClick="onClickSendHotSpot"
+
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickReceiveHotSpot"
+        android:text="ReceiveHotSpot" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sendQr"
+        android:onClick="onClickSendQR"
+
+        />
+
+    <Button
+        android:id="@+id/receiveHotSpot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickReceiveQR"
+        android:text="ReceiveQR" />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SendWebQr"
+        android:onClick="onClickSendWebQR"
+
+        />
+
+    <Button
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickWebQR"
+        android:text="ReceiveWebQR" />
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="File Downloader"
+        android:textSize="24sp"
+        android:textColor="#333"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- QR Code ImageView -->
+    <ImageView
+        android:id="@+id/qrCodeImageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="QR Code" />
+
+    <!-- Download All Button -->
+    <Button
+        android:id="@+id/downloadAllButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download All"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Progress Bar for Downloading -->
+    <ProgressBar
+        android:id="@+id/downloadProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <!-- File List TextView -->
+    <TextView
+        android:id="@+id/fileListTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No files selected"
+        android:textSize="16sp"
+        android:textColor="#666" />
+
+</LinearLayout>
