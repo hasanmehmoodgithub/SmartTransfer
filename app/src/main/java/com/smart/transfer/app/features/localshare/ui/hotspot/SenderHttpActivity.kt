@@ -12,14 +12,18 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
 import com.smart.transfer.app.R
 import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
+import com.smart.transfer.app.com.smart.transfer.app.features.history.data.database.AppDatabase
+import com.smart.transfer.app.com.smart.transfer.app.features.history.data.entity.History
 import com.smart.transfer.app.databinding.ActivitySenderHttpBinding
 import com.smart.transfer.app.features.dashboard.ui.AllSelectedFilesManager
 import fi.iki.elonen.NanoHTTPD
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -45,7 +49,7 @@ class SenderHttpActivity : BaseActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         val toolbar = findViewById<LinearLayout>(R.id.custom_toolbar)
         setupAppBar(toolbar, "Local Share", showBackButton = true)
-
+        database = AppDatabase.getDatabase(this)
         // Start animation
 //        binding.lottieAnimationView.playAnimation()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -138,7 +142,7 @@ class SenderHttpActivity : BaseActivity() {
                 //   showToast("Sharing ${fileList.size} files at http://$ipAddress:8080")
 
                 // Optional: Show a notification with the server address
-
+                insertHistoryData()
 
             } catch (e: IOException) {
                 Log.e("startSharingFiles","Could not start server: ${e.message}")
@@ -192,7 +196,37 @@ class SenderHttpActivity : BaseActivity() {
         setupStopServerUi()
     }
 
+    private lateinit var database: AppDatabase
 
+    private fun insertHistoryData() {
+        val paths = AllSelectedFilesManager.allSelectedFiles.mapNotNull { it["path"] as? String }
+
+
+        lifecycleScope.launch {
+
+            paths.forEach { path ->
+                val historyItem = History(
+                    filePath = path,
+                    fileType = getFileTypeFromPath(path), // Optional: get type based on file extension
+                    tag = "local",
+                    from = "send",
+                    timestamp = System.currentTimeMillis()
+                )
+                database.historyDao().insertHistory(historyItem)
+                Log.e("historyList", "Insert Success: ${historyItem.filePath} saved to Room DB")
+            }
+        }
+    }
+    private fun getFileTypeFromPath(path: String): String {
+        return when {
+            path.endsWith(".mp3", true) || path.endsWith(".wav", true) -> "music"
+            path.endsWith(".mp4", true) || path.endsWith(".mkv", true) -> "video"
+            path.endsWith(".jpg", true) || path.endsWith(".jpeg", true) || path.endsWith(".png", true) -> "image"
+            path.endsWith(".pdf", true) || path.endsWith(".doc", true) || path.endsWith(".docx", true) ||
+                    path.endsWith(".xls", true) || path.endsWith(".xlsx", true) || path.endsWith(".txt", true) -> "document"
+            else -> "unknown"
+        }
+    }
 }
 class LocalFileServer(private val port: Int, private val filesToShare: List<File>) : NanoHTTPD(port) {
 

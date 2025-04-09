@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
-    <external-files-path name="files" path="." />
-    <external-path name="external_files" path="." />
+    <!-- For files in internal storage -->
+    <files-path name="files" path="." />
+    <!-- For files in external storage -->
+    <external-files-path name="external_files" path="." />
+    <!-- For cache files -->
+    <cache-path name="cache" path="." />
 </paths>

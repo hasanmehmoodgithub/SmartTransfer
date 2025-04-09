@@ -73,19 +73,6 @@ class RemoteFileShareHistoryFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    private fun insertHistoryData() {
-        lifecycleScope.launch {
-            val historyItem = History(
-                filePath = "/storage/emulated/0/Download/re.music",
-                fileType = "m",
-                tag = "remotely",
-                from = "receive",
-                timestamp = System.currentTimeMillis()
-            )
-            database.historyDao().insertHistory(historyItem)
-            Log.e("historyList", "Insert Success: ${historyItem.filePath} saved to Room DB")
-        }
-    }
 
     private fun getHistoryData(tag: String, from: String) {
 

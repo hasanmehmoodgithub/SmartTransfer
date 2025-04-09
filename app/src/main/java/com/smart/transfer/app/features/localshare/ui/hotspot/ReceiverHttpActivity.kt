@@ -8,9 +8,12 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.lifecycleScope
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
+import com.smart.transfer.app.com.smart.transfer.app.features.history.data.database.AppDatabase
+import com.smart.transfer.app.com.smart.transfer.app.features.history.data.entity.History
 import com.smart.transfer.app.databinding.ActivityReceiverHttpBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,13 +34,13 @@ class ReceiverHttpActivity : BaseActivity() {
     private lateinit var binding: ActivityReceiverHttpBinding
     private val fileList = mutableListOf<String>()
 
-
+    val extractedFilePaths = mutableListOf<String>() // ⬅️ To co
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReceiverHttpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
+        database = AppDatabase.getDatabase(this)
         setupAppBar(binding.customToolbar.customToolbar, "Downloading File", showBackButton = true)
 
 
@@ -279,17 +282,21 @@ class ReceiverHttpActivity : BaseActivity() {
         }
     }
     private fun downloadAllFilesSequentially() {
+        extractedFilePaths.clear()
         CoroutineScope(Dispatchers.IO).launch {
             for ((index, fileName) in fileList.withIndex()) {
                 downloadFile(ipString, fileName, index, fileList.size)
             }
 
             withContext(Dispatchers.Main) {
+
                 showSuccessDialog("All files downloaded!");
+                insertHistoryData(extractedFilePaths);
                 Toast.makeText(this@ReceiverHttpActivity, "All files downloaded!", Toast.LENGTH_LONG).show()
             }
         }
     }
+
     private suspend fun downloadFile(serverIp: String, fileName: String, index: Int, totalFiles: Int) {
         val destinationDir = getExternalFilesDir(null) ?: filesDir
         val destinationFile = File(destinationDir, fileName)
@@ -333,6 +340,7 @@ class ReceiverHttpActivity : BaseActivity() {
                     Log.e("MediaScanner", "Failed to scan file: ${scanError.message}")
                 }
                 withContext(Dispatchers.Main) {
+                    extractedFilePaths.add(destinationFile.absolutePath)
 //                    Toast.makeText(
 //                        this@ReceiverHttpActivity,
 //                        "Saved to ${destinationFile.path}",
@@ -359,6 +367,33 @@ class ReceiverHttpActivity : BaseActivity() {
         }
     }
 
+    private lateinit var database: AppDatabase
 
+    private fun insertHistoryData(extractedFilePaths: MutableList<String>) {
+
+        lifecycleScope.launch {
+            extractedFilePaths.forEach { path ->
+                val historyItem = History(
+                    filePath = path,
+                    fileType = getFileTypeFromPath(path), // Optional: get type based on file extension
+                    tag = "local",
+                    from = "receive",
+                    timestamp = System.currentTimeMillis()
+                )
+                database.historyDao().insertHistory(historyItem)
+                Log.e("historyList", "Insert Success: ${historyItem.filePath} saved to Room DB")
+            }
+        }
+    }
+    private fun getFileTypeFromPath(path: String): String {
+        return when {
+            path.endsWith(".mp3", true) || path.endsWith(".wav", true) -> "music"
+            path.endsWith(".mp4", true) || path.endsWith(".mkv", true) -> "video"
+            path.endsWith(".jpg", true) || path.endsWith(".jpeg", true) || path.endsWith(".png", true) -> "image"
+            path.endsWith(".pdf", true) || path.endsWith(".doc", true) || path.endsWith(".docx", true) ||
+                    path.endsWith(".xls", true) || path.endsWith(".xlsx", true) || path.endsWith(".txt", true) -> "document"
+            else -> "unknown"
+        }
+    }
 
 }

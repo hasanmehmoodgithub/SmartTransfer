@@ -1,11 +1,14 @@
 package com.smart.transfer.app.com.smart.transfer.app.features.history.view;
 
+import android.content.ActivityNotFoundException
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast
@@ -52,24 +55,51 @@ class HistoryAdapter(
             else -> holder.fileThumbnail.setImageResource(R.drawable.ic_file_placeholder)
         }
 
+
         holder.viewIcon.setOnClickListener {
+            Log.e("open view", "setOnClickListener")
             val file = File(history.filePath)
+            Log.d("FileOpen", "File path: ${file.absolutePath}")
+            Log.d("FileOpen", "File exists: ${file.exists()}, readable: ${file.canRead()}")
 
-            if (file.exists()) {
-                val uri = FileProvider.getUriForFile(
-                    context,
-                    "${context.packageName}.provider", // Ensure you match the `FileProvider` authority
-                    file
-                )
+            if (file.exists() && file.canRead()) {
+                try {
+                    val uri = FileProvider.getUriForFile(
+                        context,
+                        "${context.packageName}.provider",
+                        file
+                    )
 
-                val intent = Intent(Intent.ACTION_VIEW).apply {
-                    setDataAndType(uri, history.fileType)
-                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    // Get proper MIME type
+                    val mimeType = MimeTypeMap.getSingleton()
+                        .getMimeTypeFromExtension(file.extension) ?: "*/*"
+                    Log.d("FileOpen", "Detected MIME type: $mimeType")
+
+                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                        setDataAndType(uri, mimeType)
+                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                        addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION) // Some files need this
+                    }
+
+                    // Grant temporary permissions to all apps that can handle the intent
+                    val resolvedActivities = context.packageManager.queryIntentActivities(intent, 0)
+                    resolvedActivities.forEach {
+                        context.grantUriPermission(
+                            it.activityInfo.packageName,
+                            uri,
+                            Intent.FLAG_GRANT_READ_URI_PERMISSION
+                        )
+                    }
+
+                    context.startActivity(Intent.createChooser(intent, "Open file with"))
+                } catch (e: ActivityNotFoundException) {
+                    Toast.makeText(context, "No app found to open this file", Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Error opening file: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Log.e("FileOpen", "Error opening file", e)
                 }
-
-                context.startActivity(Intent.createChooser(intent, "Open file with"))
             } else {
-                Toast.makeText(context, "File not found!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "File not found or not accessible!", Toast.LENGTH_SHORT).show()
             }
         }
 
