@@ -1,9 +1,11 @@
 package com.smart.transfer.app.features.localshare.ui.hotspot
 
 import android.content.Intent
+import android.media.MediaScannerConnection
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.zxing.integration.android.IntentIntegrator
@@ -34,6 +36,7 @@ class ReceiverHttpActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityReceiverHttpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         setupAppBar(binding.customToolbar.customToolbar, "Downloading File", showBackButton = true)
 
@@ -76,13 +79,7 @@ class ReceiverHttpActivity : BaseActivity() {
 //            }
 
     }
-    suspend fun runDownloadForListAsync() = coroutineScope {
-        fileList.map {  file ->
-            launch {
-                downloadFile(ipString,file)
-            }
-        }.joinAll()
-    }
+
 
     private fun startQrScanner() {
         val integrator = IntentIntegrator(this)
@@ -143,6 +140,7 @@ class ReceiverHttpActivity : BaseActivity() {
                 .setPositiveButton("OK") { dialog, _ -> dialog.dismiss()
                     binding.codePasteLayout.visibility = View.VISIBLE
                     binding.downloadLayout.visibility = View.GONE
+                    binding.loadingProgressBar.visibility = View.GONE
                 }
                 .create()
                 .show()
@@ -151,10 +149,17 @@ class ReceiverHttpActivity : BaseActivity() {
 
 
     private fun fetchFileList(serverUrl: String) {
-       // binding.progressBar.visibility = View.VISIBLE
+
+
         extractIpFromUrl(serverUrl)
         CoroutineScope(Dispatchers.IO).launch {
             try {
+                withContext(Dispatchers.Main) {
+                    binding.loadingProgressBar.visibility = View.VISIBLE
+                    binding.downloadLayout.visibility=View.GONE
+                    binding.codePasteLayout.visibility=View.GONE
+                }
+
               //  val url = "http://$serverIp:8080/"
                 val connection = URL(serverUrl).openConnection() as HttpURLConnection
                 connection.connectTimeout = 5000
@@ -172,16 +177,18 @@ class ReceiverHttpActivity : BaseActivity() {
                         binding.codePasteLayout.visibility=View.GONE
                         binding.downloadLayout.visibility=View.VISIBLE
                         binding.currenAndtotal.text="Total Files To be Downloaded is ${fileList.size}"
-                        runDownloadForListAsync()
+                        binding.loadingProgressBar.visibility = View.GONE
+//                        runDownloadForListAsync()
+                        downloadAllFilesSequentially();
                       //  binding.connectButton.setText("${fileList.size}")
                      //   binding.progressBar.visibility = View.GONE
                     }
                 } else {
                     withContext(Dispatchers.Main) {
-                       // binding.progressBar.visibility = View.GONE
                         binding.downloadLayout.visibility=View.GONE
                         binding.codePasteLayout.visibility=View.VISIBLE
                         binding.currenAndtotal.text=""
+                        binding.loadingProgressBar.visibility = View.GONE
                         Toast.makeText(this@ReceiverHttpActivity,
                             "Failed to Connect files: ${connection.responseCode}",
                             Toast.LENGTH_LONG).show()
@@ -189,16 +196,19 @@ class ReceiverHttpActivity : BaseActivity() {
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    binding.progressBar.visibility = View.GONE
+                    binding.downloadLayout.visibility=View.GONE
+                    binding.codePasteLayout.visibility=View.VISIBLE
+                    binding.loadingProgressBar.visibility = View.GONE
                     Toast.makeText(this@ReceiverHttpActivity,
                         "Error: ${e.message}",
                         Toast.LENGTH_LONG).show()
+                    Log.e("fetchFileList","Error: ${e.message}")
                 }
             }
         }
     }
 
-    private fun downloadFile(serverIp: String, fileName: String) {
+    private fun downloadFile2(serverIp: String, fileName: String) {
         val destinationDir = getExternalFilesDir(null) ?: filesDir
         val destinationFile = File(destinationDir, fileName)
 
@@ -233,6 +243,8 @@ class ReceiverHttpActivity : BaseActivity() {
                             withContext(Dispatchers.Main) {
                                 // progressDialog.dismiss()
                                 binding.progressBar.progress=progress
+                                binding.tvPercentage.text="$progress %"
+                                binding.currenAndtotal.text="Total Files To be Downloaded is /${fileList.size}"
                              //binding.dwload.setText("$progress")
                             }
 
@@ -266,4 +278,87 @@ class ReceiverHttpActivity : BaseActivity() {
             }
         }
     }
+    private fun downloadAllFilesSequentially() {
+        CoroutineScope(Dispatchers.IO).launch {
+            for ((index, fileName) in fileList.withIndex()) {
+                downloadFile(ipString, fileName, index, fileList.size)
+            }
+
+            withContext(Dispatchers.Main) {
+                showSuccessDialog("All files downloaded!");
+                Toast.makeText(this@ReceiverHttpActivity, "All files downloaded!", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+    private suspend fun downloadFile(serverIp: String, fileName: String, index: Int, totalFiles: Int) {
+        val destinationDir = getExternalFilesDir(null) ?: filesDir
+        val destinationFile = File(destinationDir, fileName)
+
+        try {
+            val url = "http://$serverIp:8080/$fileName"
+            val connection = URL(url).openConnection() as HttpURLConnection
+            connection.connect()
+
+            if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+                val fileLength = connection.contentLength
+                val inputStream = connection.inputStream
+                val outputStream = FileOutputStream(destinationFile)
+
+                val buffer = ByteArray(4096)
+                var bytesRead: Int
+                var totalBytesRead = 0L
+
+                while (inputStream.read(buffer).also { bytesRead = it } != -1) {
+                    outputStream.write(buffer, 0, bytesRead)
+                    totalBytesRead += bytesRead
+
+                    withContext(Dispatchers.Main) {
+                        val progress = (totalBytesRead * 100 / fileLength).toInt()
+                        binding.progressBar.progress = progress
+                        binding.tvPercentage.text = "$progress %"
+                        binding.currenAndtotal.text = "Downloading file ${index + 1} of $totalFiles"
+                    }
+                }
+
+                outputStream.close()
+                inputStream.close()
+                try {
+                    MediaScannerConnection.scanFile(
+                        this@ReceiverHttpActivity,
+                        arrayOf(destinationFile.absolutePath),
+                        null,
+                        null
+                    )
+                } catch (scanError: Exception) {
+                    Log.e("MediaScanner", "Failed to scan file: ${scanError.message}")
+                }
+                withContext(Dispatchers.Main) {
+//                    Toast.makeText(
+//                        this@ReceiverHttpActivity,
+//                        "Saved to ${destinationFile.path}",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+                }
+            } else {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@ReceiverHttpActivity,
+                        "Failed: ${connection.responseCode}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(
+                    this@ReceiverHttpActivity,
+                    "Error: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+
+
 }

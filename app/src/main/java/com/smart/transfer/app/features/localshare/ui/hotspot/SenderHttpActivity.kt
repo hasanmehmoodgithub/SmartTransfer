@@ -8,6 +8,7 @@ import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -41,7 +42,7 @@ class SenderHttpActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySenderHttpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         val toolbar = findViewById<LinearLayout>(R.id.custom_toolbar)
         setupAppBar(toolbar, "Local Share", showBackButton = true)
 
