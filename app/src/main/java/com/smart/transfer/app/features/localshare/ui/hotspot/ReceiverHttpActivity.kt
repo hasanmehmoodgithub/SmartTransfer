@@ -232,6 +232,7 @@ class ReceiverHttpActivity : BaseActivity() {
                             val progress = (totalBytesRead * 100 / fileLength).toInt()
                             withContext(Dispatchers.Main) {
                                 // progressDialog.dismiss()
+                                binding.progressBar.progress=progress
                              //binding.dwload.setText("$progress")
                             }
 
