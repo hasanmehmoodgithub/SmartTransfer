@@ -132,6 +132,7 @@ class TransferItemActivity : BaseActivity() {
                     // Handle AndroidToIos case
                    // startActivity(Intent(this, QrSenderReceiverActivity::class.java).putExtra("mode", "sender"))
 //                  startActivity(Intent(this, SenderHotSpotActivity::class.java))
+                   // startActivity(Intent(this, SenderHttpActivity::class.java))
                     startActivity(Intent(this, SenderHttpActivity::class.java))
 
                   //  startActivity(Intent(this, LocalShareTestActivity::class.java))

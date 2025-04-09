@@ -329,18 +329,22 @@ class ReceiverHttpActivity : BaseActivity() {
 
                 outputStream.close()
                 inputStream.close()
+
+                withContext(Dispatchers.Main) {
+                    Log.e("destinationFile","Saved to ${destinationFile.path}")
+                    extractedFilePaths.add(destinationFile.absolutePath)
                 try {
                     MediaScannerConnection.scanFile(
                         this@ReceiverHttpActivity,
-                        arrayOf(destinationFile.absolutePath),
-                        null,
+                        arrayOf(destinationFile.path),
                         null
-                    )
+                    ) { path, uri ->
+                        println("Scanned $path -> URI: $uri")
+                    }
+
                 } catch (scanError: Exception) {
                     Log.e("MediaScanner", "Failed to scan file: ${scanError.message}")
                 }
-                withContext(Dispatchers.Main) {
-                    extractedFilePaths.add(destinationFile.absolutePath)
 //                    Toast.makeText(
 //                        this@ReceiverHttpActivity,
 //                        "Saved to ${destinationFile.path}",

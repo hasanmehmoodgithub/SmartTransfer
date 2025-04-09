@@ -21,6 +21,7 @@ import com.smart.transfer.app.com.smart.transfer.app.core.appenums.ChooseFileNex
 import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.ui.ChooseFileActivity
 import com.smart.transfer.app.databinding.ActivityHandlePermissionBinding
 import com.smart.transfer.app.features.dashboard.ui.DashboardActivity
+import com.smart.transfer.app.features.localshare.ui.hotspot.ReceiverHttpActivity
 import com.smart.transfer.app.features.localshare.ui.recevier.ReceiverQrActivity
 import com.smart.transfer.app.features.localshare.ui.sender.SenderQrActivity
 import com.smart.transfer.app.features.localshare.ui.wifdirect.WiFiDirectActivity
@@ -218,7 +219,7 @@ class HandlePermissionActivity : BaseActivity() {
         }
         else{
             //receive
-            startActivity(Intent(this, WiFiDirectActivity::class.java))
+            startActivity(Intent(this, ReceiverHttpActivity::class.java))
             //startActivity(Intent(this, ReceiverQrActivity::class.java))
         finish()
         }

@@ -62,8 +62,8 @@ class HomeFragment : Fragment() {
 // For Receiver
            // startActivity(Intent(requireContext(), WebViewActivity::class.java))
 
-            startActivity(Intent(requireContext(), ReceiverHttpActivity::class.java))
-          //StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalReceive).show(childFragmentManager, "receiveFileLocal")
+
+          StoragePermissionBottomSheet(ChooseFileNextScreenType.LocalReceive).show(childFragmentManager, "receiveFileLocal")
         }
 
 

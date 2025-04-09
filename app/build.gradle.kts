@@ -70,7 +70,7 @@ dependencies {
     kapt("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion") // Kotlin Extensio
 
-
+    implementation ("np.com.susanthapa:curved_bottom_navigation:0.6.5")
 
 
     testImplementation("junit:junit:4.13.2")

@@ -1,0 +1,54 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+
+    <aapt:attr name="android:drawable">
+        <vector
+            android:width="22dp"
+            android:height="22dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+
+            <group
+                android:name="home_group"
+                android:pivotX="12"
+                android:pivotY="12"
+                android:scaleX="1"
+                android:scaleY="1">
+                <path
+                    android:name="home_path"
+                    android:strokeColor="#FF5E5F60"
+                    android:strokeWidth="1.5"
+                    android:strokeLineCap="round"
+                    android:strokeLineJoin="round"
+                    android:fillColor="@android:color/transparent"
+                    android:pathData="M3 10L12 3l9 7v10a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-4h-4v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>
+            </group>
+        </vector>
+    </aapt:attr>
+
+    <!-- Optional Scale Animation -->
+    <target android:name="home_group">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="scaleX"
+                    android:duration="700"
+                    android:valueFrom="1"
+                    android:valueTo="1.05"
+                    android:repeatMode="reverse"
+                    android:repeatCount="infinite"
+                    android:valueType="floatType" />
+
+                <objectAnimator
+                    android:propertyName="scaleY"
+                    android:duration="700"
+                    android:valueFrom="1"
+                    android:valueTo="1.05"
+                    android:repeatMode="reverse"
+                    android:repeatCount="infinite"
+                    android:valueType="floatType" />
+            </set>
+        </aapt:attr>
+    </target>
+
+</animated-vector>
