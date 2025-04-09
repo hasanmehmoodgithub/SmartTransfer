@@ -124,10 +124,12 @@ class DownloadFileActivity : BaseActivity() {
                     val body = response.body()
                     if (body != null) {
 
-                        showSuccessDialog();
-                       downloadZipFileFromLink(body.download_link.toString(),uniqueId)
+                       showSuccessDialog();
+                        Log.e("body.download_link","${body.download_link}");
 
-                       // downloadZipFileFromLink("https://firebasestorage.googleapis.com/v0/b/testapp-e5995.appspot.com/o/test.zip?alt=media&token=6589ecdd-d405-4cea-8305-bd4186b3ce27",uniqueId)
+                      downloadZipFileFromLink(body.download_link,uniqueId)
+
+                  //      downloadZipFileFromLink("https://firebasestorage.googleapis.com/v0/b/testapp-e5995.appspot.com/o/test.zip?alt=media&token=6589ecdd-d405-4cea-8305-bd4186b3ce27",uniqueId)
 
                     } else {
                         showErrorDialog("File download failed: Empty response.")
@@ -167,7 +169,7 @@ class DownloadFileActivity : BaseActivity() {
     private fun showSuccessDialog() {
         runOnUiThread {
             showCongratsScreen()
-            Snackbar.make(binding.root, "Downloaded", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(binding.root, "Files Found Getting Things Ready", Snackbar.LENGTH_LONG).show()
         }
     }
     private fun showCongratsScreen() {

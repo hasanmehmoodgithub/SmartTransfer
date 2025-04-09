@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
-    <!-- For files in internal storage -->
+    <!-- For internal storage -->
     <files-path name="files" path="." />
-    <!-- For files in external storage -->
+    <!-- For external storage -->
     <external-files-path name="external_files" path="." />
     <!-- For cache files -->
     <cache-path name="cache" path="." />
+    <!-- For Download directory -->
+    <external-path name="downloads" path="Download/" />
+    <!-- Alternative broader access (use carefully) -->
+    <external-path name="external_storage_root" path="." />
 </paths>
