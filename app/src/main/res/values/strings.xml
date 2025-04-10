@@ -24,7 +24,7 @@
     <string name="title_activity_uploading">UploadingActivity</string>
 
     <string name="note_text"><b><font color="#000000">Note:</font></b> <font color="#808080">The below key is valid for 24 hours and will be automatically deleted thereafter.</font></string>
-    <string name="smarttransfer">SmartTransfer</string>
+    <string name="smarttransfer">Smart Transfer</string>
     <string name="selected_app_language">Selected App Language</string>
     <string name="selected_language">Selected Language</string>
     <string name="all_language">All Language</string>

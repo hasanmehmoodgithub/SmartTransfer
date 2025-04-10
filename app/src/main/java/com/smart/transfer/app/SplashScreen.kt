@@ -12,6 +12,7 @@ import com.smart.transfer.app.com.smart.transfer.app.core.sharedpreference.Share
 import com.smart.transfer.app.databinding.ActivitySplashScreenBinding
 import com.smart.transfer.app.features.dashboard.ui.DashboardActivity
 import com.smart.transfer.app.com.smart.transfer.app.features.languageScreens.LanguageSelectionActivity
+import com.smart.transfer.app.com.smart.transfer.app.features.onboarding.OnboardingActivity
 import java.util.Locale
 
 class SplashScreen : AppCompatActivity() {
@@ -57,6 +58,7 @@ class SplashScreen : AppCompatActivity() {
         val languageLocale = sharedPrefManager.getSelectedLanguage()
         val nextScreen = if (isLanguageDone) {
             DashboardActivity::class.java
+//            OnboardingActivity::class.java
         } else {
             LanguageSelectionActivity::class.java
         }

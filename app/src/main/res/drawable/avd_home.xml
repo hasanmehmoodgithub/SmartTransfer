@@ -16,7 +16,7 @@
                 android:scaleY="1">
                 <path
                     android:name="home_path"
-                    android:strokeColor="#FF5E5F60"
+                    android:strokeColor="#1C80F7"
                     android:strokeWidth="1.5"
                     android:strokeLineCap="round"
                     android:strokeLineJoin="round"

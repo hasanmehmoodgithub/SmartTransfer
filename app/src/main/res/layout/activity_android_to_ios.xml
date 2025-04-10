@@ -40,15 +40,14 @@
             android:id="@+id/lottieAnimationView"
             android:layout_width="220dp"
             app:lottie_useCompositionFrameRate="true"
-
-
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/t1"
             android:layout_height="220dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/t1" />
+            />
 
         <TextView
             android:id="@+id/downloadText"

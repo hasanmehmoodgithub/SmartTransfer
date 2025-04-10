@@ -72,6 +72,10 @@ dependencies {
 
     implementation ("np.com.susanthapa:curved_bottom_navigation:0.6.5")
 
+    // Koin for Dependency Injection
+    implementation ("io.insert-koin:koin-core:3.5.3")
+    implementation ("io.insert-koin:koin-android:3.5.3")
+    implementation ("io.insert-koin:koin-android-compat:3.5.3")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

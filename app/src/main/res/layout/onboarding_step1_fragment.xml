@@ -22,13 +22,26 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
-    <ImageView
-        android:id="@+id/smartTransferImg"
+<!--    <ImageView-->
+<!--        android:id="@+id/smartTransferImg"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="250dp"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        app:srcCompat="@drawable/step1"-->
+<!--/>-->
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/step1"
-/>
+        android:layout_gravity="center"
+        app:lottie_useCompositionFrameRate="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/mobile_to_pc"
+        />
+
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
