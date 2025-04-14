@@ -18,4 +18,8 @@ interface HistoryDao {
 
     @Query("SELECT * FROM history ORDER BY timestamp DESC")
     fun getAllHistory(): kotlinx.coroutines.flow.Flow<List<History>>
+
+    @Query("SELECT * FROM history WHERE tag = :tag AND `from` = :from ORDER BY timestamp DESC LIMIT :limit OFFSET :offset")
+    suspend fun getPaginatedHistory(tag: String, from: String, limit: Int, offset: Int): List<History>
+
 }
