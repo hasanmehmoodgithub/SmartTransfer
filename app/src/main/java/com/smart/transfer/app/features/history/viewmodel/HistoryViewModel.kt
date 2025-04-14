@@ -6,26 +6,21 @@ import com.smart.transfer.app.com.smart.transfer.app.features.history.data.dao.H
 import com.smart.transfer.app.com.smart.transfer.app.features.history.data.database.AppDatabase
 import com.smart.transfer.app.com.smart.transfer.app.features.history.data.entity.History
 import com.smart.transfer.app.com.smart.transfer.app.features.history.data.repository.HistoryRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-class HistoryViewModel(private val historyDao: HistoryDao) : ViewModel() {
-    private val _historyState = MutableLiveData<HistoryState>()
-    val historyState: LiveData<HistoryState> = _historyState
+class HistoryViewModel(private val repository: HistoryRepository) : ViewModel() {
+    val allHistory: Flow<List<History>> = repository.getAllHistory()
 
-    fun loadHistory(tag: String, from: String) {
-        viewModelScope.launch {
-            _historyState.value = HistoryState.Loading
-            try {
-                val history = historyDao.getHistoryByTagAndFrom(tag, from)
-                _historyState.postValue(HistoryState.Success(history))
-            } catch (e: Exception) {
-                _historyState.postValue(HistoryState.Error(e.message ?: "Unknown error"))
-            }
-        }
+    fun insertHistory(history: History) = viewModelScope.launch {
+        repository.insertHistory(history)
     }
 
-    sealed class HistoryState {
-        object Loading : HistoryState()
-        data class Success(val data: List<History>) : HistoryState()
-        data class Error(val message: String) : HistoryState()
+    fun getByTagOrFrom(tag: String, from: String) = viewModelScope.launch {
+        val results = repository.getHistoryByTagOrFrom(tag, from)
+        // Handle results
+    }
+
+    fun deleteHistory(id: Int) = viewModelScope.launch {
+        repository.deleteHistory(id)
     }
 }

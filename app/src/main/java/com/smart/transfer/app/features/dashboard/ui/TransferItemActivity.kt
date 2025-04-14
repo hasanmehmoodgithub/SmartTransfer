@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.smart.transfer.app.R
 import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
 import com.smart.transfer.app.com.smart.transfer.app.core.appenums.ChooseFileNextScreenType
@@ -118,6 +119,10 @@ class TransferItemActivity : BaseActivity() {
             AllSelectedFilesManager.allSelectedFiles.addAll(allSelectedFiles)
 
             updateFileList()
+            if (allSelectedFiles.isEmpty()) {
+                Toast.makeText(this, "Please select files first", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             when (chooseFileNextScreenType) {
                 ChooseFileNextScreenType.MobileToPc -> {
                     // Handle MobileToPc case

@@ -30,24 +30,26 @@ class VideoPickerFragment : Fragment() {
     private val videos = mutableListOf<VideoModel>()
     private lateinit var adapter: VideoPickerAdapter
     private var allSelected = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentVideoPickerBinding.inflate(inflater, container, false)
         val view = binding.root
-
+        loadVideos()
         setupRecyclerView()
         checkPermissionsAndLoadVideos()
-        loadVideos()
+
         val isSelectAllButtonStatus = sharedPrefManager.isSelectAllCheckBoxStatus()
-        if(!isSelectAllButtonStatus)
-        {
-            binding.checkBoxSelect.visibility=View.GONE
-            binding.btnToggleSelect.visibility=View.GONE
+        if (!isSelectAllButtonStatus) {
+            binding.checkBoxSelect.visibility = View.GONE
+            binding.btnToggleSelect.visibility = View.GONE
         }
+
         binding.checkBoxSelect.setOnClickListener {
             adapter.toggleSelection()
             allSelected = !allSelected
             binding.btnToggleSelect.text = if (allSelected) "Clear All" else "Select All"
         }
+
         return view
     }
 
@@ -88,17 +90,17 @@ class VideoPickerFragment : Fragment() {
             MediaStore.Video.Media.SIZE
         )
 
-        val cursor = requireContext().contentResolver.query(
+        val cursor: Cursor? = requireContext().contentResolver.query(
             MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
             projection, null, null,
             "${MediaStore.Video.Media.DATE_ADDED} DESC"
         )
+
         cursor?.use {
             val nameIndex = it.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME)
             val pathIndex = it.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)
             val durationIndex = it.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION)
             val sizeIndex = it.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE)
-
 
             while (it.moveToNext()) {
                 val name = it.getString(nameIndex)
@@ -113,7 +115,7 @@ class VideoPickerFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null // Prevent memory leaks
+        _binding = null
     }
 }
 

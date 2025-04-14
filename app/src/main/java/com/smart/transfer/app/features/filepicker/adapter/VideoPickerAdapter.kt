@@ -24,12 +24,14 @@ class VideoPickerAdapter(
 
             binding.durationText.text = formatDuration(video.duration)
 
-            // Update checkbox state
-            binding.checkBoxSelect.isChecked = selectedVideos.contains(video)
+            // Avoid triggering listener during binding
+            binding.checkBoxSelect.setOnCheckedChangeListener(null)
+            binding.checkBoxSelect.isChecked = video.isSelected
 
             binding.checkBoxSelect.setOnCheckedChangeListener { _, isChecked ->
+                video.isSelected = isChecked
                 if (isChecked) {
-                    selectedVideos.add(video)
+                    if (!selectedVideos.contains(video)) selectedVideos.add(video)
                 } else {
                     selectedVideos.remove(video)
                 }
@@ -65,22 +67,23 @@ class VideoPickerAdapter(
 
     override fun getItemCount() = videos.size
 
-    // Select all videos
     private fun selectAll() {
         selectedVideos.clear()
-        selectedVideos.addAll(videos)
+        videos.forEach {
+            it.isSelected = true
+            selectedVideos.add(it)
+        }
         notifyDataSetChanged()
         onSelectionChanged(selectedVideos)
     }
 
-    // Clear all selected videos
     private fun clearAll() {
+        videos.forEach { it.isSelected = false }
         selectedVideos.clear()
         notifyDataSetChanged()
         onSelectionChanged(selectedVideos)
     }
 
-    // Toggle selection: Select all if not all selected, otherwise clear all
     fun toggleSelection() {
         if (selectedVideos.size < videos.size) {
             selectAll()

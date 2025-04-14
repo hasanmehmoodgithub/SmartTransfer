@@ -49,10 +49,6 @@ class LanguageSelectionActivity : AppCompatActivity() {
         // Enable ViewBinding
         binding = ActivityLanguageSelectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val isFromSplash = intent.getBooleanExtra("isFromSplash", true)
-        if(isFromSplash){
-            binding.selectedLangLayout.visibility= View.GONE
-        }
 
 
         supportActionBar?.hide()
@@ -71,6 +67,14 @@ class LanguageSelectionActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@LanguageSelectionActivity)
             adapter = this@LanguageSelectionActivity.adapter
         }
+        val isFromSplash = intent.getBooleanExtra("isFromSplash", true)
+
+
+        if(isFromSplash){
+                    adapter.setSelectedIndex(0)
+
+        }
+
     }
 
     private fun setupClickListeners() {
@@ -78,7 +82,7 @@ class LanguageSelectionActivity : AppCompatActivity() {
         binding.btnDone.setOnClickListener {
             selectedLanguageIndex?.let {
                 val selectedLang = languages[it]
-                Toast.makeText(this, "Selected: ${selectedLang.name}", Toast.LENGTH_SHORT).show()
+             //   Toast.makeText(this, "Selected: ${selectedLang.name}", Toast.LENGTH_SHORT).show()
 
                 // Save language BEFORE applying locale
                 saveLanguage(selectedLang)

@@ -2,18 +2,25 @@ package com.smart.transfer.app.features.dashboard.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.smart.transfer.app.R
 import com.smart.transfer.app.com.smart.transfer.app.features.history.view.HistoryFragment
+import com.smart.transfer.app.com.smart.transfer.app.features.history.viewmodel.HistoryViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 import com.smart.transfer.app.databinding.ActivityDashboardBinding
+import kotlinx.coroutines.launch
 import np.com.susanthapa.curved_bottom_navigation.CbnMenuItem
+import kotlin.math.log
 
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
+    private val viewModel: HistoryViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +41,11 @@ class DashboardActivity : AppCompatActivity() {
 //            }
 //            true
 //        }
+        lifecycleScope.launch {
+            viewModel.allHistory.collect { historyList ->
+               Log.w("historyList","${historyList.size}")
+            }
+        }
         val menuItems = arrayOf(
 
             CbnMenuItem(

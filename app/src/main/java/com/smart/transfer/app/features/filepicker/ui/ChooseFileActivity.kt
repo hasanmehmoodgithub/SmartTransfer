@@ -10,7 +10,12 @@ import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.adapter
 import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.adapter.FilePickerViewPagerAdapter
 import com.smart.transfer.app.com.smart.transfer.app.features.filepicker.model.FilePickerCategory
 import com.smart.transfer.app.databinding.ActivityChooseFileBinding
+import com.smart.transfer.app.features.dashboard.ui.AllSelectedFilesManager
 import com.smart.transfer.app.features.dashboard.ui.TransferItemActivity
+import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedAudiosManager
+import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedDocumentsManager
+import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedImagesManager
+import com.smart.transfer.app.features.filepicker.ui.fragments.SelectedVideosManager
 
 class ChooseFileActivity : BaseActivity() {
     private lateinit var categoryAdapter: FilePickerCategoryAdapter
@@ -28,7 +33,7 @@ class ChooseFileActivity : BaseActivity() {
         binding = ActivityChooseFileBinding.inflate(layoutInflater) // Inflate binding
         setContentView(binding.root)
         val chooseFileNextScreenType = intent.getSerializableExtra("ChooseFileNextScreenType") as? ChooseFileNextScreenType
-
+clearPrevData();
 
         setupAppBar(binding.customToolbar.customToolbar, "Choose File", showBackButton = true)
 
@@ -41,6 +46,14 @@ class ChooseFileActivity : BaseActivity() {
 
 
         })
+    }
+
+    private fun clearPrevData() {
+        AllSelectedFilesManager.allSelectedFiles.clear()
+        SelectedImagesManager.selectedImages.clear()
+        SelectedVideosManager.selectedVideos.clear();
+        SelectedDocumentsManager.selectedDocuments.clear()
+        SelectedAudiosManager.selectedAudios.clear()
     }
 
     private fun setupCategoryRecyclerView() {

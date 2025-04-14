@@ -25,6 +25,13 @@ class LanguageAdapter(
     }
 
     override fun getItemCount() = languages.size
+    fun setSelectedIndex(position: Int) {
+        val previous = selectedPosition
+        selectedPosition = position
+        previous?.let { notifyItemChanged(it) }
+        notifyItemChanged(position)
+        onLanguageSelected(position)
+    }
 
     inner class LanguageViewHolder(private val binding: ItemLanguageBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -43,9 +50,9 @@ class LanguageAdapter(
                 // Notify item changes only if they exist
                 previousPosition?.let { notifyItemChanged(it) }
                 notifyItemChanged(position)
-
                 onLanguageSelected(position)
             }
         }
+
     }
 }

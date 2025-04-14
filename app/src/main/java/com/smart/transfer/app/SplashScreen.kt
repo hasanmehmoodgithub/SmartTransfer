@@ -56,9 +56,16 @@ class SplashScreen : AppCompatActivity() {
 
         val isLanguageDone = sharedPrefManager.isLanguageCompleted()
         val languageLocale = sharedPrefManager.getSelectedLanguage()
+        val isOnboardingDone = sharedPrefManager.isOnboardingCompleted()
+
+
+
         val nextScreen = if (isLanguageDone) {
-            DashboardActivity::class.java
-//            OnboardingActivity::class.java
+           if (isOnboardingDone) {
+                DashboardActivity::class.java
+            } else {
+                OnboardingActivity::class.java
+            }
         } else {
             LanguageSelectionActivity::class.java
         }
