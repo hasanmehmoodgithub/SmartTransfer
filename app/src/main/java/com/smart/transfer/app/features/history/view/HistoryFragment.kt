@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.google.android.material.tabs.TabLayout
 import com.smart.transfer.app.R
-import com.smart.transfer.app.features.history.view.LocalFileShareHistoryFragment
+
 import com.smart.transfer.app.features.history.view.RemoteFileShareHistoryFragment
 
 

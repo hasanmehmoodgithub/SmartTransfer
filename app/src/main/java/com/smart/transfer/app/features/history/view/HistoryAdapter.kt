@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.smart.transfer.app.R;
@@ -20,10 +22,20 @@ import com.smart.transfer.app.com.smart.transfer.app.features.history.data.entit
 import java.io.File;
 import java.text.DecimalFormat;
 
+// DiffUtil Callback for History items
+class HistoryDiffCallback : DiffUtil.ItemCallback<History>() {
+    override fun areItemsTheSame(oldItem: History, newItem: History): Boolean {
+        return oldItem.id == newItem.id  // Replace with a unique identifier if needed.
+    }
+
+    override fun areContentsTheSame(oldItem: History, newItem: History): Boolean {
+        return oldItem == newItem
+    }
+}
+
 class HistoryAdapter(
-    private val context: Context,
-    private var historyList: List<History>
-) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+    private val context: Context
+) : ListAdapter<History, HistoryAdapter.HistoryViewHolder>(HistoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.history_item, parent, false)
@@ -31,30 +43,29 @@ class HistoryAdapter(
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        val history = historyList[position]
+        val history = getItem(position)
         val file = File(history.filePath)
 
         holder.fileName.text = file.name
         holder.fileSize.text = getFileSize(file.length())
 
         when {
-            history.fileType.contains("image", true) ->
+            history.fileType.contains("image", ignoreCase = true) ->
                 Glide.with(context).load(file).into(holder.fileThumbnail)
 
-            history.fileType.contains("video", true) ->
+            history.fileType.contains("video", ignoreCase = true) ->
                 Glide.with(context).load(file).thumbnail(0.1f).into(holder.fileThumbnail)
 
-            history.fileType.contains("pdf", true) ||
-                    history.fileType.contains("doc", true) ->
+            history.fileType.contains("pdf", ignoreCase = true) ||
+                    history.fileType.contains("doc", ignoreCase = true) ->
                 holder.fileThumbnail.setImageResource(R.drawable.ic_transfer_doc)
 
-            history.fileType.contains("mp3", true) ||
-                    history.fileType.contains("wav", true) ->
+            history.fileType.contains("mp3", ignoreCase = true) ||
+                    history.fileType.contains("wav", ignoreCase = true) ->
                 holder.fileThumbnail.setImageResource(R.drawable.ic_transfer_music)
 
             else -> holder.fileThumbnail.setImageResource(R.drawable.ic_file_placeholder)
         }
-
 
         holder.viewIcon.setOnClickListener {
             Log.e("open view", "setOnClickListener")
@@ -102,15 +113,12 @@ class HistoryAdapter(
                 Toast.makeText(context, "File not found or not accessible!", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
-
-    override fun getItemCount(): Int = historyList.size
 
     class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val fileThumbnail: ImageView = view.findViewById(R.id.fileThumbnail)
         val fileName: TextView = view.findViewById(R.id.fileName)
-        val fileSize: TextView = view.findViewById(R.id.fileSize) // Added file size text view
+        val fileSize: TextView = view.findViewById(R.id.fileSize)
         val viewIcon: ImageView = view.findViewById(R.id.viewIcon)
     }
 

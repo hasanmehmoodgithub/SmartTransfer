@@ -41,11 +41,7 @@ class DashboardActivity : AppCompatActivity() {
 //            }
 //            true
 //        }
-        lifecycleScope.launch {
-            viewModel.allHistory.collect { historyList ->
-               Log.w("historyList","${historyList.size}")
-            }
-        }
+
         val menuItems = arrayOf(
 
             CbnMenuItem(

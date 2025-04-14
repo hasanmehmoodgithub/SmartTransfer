@@ -11,7 +11,6 @@ import org.koin.dsl.module
 
 
 val databaseModule = module {
-    // Database instance
     single {
         Room.databaseBuilder(
             androidContext(),
@@ -19,16 +18,15 @@ val databaseModule = module {
             "history_database_test_1"
         ).build()
     }
-
-    // DAO
     single { get<AppDatabase>().historyDao() }
 }
 
+val repositoryModule = module {
+    single<HistoryRepository> { HistoryRepositoryImpl(get()) }
+}
 
 val viewModelModule = module {
     viewModel { HistoryViewModel(get()) }
 }
-val repositoryModule = module {
-    single<HistoryRepository> { HistoryRepositoryImpl(get()) }
-}
-val appModules = listOf(databaseModule,repositoryModule, viewModelModule)
+
+val appModules = listOf(databaseModule, repositoryModule, viewModelModule)

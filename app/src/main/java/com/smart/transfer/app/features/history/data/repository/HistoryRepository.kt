@@ -6,14 +6,21 @@ import kotlinx.coroutines.flow.Flow
 interface HistoryRepository {
     suspend fun insertHistory(history: History)
     suspend fun getHistoryByTagOrFrom(tag: String, from: String): List<History>
+    suspend fun getPaginatedHistory(tag: String, from: String, limit: Int, offset: Int): List<History>
     suspend fun deleteHistory(id: Int)
     fun getAllHistory(): Flow<List<History>>
 }
 
 class HistoryRepositoryImpl(private val historyDao: HistoryDao) : HistoryRepository {
     override suspend fun insertHistory(history: History) = historyDao.insertHistory(history)
+
     override suspend fun getHistoryByTagOrFrom(tag: String, from: String) =
         historyDao.getHistoryByTagOrFrom(tag, from)
+
+    override suspend fun getPaginatedHistory(tag: String, from: String, limit: Int, offset: Int): List<History> =
+        historyDao.getPaginatedHistory(tag, from, limit, offset)
+
     override suspend fun deleteHistory(id: Int) = historyDao.deleteHistory(id)
+
     override fun getAllHistory(): Flow<List<History>> = historyDao.getAllHistory()
 }
