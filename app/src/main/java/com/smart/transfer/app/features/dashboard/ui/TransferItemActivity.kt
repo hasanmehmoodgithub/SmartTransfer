@@ -154,7 +154,7 @@ class TransferItemActivity : BaseActivity() {
             }
         }
         binding.addMoreBtn.setOnClickListener(View.OnClickListener {
-            finish()
+        finish()
         })
     }
 
