@@ -18,12 +18,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
+import com.smart.transfer.app.com.smart.transfer.app.MyCaptureActivity
 import com.smart.transfer.app.com.smart.transfer.app.features.history.data.database.AppDatabase
 import com.smart.transfer.app.com.smart.transfer.app.features.history.data.entity.History
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.data.remote.api.RetrofitClient
 import com.smart.transfer.app.com.smart.transfer.app.features.remoltyshare.model.DownloadResponse
 import com.smart.transfer.app.databinding.ActivityDownloadFileBinding
-import com.smart.transfer.app.features.dashboard.ui.AllSelectedFilesManager
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -311,8 +311,9 @@ class DownloadFileActivity : BaseActivity() {
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
         integrator.setPrompt("Scan a QR code")
         integrator.setCameraId(0)
-        integrator.setBeepEnabled(true)
+        integrator.setBeepEnabled(false)
         integrator.setOrientationLocked(true)
+        integrator.captureActivity = MyCaptureActivity::class.java // <- Use your custom activity
         integrator.initiateScan()
     }
 

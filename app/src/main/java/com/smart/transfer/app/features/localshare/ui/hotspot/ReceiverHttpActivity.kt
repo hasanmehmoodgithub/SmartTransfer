@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
+import com.smart.transfer.app.com.smart.transfer.app.MyCaptureActivity
 import com.smart.transfer.app.com.smart.transfer.app.features.history.data.database.AppDatabase
 import com.smart.transfer.app.com.smart.transfer.app.features.history.data.entity.History
 import com.smart.transfer.app.databinding.ActivityReceiverHttpBinding
@@ -89,10 +90,12 @@ class ReceiverHttpActivity : BaseActivity() {
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
         integrator.setPrompt("Scan a QR code")
         integrator.setCameraId(0)
-        integrator.setBeepEnabled(true)
+        integrator.setBeepEnabled(false)
         integrator.setOrientationLocked(true)
+        integrator.captureActivity = MyCaptureActivity::class.java // <- Use your custom activity
         integrator.initiateScan()
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result: IntentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {

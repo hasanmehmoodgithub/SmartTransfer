@@ -58,5 +58,10 @@
     <string name="paste_link_here">Paste link here</string>
     <string name="make_sure_both_the_sender_and_receiver_are_connected_to_the_same_wi_fi_network_do_not_go_back_or_stop_sharing_as_it_will_break_the_connection">Make sure both the sender and receiver are connected to the same Wi-Fi network. Do not go back or stop sharing, as it will break the connection.</string>
     <string name="downloading">Downloading</string>
+    <string name="quick_data_transfer_remote_sharing"><![CDATA[Quick Data Transfer & Remote Sharing]]></string>
+    <string name="powered_by_switch_apps_studio">Powered by Switch Apps Studio</string>
+    <string name="start_sharing">Start Sharing</string>
+    <string name="stop_sharing">Stop Sharing</string>
+    <string name="all_languages">All Languages</string>
 
 </resources>

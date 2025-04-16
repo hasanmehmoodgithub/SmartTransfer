@@ -41,7 +41,7 @@ class SettingActivity : AppCompatActivity() {
 
         // Privacy Policy
         binding.llPrivacyPolicy.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://yourprivacypolicy.com")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/switchappsstudio/home")))
         }
 
         // Share This App

@@ -37,7 +37,7 @@ class RemoteFileShareHistoryFragment : Fragment() {
 
     // Paging variables in the fragment (if needed for UI logic)
     private var currentTag = "remotely"
-    private var currentFrom = "receive"
+    private var currentFrom = "send"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -73,6 +73,8 @@ class RemoteFileShareHistoryFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 currentFrom = if (position == 0) "send" else "receive"
+                adapter.submitList(emptyList())
+
                 viewModel.loadPaginatedHistory(currentTag, currentFrom, reset = true)
             }
         })

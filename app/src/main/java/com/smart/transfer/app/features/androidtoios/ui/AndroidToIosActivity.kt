@@ -12,11 +12,17 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.text.format.Formatter
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.kotlintest.mobileToPc.MultipleFileServer
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.common.BitMatrix
 import com.smart.transfer.app.R
 import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
 import com.smart.transfer.app.databinding.ActivityAndroidToIosBinding
@@ -43,6 +49,10 @@ class AndroidToIosActivity : BaseActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setupStopServerUi()
+        binding.icQr.setOnClickListener {
+            showQrDialog(binding.ipText.text.toString());
+        }
+
     }
 
     fun onClickStartServer(view: View) {
@@ -144,5 +154,27 @@ class AndroidToIosActivity : BaseActivity() {
         super.onDestroy()
         fileServerMulti?.stop()
         setupStopServerUi()
+    }
+    private fun showQrDialog(data: String) {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_qr, null)
+        val qrImageView = dialogView.findViewById<ImageView>(R.id.qrImageView)
+        qrImageView.setImageBitmap(generateQrCode(data))
+
+        AlertDialog.Builder(this)
+            .setTitle("Scan this QR")
+            .setView(dialogView)
+            .setPositiveButton("Close", null)
+            .show()
+    }
+    private fun generateQrCode(data: String): Bitmap {
+        val size = 512
+        val bitMatrix: BitMatrix = MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, size, size)
+        val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565)
+        for (x in 0 until size) {
+            for (y in 0 until size) {
+                bitmap.setPixel(x, y, if (bitMatrix[x, y]) android.graphics.Color.BLACK else android.graphics.Color.WHITE)
+            }
+        }
+        return bitmap
     }
 }

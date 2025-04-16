@@ -44,6 +44,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/smartTransferImg" />
 
+<!--    <TextView-->
+<!--        android:id="@+id/splashText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/quick_data_transfer_no_delays_just_smooth_sharing"-->
+<!--        android:textColor="@color/color_65"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/smartText" />-->
+
     <TextView
         android:id="@+id/splashText"
         android:layout_width="match_parent"
@@ -52,11 +66,12 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:gravity="center"
-        android:text="@string/quick_data_transfer_no_delays_just_smooth_sharing"
+        android:text="@string/quick_data_transfer_remote_sharing"
         android:textColor="@color/color_65"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/smartText" />
+
 
 <!--    <ProgressBar-->
 <!--        android:id="@+id/progressBar"-->
@@ -101,6 +116,23 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
+<!--    <TextView-->
+<!--        android:id="@+id/termAndPrimacyText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="26dp"-->
+<!--        android:layout_marginEnd="26dp"-->
+<!--        android:layout_marginBottom="30dp"-->
+<!--        android:contentDescription="@string/todo"-->
+<!--        android:gravity="center"-->
+<!--        android:paddingStart="16dp"-->
+<!--        android:paddingEnd="16dp"-->
+<!--        android:text="@string/terms_privacy_text"-->
+<!--        android:textColor="@color/color_65"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
     <TextView
         android:id="@+id/termAndPrimacyText"
         android:layout_width="wrap_content"
@@ -112,7 +144,7 @@
         android:gravity="center"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:text="@string/terms_privacy_text"
+        android:text="@string/powered_by_switch_apps_studio"
         android:textColor="@color/color_65"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"

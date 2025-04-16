@@ -102,7 +102,7 @@
             android:background="@drawable/rounded_button2"
             android:backgroundTint="@color/blue2"
             android:onClick="onClickStartServer"
-            android:text="Start Server"
+            android:text="@string/start_sharing"
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -113,7 +113,7 @@
             android:background="@drawable/rounded_button2"
             android:backgroundTint="@color/app_red"
             android:onClick="onClickStopServer"
-            android:text="Stop Server"
+            android:text="@string/stop_sharing"
             android:textColor="@color/white" />
 
     </LinearLayout>

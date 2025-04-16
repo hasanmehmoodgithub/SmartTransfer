@@ -3,6 +3,7 @@ package com.smart.transfer.app.features.dashboard.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -112,5 +113,16 @@ class DashboardActivity : AppCompatActivity() {
         }
 
     }
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setTitle("Exit App")
+            .setMessage("Are you sure you want to exit?")
+            .setPositiveButton("Yes") { _, _ ->
+                super.onBackPressed()
+            }
+            .setNegativeButton("No", null)
+            .show()
+    }
+
 
 }

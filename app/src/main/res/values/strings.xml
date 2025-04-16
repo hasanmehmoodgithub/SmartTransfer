@@ -9,13 +9,13 @@
     <string name="skip">Skip</string>
 
     <string name="onboarding_title_1">Mobile to PC <font color='#1C80F7'>Sync</font></string>
-    <string name="onboarding_title_2">Mobile to Mobile <font color='#1C80F7'>Transfer</font></string>
-    <string name="onboarding_title_3">Multi-Device <font color='#1C80F7'>Transfer</font></string>
+    <string name="onboarding_title_2">Cross-Platform  <font color='#1C80F7'>Transfer</font></string>
+    <string name="onboarding_title_3">Multi-device <font color='#1C80F7'>Transfer</font></string>
 
 
-    <string name="onboarding_desc_1">Share Files between your devices <b>seamlessly</b></string>
-    <string name="onboarding_desc_2">Easily transfer files between <b>Android &amp; iOS devices</b></string>
-    <string name="onboarding_desc_3">Quickly share files between multiple <b>laptops and devices</b></string>
+    <string name="onboarding_desc_1"><b>Seamlessly</b> share files between your devices </string>
+    <string name="onboarding_desc_2">Easily transfer files between <b>Android &amp; iOS </b></string>
+    <string name="onboarding_desc_3">Quickly share files between multiple <b>browsers &amp; devices</b></string>
 
 
     <string name="available_storage">Available Storage</string>
@@ -107,6 +107,11 @@
     <string name="make_sure_both_the_sender_and_receiver_are_connected_to_the_same_wi_fi_network_do_not_go_back_or_stop_sharing_as_it_will_break_the_connection">Make sure both the sender and receiver are connected to the same Wi-Fi network. Do not go back or stop sharing, as it will break the connection.</string>
     <string name="title_activity_receiver_http">ReceiverHttpActivity</string>
     <string name="downloading">Downloading</string>
+    <string name="quick_data_transfer_remote_sharing"><![CDATA[Quick Data Transfer & Remote Sharing]]></string>
+    <string name="powered_by_switch_apps_studio">Powered by Switch Apps Studio</string>
+    <string name="start_sharing">Start Sharing</string>
+    <string name="stop_sharing">Stop Sharing</string>
+    <string name="all_languages">All Languages</string>
 
 </resources>
 

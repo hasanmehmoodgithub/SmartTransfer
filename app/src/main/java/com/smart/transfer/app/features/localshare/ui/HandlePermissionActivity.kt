@@ -1,8 +1,10 @@
 package com.smart.transfer.app.features.localshare.ui
 
 import android.Manifest
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.net.wifi.WifiManager
@@ -224,5 +226,25 @@ class HandlePermissionActivity : BaseActivity() {
         finish()
         }
 
+    }
+    private val wifiStateReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == WifiManager.WIFI_STATE_CHANGED_ACTION) {
+                val wifiState = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, WifiManager.WIFI_STATE_UNKNOWN)
+                if (wifiState == WifiManager.WIFI_STATE_ENABLED) {
+                    // Wi-Fi is turned ON
+                    checkPermissions() // Re-check to update UI or navigate
+                }
+            }
+        }
+    }
+    override fun onResume() {
+        super.onResume()
+        val filter = IntentFilter(WifiManager.WIFI_STATE_CHANGED_ACTION)
+        registerReceiver(wifiStateReceiver, filter)
+    }
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(wifiStateReceiver)
     }
 }
