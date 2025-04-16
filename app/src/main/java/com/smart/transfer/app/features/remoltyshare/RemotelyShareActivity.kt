@@ -22,7 +22,9 @@ class RemotelyShareActivity : BaseActivity() {
         setContentView(binding.root)
 
         // Setup toolbar using binding
-        setupAppBar(binding.customToolbar.customToolbar, "Remote sharing", showBackButton = true)
+
+        setupAppBar(binding.customToolbar.customToolbar, getString(R.string.remote_share), showBackButton = true)
+
         binding.downloadCard.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this, DownloadFileActivity::class.java))
         })

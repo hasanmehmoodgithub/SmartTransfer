@@ -102,6 +102,7 @@
             android:background="@drawable/rounded_button2"
             android:backgroundTint="@color/blue2"
             android:onClick="onClickStartServer"
+            android:textAllCaps="false"
             android:text="@string/start_sharing"
             android:textColor="@color/white" />
 
@@ -114,6 +115,7 @@
             android:backgroundTint="@color/app_red"
             android:onClick="onClickStopServer"
             android:text="@string/stop_sharing"
+            android:textAllCaps="false"
             android:textColor="@color/white" />
 
     </LinearLayout>

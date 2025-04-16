@@ -41,7 +41,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Home" />
+            android:text="@string/home" />
 
         <TextView
             android:id="@+id/tvStorage"
@@ -50,7 +50,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Storage" />
+            android:text="@string/storage" />
 
         <TextView
             android:id="@+id/tvHistory"
@@ -59,7 +59,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="History" />
+            android:text="@string/history" />
     </LinearLayout>
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"

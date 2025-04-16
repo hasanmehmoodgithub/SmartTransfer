@@ -160,7 +160,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textAllCaps="false"
         android:background="@drawable/rounded_button2"
-        android:text="Start Transferring"
+        android:text="@string/start_transferring"
         android:textColor="@android:color/white" />
 </LinearLayout>

@@ -1,5 +1,7 @@
 package com.smart.transfer.app.features.localshare.ui.hotspot
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -62,40 +64,48 @@ class SenderHttpActivity : BaseActivity() {
 
         startFileServerList(fileList)
     }
-    fun onClickStartServer(view: View) {
-        val paths = AllSelectedFilesManager.allSelectedFiles.mapNotNull { it["path"] as? String }
-        Log.e("paths","$paths")
+    fun onClickCopyIpText(view: View) {
+        val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Ip Text", binding.ipText.text)
+        clipboard.setPrimaryClip(clip)
 
-// Convert paths to File objects
-        val fileList = paths.map { File(it) }
-
-        startFileServerList(fileList)
+        Toast.makeText(this, "Link Copied to clipboard", Toast.LENGTH_SHORT).show()
     }
-    fun onClickStopServer(view: View) {
-        try {
 
-            fileServer?.stop()
-            setupStopServerUi()
-
-        } catch (e:Exception){
-            setupStartServerUi()
-        }
-
-
-    }
+//    fun onClickStartServer(view: View) {
+//        val paths = AllSelectedFilesManager.allSelectedFiles.mapNotNull { it["path"] as? String }
+//        Log.e("paths","$paths")
+//
+//// Convert paths to File objects
+//        val fileList = paths.map { File(it) }
+//
+//        startFileServerList(fileList)
+//    }
+//    fun onClickStopServer(view: View) {
+//        try {
+//
+//            fileServer?.stop()
+//            setupStopServerUi()
+//
+//        } catch (e:Exception){
+//            setupStartServerUi()
+//        }
+//
+//
+//    }
 
     private fun setupStartServerUi(){
         isServerRunning=true
-        binding.starButton.visibility=View.GONE
-        binding.stopButton.visibility=View.VISIBLE
+//        binding.starButton.visibility=View.GONE
+//        binding.stopButton.visibility=View.VISIBLE
         binding.qrImage.visibility=View.VISIBLE
         binding.ipText.visibility=View.VISIBLE
 
     }
     private fun setupStopServerUi(){
         isServerRunning=false
-        binding.starButton.visibility=View.VISIBLE
-        binding.stopButton.visibility=View.GONE
+//        binding.starButton.visibility=View.VISIBLE
+//        binding.stopButton.visibility=View.GONE
         binding.qrImage.visibility=View.GONE
         binding.ipText.visibility=View.GONE
 
@@ -275,6 +285,7 @@ class LocalFileServer(private val port: Int, private val filesToShare: List<File
             else -> "application/octet-stream"
         }
     }
+
 
 
 }

@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
+
 import android.graphics.drawable.BitmapDrawable
 import android.net.wifi.WifiManager
 import android.os.Bundle
@@ -21,8 +20,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.kotlintest.mobileToPc.MultipleFileServer
 import com.google.zxing.BarcodeFormat
+import com.google.zxing.EncodeHintType
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
+import com.google.zxing.qrcode.QRCodeWriter
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.smart.transfer.app.R
 import com.smart.transfer.app.com.smart.transfer.app.BaseActivity
 import com.smart.transfer.app.databinding.ActivityAndroidToIosBinding
@@ -30,7 +32,10 @@ import com.smart.transfer.app.features.dashboard.ui.AllSelectedFilesManager
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 class AndroidToIosActivity : BaseActivity() {
 
     private var fileServerMulti: MultipleFileServer? = null
@@ -52,24 +57,28 @@ class AndroidToIosActivity : BaseActivity() {
         binding.icQr.setOnClickListener {
             showQrDialog(binding.ipText.text.toString());
         }
-
-    }
-
-    fun onClickStartServer(view: View) {
         val paths = AllSelectedFilesManager.allSelectedFiles.mapNotNull { it["path"] as? String }
         val fileList = paths.map { File(it) }
 
         startFileServerList(fileList)
+
     }
 
-    fun onClickStopServer(view: View) {
-        try {
-            fileServerMulti?.stop()
-            setupStopServerUi()
-        } catch (e: Exception) {
-            setupStartServerUi()
-        }
-    }
+//    fun onClickStartServer(view: View) {
+//        val paths = AllSelectedFilesManager.allSelectedFiles.mapNotNull { it["path"] as? String }
+//        val fileList = paths.map { File(it) }
+//
+//        startFileServerList(fileList)
+//    }
+//
+//    fun onClickStopServer(view: View) {
+//        try {
+//            fileServerMulti?.stop()
+//            setupStopServerUi()
+//        } catch (e: Exception) {
+//            setupStartServerUi()
+//        }
+//    }
 
     fun onClickCopyIpText(view: View) {
         val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -133,20 +142,21 @@ class AndroidToIosActivity : BaseActivity() {
 
     private fun setupStartServerUi() {
         isServerRunning = true
-        binding.starButton.visibility = View.GONE
-        binding.stopButton.visibility = View.VISIBLE
+//        binding.starButton.visibility = View.GONE
+//        binding.stopButton.visibility = View.VISIBLE
         binding.downloadText.visibility = View.VISIBLE
-        binding.msgText.text = "Paste the link in your browser and ensure that your Android and iOS devices are connected to the same WiFi network"
 
         binding.ipLinkLayout.visibility = View.VISIBLE
+
+        binding.icQr.setImageBitmap(generateQrCode(binding.ipText.text.toString()))
     }
 
     private fun setupStopServerUi() {
         isServerRunning = false
-        binding.starButton.visibility = View.VISIBLE
-        binding.stopButton.visibility = View.GONE
+//        binding.starButton.visibility = View.VISIBLE
+//        binding.stopButton.visibility = View.GONE
         binding.downloadText.visibility = View.GONE
-        binding.msgText.text = "Before Starting the Server, Ensure your Android and iOS devices are on the same WiFi"
+
         binding.ipLinkLayout.visibility = View.GONE
     }
 
@@ -177,4 +187,8 @@ class AndroidToIosActivity : BaseActivity() {
         }
         return bitmap
     }
+
+
+
+
 }

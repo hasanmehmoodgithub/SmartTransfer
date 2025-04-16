@@ -1,61 +1,109 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">النقل الذكي</string>
     <string name="get_started">ابدأ الآن</string>
     <string name="quick_data_transfer_no_delays_just_smooth_sharing">نقل بيانات سريع بدون تأخير، فقط مشاركة سلسة! 🚀</string>
-    <string name="todo">للقيام به</string>
+    <string name="todo">قيد التنفيذ</string>
+
     <string name="terms_privacy_text">لمزيد من المعلومات، يرجى مراجعة <b><font color='#1C80F7'>سياسة الخصوصية</font></b> و <b><font color='#1C80F7'>الشروط والأحكام</font></b></string>
 
     <string name="skip">تخطي</string>
 
-    <string name="onboarding_title_1">مزامنة الجوال مع <font color='#1C80F7'>الكمبيوتر</font></string>
-    <string name="onboarding_title_2">نقل من جوال إلى <font color='#1C80F7'>جوال</font></string>
-    <string name="onboarding_title_3">نقل بين <font color='#1C80F7'>أجهزة متعددة</font></string>
+    <string name="onboarding_title_1">مزامنة <font color='#1C80F7'>الهاتف مع الكمبيوتر</font></string>
+    <string name="onboarding_title_2">نقل <font color='#1C80F7'>عبر الأنظمة</font></string>
+    <string name="onboarding_title_3">نقل <font color='#1C80F7'>بين عدة أجهزة</font></string>
 
-    <string name="onboarding_desc_1">شارك الملفات بين أجهزتك <b>بسلاسة</b></string>
-    <string name="onboarding_desc_2">انقل الملفات بسهولة بين <b>أجهزة أندرويد وiOS</b></string>
-    <string name="onboarding_desc_3">شارك الملفات بسرعة بين عدة <b>أجهزة كمبيوتر وموبايل</b></string>
+    <string name="onboarding_desc_1"><b>مشاركة سلسة</b> للملفات بين أجهزتك</string>
+    <string name="onboarding_desc_2">انقل الملفات بسهولة بين <b>أندرويد و iOS</b></string>
+    <string name="onboarding_desc_3">شارك الملفات بسرعة بين <b>المتصفحات والأجهزة</b></string>
 
-    <string name="available_storage">المساحة المتاحة</string>
-    <string name="test2">لمزيد من التفاصيل، راجع <b><font color='#1C80F7'>سياسة الخصوصية</font></b> و <b><font color='#1C80F7'>الشروط والأحكام</font></b>.</string>
+    <string name="available_storage">المساحة المتوفرة</string>
 
-    <string name="title_activity_uploading">نشاط الرفع</string>
+    <string name="test2">لمزيد من التفاصيل، تحقق من <b><font color='#1C80F7'>سياسة الخصوصية</font></b> و <b><font color='#1C80F7'>الشروط والأحكام</font></b>.</string>
+
+    <string name="title_activity_uploading">نشاط التحميل</string>
+
     <string name="note_text"><b><font color="#000000">ملاحظة:</font></b> <font color="#808080">المفتاح أدناه صالح لمدة 24 ساعة وسيتم حذفه تلقائيًا بعد ذلك.</font></string>
-    <string name="smarttransfer">النقل الذكي</string>
-    <string name="selected_app_language">اللغة المختارة للتطبيق</string>
-    <string name="selected_language">اللغة المختارة</string>
+
+    <string name="selected_app_language">اللغة المحددة للتطبيق</string>
+    <string name="selected_language">اللغة المحددة</string>
     <string name="all_language">جميع اللغات</string>
     <string name="done">تم</string>
+
+    <string-array name="languages" translatable="false">
+        <item>en</item>
+        <item>zh</item>
+        <item>ar</item>
+    </string-array>
+
+    <string name="hello_blank_fragment">مرحبًا بك في الجزء الفارغ</string>
     <string name="share_file">مشاركة ملف</string>
     <string name="share_your_files">شارك ملفاتك</string>
     <string name="receive_your_files">استلم ملفاتك</string>
     <string name="receive">استلام</string>
     <string name="remotely_share">مشاركة عن بُعد</string>
     <string name="android_to_ios">من أندرويد إلى iOS</string>
-    <string name="instantly_remotely_transfer_data_via_link">نقل البيانات عن بُعد فوراً عبر رابط</string>
-    <string name="mobile_to_pc">من الجوال إلى الكمبيوتر</string>
+
+    <string name="instantly_remotely_transfer_data_via_link">انقل البيانات عن بُعد عبر الرابط</string>
+    <string name="mobile_to_pc">من الهاتف إلى الكمبيوتر</string>
     <string name="grant_access">منح الإذن</string>
-    <string name="for_smooth_transfer_many_permissions_are_required_due_to_android_limitations">لضمان نقل سلس، هناك العديد من الأذونات المطلوبة بسبب قيود أندرويد.</string>
-    <string name="enable_location_service">تمكين خدمة الموقع</string>
-    <string name="needs_location_access_to_ensure_accurate_device_discovery_and_seamless_file_transfers">نحتاج إلى الوصول إلى الموقع لضمان اكتشاف الأجهزة بدقة ونقل الملفات بسلاسة</string>
-    <string name="enable_wi_fi">تمكين الواي فاي</string>
-    <string name="wi_fi_is_required_for_fast_and_seamless_file_transfers_between_devices">الواي فاي مطلوب لنقل سريع وسلس للملفات بين الأجهزة.</string>
-    <string name="enable_nearby_devices_permission">تمكين إذن الأجهزة القريبة</string>
-    <string name="needed_to_connect_and_transfer_files_with_nearby_devices">مطلوب للاتصال بالأجهزة القريبة ونقل الملفات معها.</string>
+    <string name="for_smooth_transfer_many_permissions_are_required_due_to_android_limitations">لنقل سلس، هناك حاجة إلى العديد من الأذونات بسبب قيود أندرويد.</string>
+
+    <string name="enable_location_service">تفعيل خدمة الموقع</string>
+    <string name="needs_location_access_to_ensure_accurate_device_discovery_and_seamless_file_transfers">يتطلب الوصول إلى الموقع لضمان اكتشاف الأجهزة بدقة ونقل الملفات بسلاسة</string>
+
+    <string name="enable_wi_fi">تفعيل Wi-Fi</string>
+    <string name="wi_fi_is_required_for_fast_and_seamless_file_transfers_between_devices">يتطلب Wi-Fi لنقل الملفات بسرعة وسلاسة بين الأجهزة.</string>
+
+    <string name="enable_nearby_devices_permission">تفعيل إذن الأجهزة القريبة</string>
+    <string name="needed_to_connect_and_transfer_files_with_nearby_devices">مطلوب للاتصال بالأجهزة القريبة ونقل الملفات.</string>
+
     <string name="cancel">إلغاء</string>
-    <string name="we_do_not_access_or_share_your_personal_data">نحن لا نصل إلى بياناتك الشخصية أو نشاركها.</string>
-    <string name="to_provide_you_with_the_best_experience_this_app_needs_access_to_your_storage_to_save_and_manage_files">لتقديم أفضل تجربة لك، يحتاج التطبيق إلى الوصول إلى التخزين لحفظ الملفات وإدارتها.</string>
+    <string name="we_do_not_access_or_share_your_personal_data">نحن لا نصل أو نشارك بياناتك الشخصية.</string>
+    <string name="to_provide_you_with_the_best_experience_this_app_needs_access_to_your_storage_to_save_and_manage_files">لتقديم أفضل تجربة، يحتاج هذا التطبيق إلى الوصول إلى التخزين لحفظ الملفات وإدارتها.</string>
+
     <string name="why_we_need_this_permission">لماذا نحتاج هذا الإذن</string>
     <string name="we_need_your_help">نحتاج مساعدتك</string>
     <string name="history">السجل</string>
-    <string name="please_wait_your_data_is_uploading">يرجى الانتظار، يتم رفع بياناتك</string>
-    <string name="uploading">جاري الرفع...</string>
+    <string name="please_wait_your_data_is_uploading">يرجى الانتظار، يتم تحميل بياناتك</string>
+    <string name="uploading">جارٍ التحميل ...</string>
     <string name="paste_link_here">الصق الرابط هنا</string>
-    <string name="make_sure_both_the_sender_and_receiver_are_connected_to_the_same_wi_fi_network_do_not_go_back_or_stop_sharing_as_it_will_break_the_connection">تأكد من أن المرسل والمستقبل متصلان بنفس شبكة الواي فاي. لا تعُد أو توقف المشاركة لأن ذلك سيؤدي إلى قطع الاتصال.</string>
-    <string name="downloading">جارٍ التنزيل</string>
-    <string name="quick_data_transfer_remote_sharing"><![CDATA[Quick Data Transfer & Remote Sharing]]></string>
-    <string name="powered_by_switch_apps_studio">Powered by Switch Apps Studio</string>
-    <string name="start_sharing">Start Sharing</string>
-    <string name="stop_sharing">Stop Sharing</string>
-    <string name="all_languages">All Languages</string>
+
+    <string name="quick_data_transfer_remote_sharing">نقل البيانات بسرعة والمشاركة عن بُعد</string>
+    <string name="powered_by_switch_apps_studio">بدعم من Switch Apps Studio</string>
+    <string name="start_sharing">ابدأ المشاركة</string>
+    <string name="stop_sharing">أوقف المشاركة</string>
+    <string name="all_languages">كل اللغات</string>
+    <string name="receive_data">استلام البيانات</string>
+    <string name="send">إرسال</string>
+    <string name="transfer_data">نقل البيانات</string>
+    <string name="remote_share">مشاركة عن بُعد</string>
+    <string name="file_share">مشاركة الملفات</string>
+    <string name="download_shared_file">تحميل الملفات المشتركة</string>
+    <string name="download">تحميل</string>
+    <string name="generate_link_to_send">توليد رابط لإرسال الملفات</string>
+    <string name="upload">رفع</string>
+    <string name="start_transferring">ابدأ النقل</string>
+    <string name="or">أو</string>
+
+    <string name="make_sure_your_android_and_ios_devices_are_connected_to_the_same_wi_fi_network">
+تأكد من أن أجهزة Android وiOS الخاصة بك متصلة بنفس <b><font color="#1C80F7">شبكة Wi-Fi</font></b>.
+</string>
+
+    <string name="download_file">تحميل الملف</string>
+    <string name="scan_the_qr_code_or_copy_paste_the_link_in_the_box_that_you_receive_from_the_sender">
+امسح رمز الاستجابة السريعة أو انسخ والصق الرابط في المربع الذي تستلمه من المُرسل
+</string>
+
+    <string name="the_sender_and_the_receiver_must_be_connected_to_the">
+يجب أن يكون المرسل والمستقبل متصلين بنفس <b><font color='#1976D2'>شبكة Wi-Fi</font></b>. لا تعد أو تخرج من هذه الشاشة، حيث سيؤدي ذلك إلى إيقاف المشاركة.
+</string>
+
+    <string name="home">الرئيسية</string>
+    <string name="storage">التخزين</string>
+    <string name="language">Language</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="share_this_app">مشاركة هذا التطبيق</string>
+    <string name="rate_us">قييمنا</string>
+
+
 </resources>

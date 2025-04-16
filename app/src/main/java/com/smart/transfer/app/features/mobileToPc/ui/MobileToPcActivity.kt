@@ -45,7 +45,8 @@ class MobileToPcActivity : BaseActivity() {
 
 
         val toolbar = findViewById<LinearLayout>(R.id.custom_toolbar)
-        setupAppBar(toolbar, "Mobile To Pc", showBackButton = true)
+
+        setupAppBar(toolbar, getString(R.string.mobile_to_pc), showBackButton = true)
 
         // Start animation
 //        binding.lottieAnimationView.playAnimation()

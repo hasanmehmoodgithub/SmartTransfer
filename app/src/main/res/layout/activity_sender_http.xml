@@ -15,73 +15,109 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@+id/custom_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
     <LinearLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_height="0dp"
+        android:gravity="top|center"
+
         android:orientation="vertical"
         android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/custom_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/custom_toolbar">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAnimationView"
-            android:layout_width="100dp"
-            app:lottie_useCompositionFrameRate="true"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_marginTop="-20dp"
+            android:layout_height="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/android_to_ios" />
+            app:lottie_rawRes="@raw/android_to_ios"
+            app:lottie_useCompositionFrameRate="true" />
+
         <TextView
+            android:id="@+id/downloadText"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/download_file"
             android:textColor="@color/black"
-            android:text="@string/make_sure_both_the_sender_and_receiver_are_connected_to_the_same_wi_fi_network_do_not_go_back_or_stop_sharing_as_it_will_break_the_connection"
-            android:layout_height="wrap_content"/>
+            android:textSize="25dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/the_sender_and_the_receiver_must_be_connected_to_the"
+            android:textColor="@color/black" />
 
         <ImageView
-            android:visibility="gone"
-            android:layout_margin="12dp"
-
-            android:layout_width="250dp"
             android:id="@+id/qrImage"
-            android:layout_height="250dp"/>
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_margin="12dp"
+            android:visibility="gone" />
         <TextView
-            android:id="@+id/ipText"
-            android:visibility="gone"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:text="@string/or"
             android:textColor="@color/black"
-            android:text=""
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            android:layout_height="wrap_content"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/starButton"
+        <LinearLayout
+            android:id="@+id/ipLinkLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/rounded_button2"
-            android:backgroundTint="@color/blue2"
-            android:onClick="onClickStartServer"
-            android:text="Start Sharing"
-            android:textColor="@color/white" />
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/stopButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/rounded_button2"
-            android:backgroundTint="@color/app_red"
-            android:onClick="onClickStopServer"
-            android:text="Stop Sharing"
-            android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_button2"
+                android:backgroundTint="@color/white_e3"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/ipText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="11dp"
+                    android:layout_weight="1"
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:id="@+id/copyIpImg"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="12dp"
+                    android:onClick="onClickCopyIpText"
+                    app:srcCompat="@drawable/ic_text_copy" />
+            </LinearLayout>
+
+        </LinearLayout>
+
 
     </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

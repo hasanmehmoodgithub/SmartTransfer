@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Smart Transfer"
+            android:text="@string/smart_transfer"
             android:layout_marginLeft="8dp"
             android:layout_gravity="center"
             android:textSize="24sp"
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Language"
+            android:text="@string/language"
             android:textColor="@color/setting_text_color"
 
             android:textSize="18sp" />
@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Privacy Policy"
+            android:text="@string/privacy_policy"
             android:textColor="@color/setting_text_color"
 
             android:textSize="18sp" />
@@ -122,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Share This App"
+            android:text="@string/share_this_app"
             android:textColor="@color/setting_text_color"
 
             android:textSize="18sp" />
@@ -147,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Rate Us"
+            android:text="@string/rate_us"
             android:textColor="@color/setting_text_color"
 
             android:textSize="18sp" />

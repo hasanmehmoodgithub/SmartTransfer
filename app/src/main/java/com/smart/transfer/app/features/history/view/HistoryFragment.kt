@@ -29,8 +29,9 @@ class HistoryFragment : Fragment() {
         val fragmentContainer = view.findViewById<FrameLayout>(R.id.fragmentContainer)
 
         // Add tabs
-        tabLayout.addTab(tabLayout.newTab().setText("File Share"))
-        tabLayout.addTab(tabLayout.newTab().setText("Remotely Share"))
+
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.file_share)))
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.remote_share)))
         view.post {
             (tabLayout.getChildAt(0) as? ViewGroup)?.let { tabsContainer ->
                 for (i in 0 until tabLayout.tabCount) {

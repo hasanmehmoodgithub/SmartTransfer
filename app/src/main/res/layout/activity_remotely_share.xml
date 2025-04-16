@@ -72,7 +72,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Remotely Share"
+                    android:text="@string/remote_share"
                     android:textFontWeight="800"
 
                     android:textSize="18dp" />
@@ -80,7 +80,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Instantly Remotely transfer data via link"
+                    android:text="@string/instantly_remotely_transfer_data_via_link"
                     android:textColor="@color/grey" />
             </LinearLayout>
 
@@ -130,7 +130,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Upload"
+                    android:text="@string/upload"
                     android:textSize="16dp"
                     android:textStyle="bold"
 
@@ -140,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Generate link to send" />
+                    android:text="@string/generate_link_to_send" />
             </LinearLayout>
 
             <ImageView
@@ -194,7 +194,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Download"
+                    android:text="@string/download"
                     android:textSize="16dp"
                     android:textStyle="bold"
 
@@ -204,7 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Download Shared file" />
+                    android:text="@string/download_shared_file" />
             </LinearLayout>
 
             <ImageView

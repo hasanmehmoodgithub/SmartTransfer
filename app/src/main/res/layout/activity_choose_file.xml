@@ -30,7 +30,8 @@
         android:id="@+id/btnNext"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:text="Next"
+        android:text="@string/next"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:background="@drawable/rounded_button2"
         android:layout_height="50dp"/>

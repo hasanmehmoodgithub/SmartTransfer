@@ -1,5 +1,6 @@
 package com.smart.transfer.app.features.dashboard.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -35,8 +36,10 @@ import java.io.File
 
 class TransferItemActivity : BaseActivity() {
 
+    private var totalSizeForCheck: Long=0
     private lateinit var binding: ActivityTransferItemBinding
 
+    @SuppressLint("ShowToast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTransferItemBinding.inflate(layoutInflater)
@@ -97,7 +100,7 @@ class TransferItemActivity : BaseActivity() {
                     mapOf(
                         "name" to audio.name,
                         "path" to (audio.filePath ?: "Unknown Path"),
-                        "type" to "Music",
+                        "type" to "Audio",
                         "size" to audio.size
                     )
                 )
@@ -146,7 +149,22 @@ class TransferItemActivity : BaseActivity() {
                 }
                 ChooseFileNextScreenType.Remote -> {
                     // Handle AndroidToIos case
-                    startActivity(Intent(this, UploadingFilesActivity::class.java))
+
+
+
+                    val hundredMB: Long = 100 * 1024 * 1024
+Log.e("file size","$hundredMB $totalSize");
+
+                    if (totalSize > hundredMB) {
+                        println("if")
+                        Log.e("file size","if");
+                       Toast.makeText(this,"Files size is greater than 100 MB",Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    } else {
+                        Log.e("file size","else");
+                        println("else")
+                    }
+                   startActivity(Intent(this, UploadingFilesActivity::class.java))
                 }
                 else -> {
                     // Handle other cases (if any)
@@ -162,7 +180,7 @@ class TransferItemActivity : BaseActivity() {
         val categorizedFiles = mutableMapOf(
             "Photos" to mutableListOf<String>(),
             "Videos" to mutableListOf<String>(),
-            "Music" to mutableListOf<String>(),
+            "Audio" to mutableListOf<String>(),
             "Documents" to mutableListOf<String>()
         )
 
@@ -185,11 +203,11 @@ class TransferItemActivity : BaseActivity() {
         }
 
         SelectedAudiosManager.selectedAudios.forEach { audio ->
-            categorizedFiles["Music"]?.add(audio.uri.path ?: "Unknown Path")
+            categorizedFiles["Audio"]?.add(audio.uri.path ?: "Unknown Path")
             totalSize += audio.size
         }
 
-        val categories = listOf("Photos", "Videos", "Music", "Documents")
+        val categories = listOf("Photos", "Videos", "Audio", "Documents")
         val icons = listOf(R.drawable.ic_transfer_photo, R.drawable.ic_transfer_video, R.drawable.ic_transfer_music, R.drawable.ic_transfer_doc)
 
         categories.forEachIndexed { index, category ->
@@ -209,6 +227,7 @@ class TransferItemActivity : BaseActivity() {
         }
 
         binding.txtTotalItemsValue.text = "${categorizedFiles.values.sumOf { it.size }}"
+        totalSizeForCheck=totalSize
         binding.txtTotalSizeValue.text = formatFileSizeUtil(totalSize)
     }
 

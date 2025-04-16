@@ -128,18 +128,19 @@
                 app:srcCompat="@drawable/icon_msg"
                 tools:ignore="NestedWeights" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:text="@string/share_your_files" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:text="@string/share_file"
+                android:text="@string/send"
                 android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:text="@string/transfer_data" />
 
         </LinearLayout>
 
@@ -162,20 +163,20 @@
                 android:contentDescription="@string/todo"
                 app:srcCompat="@drawable/icon_notes"
                 tools:ignore="NestedWeights" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-
-                android:text="@string/receive_your_files" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:text="@string/receive"
                 android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+
+                android:text="@string/receive_data" />
+
 
         </LinearLayout>
 
@@ -219,7 +220,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/remotely_share"
+                    android:text="@string/remote_share"
                     android:textStyle="bold" />
 
                 <TextView

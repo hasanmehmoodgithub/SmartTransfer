@@ -23,7 +23,7 @@ import com.smart.transfer.app.databinding.ActivityShareAppBinding
 class ShareAppActivity : BaseActivity() {
 
     private lateinit var binding: ActivityShareAppBinding
-    private val appLink = "https://play.google.com/store/apps/details?id=com.example.app"
+    private val appLink = "https://play.google.com/store/apps/details?id=com.smartdatatransfer.easytransfer.filetransfer.sendanydata.smartswitchmobile.copydata"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

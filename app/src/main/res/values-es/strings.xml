@@ -1,43 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Smart Transfer</string>
-    <string name="get_started">我的应用</string>
+    <string name="get_started">Get Started</string>
     <string name="quick_data_transfer_no_delays_just_smooth_sharing">Quick data transfer no delays, just smooth sharing ! 🚀</string>
     <string name="todo">TODO</string>
+
     <string name="terms_privacy_text">For further information please check it out our <b><font color='#1C80F7'>privacy policy</font></b> and <b><font color='#1C80F7'>Terms &amp; Condition</font></b></string>
 
     <string name="skip">Skip</string>
 
-
     <string name="onboarding_title_1">Mobile to PC <font color='#1C80F7'>Sync</font></string>
-    <string name="onboarding_title_2">Mobile to Mobile <font color='#1C80F7'>Transfer</font></string>
-    <string name="onboarding_title_3">Multi-Device <font color='#1C80F7'>Transfer</font></string>
+    <string name="onboarding_title_2">Cross-Platform  <font color='#1C80F7'>Transfer</font></string>
+    <string name="onboarding_title_3">Multi-device <font color='#1C80F7'>Transfer</font></string>
 
 
-
-    <string name="onboarding_desc_1">Share Files between your devices <b>seamlessly</b></string>
-    <string name="onboarding_desc_2">Easily transfer files between <b>Android &amp; iOS devices</b></string>
-    <string name="onboarding_desc_3">Quickly share files between multiple <b>laptops and devices</b></string>
+    <string name="onboarding_desc_1"><b>Seamlessly</b> share files between your devices </string>
+    <string name="onboarding_desc_2">Easily transfer files between <b>Android &amp; iOS </b></string>
+    <string name="onboarding_desc_3">Quickly share files between multiple <b>browsers &amp; devices</b></string>
 
 
     <string name="available_storage">Available Storage</string>
+
     <string name="test2">For more details, check our <b><font color='#1C80F7'>Privacy Policy</font></b> and <b><font color='#1C80F7'>Terms &amp; Conditions</font></b>.</string>
-
-
     <string name="title_activity_uploading">UploadingActivity</string>
+
     <string name="note_text"><b><font color="#000000">Note:</font></b> <font color="#808080">The below key is valid for 24 hours and will be automatically deleted thereafter.</font></string>
-    <string name="smarttransfer">SmartTransfer</string>
+    <string name="smarttransfer">Smart Transfer</string>
     <string name="selected_app_language">Selected App Language</string>
     <string name="selected_language">Selected Language</string>
     <string name="all_language">All Language</string>
     <string name="done">Done</string>
+    <string-array name="languages" translatable="false">
+        <item>en</item>
+        <item>zh</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="smart_transfer">Smart Transfer</string>
     <string name="share_file">Share File</string>
     <string name="share_your_files">Share your Files</string>
     <string name="receive_your_files">Receive your Files</string>
     <string name="receive">Receive</string>
     <string name="remotely_share">Remotely Share</string>
-    <string name="android_to_ios">Android to Ios</string>
-    <string name="instantly_remotely_transfer_data_via_link">Instantly Remotely transfer data via link</string>
+    <string name="android_to_ios">Android to iOS</string>
+    <string name="instantly_remotely_transfer_data_via_link">Remotely transfer data via link</string>
     <string name="mobile_to_pc">Mobile To Pc</string>
     <string name="grant_access">Grant Access</string>
     <string name="for_smooth_transfer_many_permissions_are_required_due_to_android_limitations">For smooth transfer, many permissions are required due to Android limitations.</string>
@@ -56,12 +61,47 @@
     <string name="please_wait_your_data_is_uploading">Please wait, your data is uploading</string>
     <string name="uploading">Uploading ...</string>
     <string name="paste_link_here">Paste link here</string>
+    <string name="title_activity_web_view_recevier">WebViewRecevier</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+
     <string name="make_sure_both_the_sender_and_receiver_are_connected_to_the_same_wi_fi_network_do_not_go_back_or_stop_sharing_as_it_will_break_the_connection">Make sure both the sender and receiver are connected to the same Wi-Fi network. Do not go back or stop sharing, as it will break the connection.</string>
+    <string name="title_activity_receiver_http">ReceiverHttpActivity</string>
     <string name="downloading">Downloading</string>
     <string name="quick_data_transfer_remote_sharing"><![CDATA[Quick Data Transfer & Remote Sharing]]></string>
     <string name="powered_by_switch_apps_studio">Powered by Switch Apps Studio</string>
     <string name="start_sharing">Start Sharing</string>
     <string name="stop_sharing">Stop Sharing</string>
     <string name="all_languages">All Languages</string>
+    <string name="receive_data">Receive data</string>
+    <string name="send">Send</string>
+    <string name="transfer_data">Transfer data</string>
+    <string name="remote_share">Remote Sharing</string>
+    <string name="file_share" >File Share</string>
+    <string name="download_shared_file">Download shared files</string>
+    <string name="download">Download</string>
+    <string name="generate_link_to_send">Generate link to send files</string>
+    <string name="upload">Upload</string>
+    <string name="start_transferring">Start Transferring</string>
+    <string name="or">OR</string>
 
+    <string name="make_sure_your_android_and_ios_devices_are_connected_to_the_same_wi_fi_network">
+    Make sure your Android and iOS devices are connected to the <b><font color="#1C80F7">same Wi-Fi network</font></b>.
+</string>
+    <string name="download_file">Download file</string>
+    <string name="scan_the_qr_code_or_copy_paste_the_link_in_the_box_that_you_receive_from_the_sender">Scan the QR code or copy/paste the link in the box that you receive from the sender</string>
+    <string name="the_sender_and_the_receiver_must_be_connected_to_the">
+          The sender and the receiver must be connected to the <b><font color='#1976D2'>same Wi-Fi network</font></b>. Don’t go back or exit this screen, as it will stop the sharing.
+        </string>
+    <string name="home">Home</string>
+    <string name="storage">Storage</string>
+    <string name="language">Language</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="share_this_app">Share This App</string>
+    <string name="rate_us">Rate Us</string>
 </resources>
+
