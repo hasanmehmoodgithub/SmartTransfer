@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "359218636826",
+    "project_id": "testapp-e5995",
+    "storage_bucket": "testapp-e5995.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359218636826:android:7910e22a15c21dd49249a3",
+        "android_client_info": {
+          "package_name": "aa.aa.aa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9TuTPsVWup66BKNGLOtFWpibBx_lKpDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359218636826:android:7a73b789b3cb4e4e9249a3",
+        "android_client_info": {
+          "package_name": "com.example.food_delivery_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9TuTPsVWup66BKNGLOtFWpibBx_lKpDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359218636826:android:12397dcf9a3f2efe9249a3",
+        "android_client_info": {
+          "package_name": "com.smartdatatransfer.easytransfer.filetransfer.sendanydata.smartswitchmobile.copydata"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9TuTPsVWup66BKNGLOtFWpibBx_lKpDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -64,7 +65,8 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.10.0")  // OkHttp dependency
 
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
-    implementation("com.airbnb.android:lottie:6.1.0") // Use the latest version
+    implementation("com.airbnb.android:lottie:6.1.0")
+    implementation("com.google.firebase:firebase-common-ktx:21.0.0") // Use the latest version
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
@@ -84,7 +86,8 @@ dependencies {
 
     // If using WorkManager
     implementation ("io.insert-koin:koin-androidx-workmanager:3.5.3")
-
+    implementation(platform("com.google.firebase:firebase-bom:33.12.0"))
+    implementation("com.google.firebase:firebase-config-ktx")
 
 
     testImplementation("junit:junit:4.13.2")

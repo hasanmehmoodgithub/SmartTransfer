@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 
 import androidx.appcompat.app.AppCompatDelegate
+import com.smart.transfer.app.com.smart.transfer.app.core.AdConfigManager
 import com.smart.transfer.app.di.appModules
 import com.smart.transfer.app.di.databaseModule
 import com.smart.transfer.app.di.repositoryModule
@@ -33,6 +34,7 @@ class MyApplication : Application() {
 
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        AdConfigManager.initConfig(this) {}
 
 
 

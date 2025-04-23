@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.smart.transfer.app.R
+import com.smart.transfer.app.com.smart.transfer.app.core.AdConfigManager
 import com.smart.transfer.app.com.smart.transfer.app.features.history.view.HistoryFragment
 import com.smart.transfer.app.com.smart.transfer.app.features.history.viewmodel.HistoryViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,7 +30,16 @@ class DashboardActivity : AppCompatActivity() {
         // Initialize ViewBinding
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        if (AdConfigManager.showBanner) {
+            Log.w("value of remote config","if")
+            Log.w("value of remote config","${AdConfigManager.showBanner}")
+            Log.w("value of remote config","${AdConfigManager.showInterstitial}")
+            Log.w("value of remote config","${AdConfigManager.showNative}")
+            Log.w("value of remote config","${AdConfigManager.testing}")
 
+        } else {
+            Log.w("value of remote config","else")
+        }
         // Load Default Fragment
         loadFragment(HomeFragment())
 
